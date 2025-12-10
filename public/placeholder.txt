@@ -1,0 +1,15 @@
+This folder is for your static assets (images, videos, resume PDF, etc.)
+
+Suggested structure:
+/public
+  /images
+    /experience
+      - larta-ai-pilot.png
+      - wheel-martech-dashboard.png
+      - etc.
+    /projects
+      - context-engine-architecture.png
+      - image-org-demo.png
+      - tree-plenish-event.jpg
+      - etc.
+  Frederick_Casey-Housand_Resume.pdf
