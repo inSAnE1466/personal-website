@@ -42,3 +42,14 @@ Keep it minimal, text-focused, inspired by valcasey.com - no frameworks, no fanc
 ## Hosting
 - Domain: Ready to purchase
 - Platform: GoDaddy
+
+
+
+
+when hrbuddy is presentable:
+
+<div class="github-project">
+                <h3><a href="https://github.com/inSAnE1466/myhrbuddy" target="_blank">MyHRBuddy</a></h3>
+                <p>AI-powered Applicant Tracking System with natural language search, resume parsing, and Zapier integration. Built with Next.js, Prisma, PostgreSQL, and MCP server integration to fully automate HR workflows.</p>
+                <p class="meta">Full-stack • Next.js • AI</p>
+            </div>
