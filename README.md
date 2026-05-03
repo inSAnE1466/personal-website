@@ -45,6 +45,18 @@ Example:
 <img src="public/context-engine-diagram.png" alt="Context Engine Architecture" style="width: 100%; margin: 16px 0;">
 ```
 
+## Gated portfolio
+
+`portfolio.html` is encrypted with [Staticrypt](https://github.com/robinmoisson/staticrypt) so client work isn't readable in this public repo. The plaintext source lives in `portfolio.source.html`, which is **gitignored**.
+
+Workflow:
+
+1. Edit `portfolio.source.html` locally.
+2. Run `./encrypt-portfolio.sh` (it prompts for the password, or set `PORTFOLIO_PASSWORD` in env).
+3. Commit `portfolio.html` (encrypted) and push. CI just deploys; no encryption happens server-side.
+
+The first run also writes `.staticrypt.json` (a salt). Commit it once so the salt is stable across re-encryptions.
+
 ## Deployment
 
 ### GitHub Pages

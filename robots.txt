@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /portfolio.html
+Disallow: /media/
+Disallow: /PWmedia/
+
+Sitemap: https://frederickcaseyhousand.com/sitemap.xml
