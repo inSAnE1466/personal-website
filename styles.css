@@ -5,9 +5,19 @@
     box-sizing: border-box;
 }
 
+/* Brand tokens — aligned to tinymacro.app */
+:root {
+    --bg: #ffffff;
+    --fg: hsl(155 10% 10%);
+    --muted-fg: hsl(155 5% 45%);
+    --border: hsl(155 12% 90%);
+    --primary: hsl(160 94% 30%);
+}
+
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #282828;
+    color: var(--fg);
+    background: var(--bg);
     line-height: 1.6;
     font-size: 11pt;
     -webkit-font-smoothing: antialiased;
@@ -23,19 +33,22 @@ body {
 
 .topbar a {
     font-size: 11pt;
-    font-weight: 300;
-    color: #282828;
+    font-weight: 400;
+    color: var(--muted-fg);
     text-decoration: none;
     border-bottom: none;
     margin-right: 30px;
+    transition: color .15s ease;
 }
 
 .topbar a.active {
     font-weight: 600;
+    color: var(--fg);
 }
 
 .topbar a:hover {
-    opacity: 0.6;
+    color: var(--primary);
+    opacity: 1;
 }
 
 /* Container */
@@ -47,18 +60,20 @@ body {
 
 /* Typography */
 h1 {
-    font-size: 24pt;
-    font-weight: 600;
+    font-size: 26pt;
+    font-weight: 700;
     margin-bottom: 10px;
-    letter-spacing: -0.2pt;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
 }
 
 h2 {
-    font-size: 16pt;
-    font-weight: 400;
-    margin-top: 60px;
-    margin-bottom: 4px;
-    letter-spacing: -0.2pt;
+    font-size: 11pt;
+    font-weight: 600;
+    margin-top: 56px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+    color: var(--fg);
 }
 
 h3 {
@@ -69,16 +84,31 @@ h3 {
 
 p {
     margin-bottom: 16px;
+    color: var(--muted-fg);
+    line-height: 1.7;
+}
+
+strong {
+    color: var(--fg);
+    font-weight: 600;
 }
 
 a {
-    color: #282828;
+    color: var(--fg);
     text-decoration: none;
-    border-bottom: 1px solid #282828;
+    border-bottom: 1px solid var(--border);
+    transition: color .15s ease, border-color .15s ease;
 }
 
 a:hover {
-    opacity: 0.6;
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    opacity: 1;
+}
+
+.brand {
+    font-weight: 700;
+    letter-spacing: -0.015em;
 }
 
 /* Header */
@@ -87,31 +117,29 @@ header {
 }
 
 .subtitle {
-    font-size: 16pt;
-    font-weight: 300;
+    font-size: 11pt;
+    font-weight: 400;
+    color: var(--fg);
+    line-height: 1.7;
+    margin-top: 8px;
     margin-bottom: 0;
+    letter-spacing: 0;
 }
 
 /* Intro */
 .intro {
-    margin-bottom: 40px;
-    font-size: 11pt;
-    line-height: 1.7;
-}
-
-.intro p {
-    font-weight: 400;
+    margin-bottom: 48px;
 }
 
 /* Sections */
 section {
-    margin-bottom: 40px;
+    margin-bottom: 48px;
 }
 
 /* Meta Info */
 .meta {
     font-size: 9pt;
-    color: #666;
+    color: var(--muted-fg);
     margin-bottom: 12px;
     font-weight: 400;
 }
@@ -133,7 +161,7 @@ section {
 .github-project {
     margin-bottom: 30px;
     padding-bottom: 30px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
 }
 
 .github-project:last-child {
@@ -146,13 +174,15 @@ section {
 }
 
 .github-project h3 a {
-    color: #282828;
+    color: var(--fg);
     text-decoration: none;
-    border-bottom: 1px solid #282828;
+    border-bottom: 1px solid var(--border);
 }
 
 .github-project h3 a:hover {
-    opacity: 0.6;
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    opacity: 1;
 }
 
 .github-project p {
@@ -183,11 +213,11 @@ li {
 
 /* Placeholder Media */
 .placeholder-media {
-    background: #f5f5f5;
-    border: 1px dashed #ccc;
+    background: hsl(155 10% 96%);
+    border: 1px dashed var(--border);
     padding: 40px 20px;
     text-align: center;
-    color: #999;
+    color: var(--muted-fg);
     font-size: 9pt;
     margin-top: 16px;
     margin-bottom: 20px;
@@ -202,11 +232,11 @@ li {
 }
 
 .carousel-placeholder {
-    background: #f5f5f5;
-    border: 1px dashed #ccc;
+    background: hsl(155 10% 96%);
+    border: 1px dashed var(--border);
     padding: 60px 20px;
     text-align: center;
-    color: #999;
+    color: var(--muted-fg);
     font-size: 9pt;
     min-height: 200px;
     display: flex;
@@ -219,19 +249,49 @@ li {
 .role img {
     width: 100%;
     margin: 16px 0;
-    border: 1px solid #eee;
+    border: 1px solid var(--border);
 }
 
 .image-carousel img {
     width: 100%;
     height: auto;
-    border: 1px solid #eee;
+    border: 1px solid var(--border);
     margin: 0;
 }
 
-/* Contact */
-.contact a {
-    border-bottom: 1px solid #282828;
+/* Primary action button — emerald accent */
+.button-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 11pt;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    border: 1px solid var(--primary);
+    border-bottom: 1px solid var(--primary);
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.button-primary:hover {
+    background: hsl(160 94% 26%);
+    border-color: hsl(160 94% 26%);
+    color: #ffffff;
+    opacity: 1;
+}
+
+/* CTA row — button + supporting copy on the same baseline */
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.cta-row p {
+    margin: 0;
 }
 
 /* Project Links and Badges */
@@ -243,20 +303,30 @@ li {
 .award-badge {
     font-size: 10pt;
     margin-top: 12px;
-    color: #666;
+    color: var(--muted-fg);
 }
 
 /* Footer */
 footer {
     margin-top: 80px;
     padding-top: 20px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--border);
 }
 
 footer p {
     font-size: 9pt;
-    color: #999;
+    color: var(--muted-fg);
     margin-bottom: 0;
+}
+
+footer a {
+    color: var(--muted-fg);
+    border-bottom: 1px solid var(--border);
+}
+
+footer a:hover {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
 }
 
 /* Responsive */
@@ -274,12 +344,7 @@ footer p {
     }
 
     h2 {
-        font-size: 14pt;
         margin-top: 40px;
-    }
-
-    .subtitle {
-        font-size: 14pt;
     }
 }
 
@@ -297,15 +362,7 @@ footer p {
     }
 
     h1 {
-        font-size: 20pt;
-    }
-
-    h2 {
-        font-size: 12pt;
-    }
-
-    .subtitle {
-        font-size: 12pt;
+        font-size: 22pt;
     }
 
     .image-carousel {
