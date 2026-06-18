@@ -6,3 +6,4 @@ portfolio.source.html
 
 # Local node_modules from running staticrypt via npx
 node_modules/
+TINYMACRO-MAP.md
