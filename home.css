@@ -1,0 +1,374 @@
+/* Hallmark · genre: editorial · macrostructure: Manifesto · theme: custom (see tokens.css stamp)
+ * Homepage only — portfolio.html keeps styles.css.
+ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { overflow-x: clip; }
+body { overflow-x: clip; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--color-ink); color: var(--color-paper); }
+.bleed ::selection { background: var(--color-paper); color: var(--color-ink); }
+
+/* ---------- skip link ---------- */
+
+.skip {
+  position: absolute;
+  left: var(--page-gutter);
+  top: -4rem;
+  z-index: var(--z-raised);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.skip:focus-visible { top: 0; }
+
+/* ---------- nav · N7 brutal slab ---------- */
+
+.slab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-md) var(--page-gutter);
+  border-bottom: var(--rule-heavy) solid var(--color-ink);
+  background: var(--color-paper);
+}
+
+.slab__mark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-base);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.slab__nav { margin-left: auto; }
+
+.slab__nav ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.slab__nav a {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  line-height: 1;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-decoration: none;
+  padding-block: var(--space-sm);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--dur-micro) var(--ease-out);
+}
+.slab__nav a:hover { border-bottom-color: var(--color-ink); }
+.slab__nav a:active { transform: translateY(1px); }
+
+.slab__cta {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-sm);
+  line-height: 1;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-paper);
+  background: var(--color-ink);
+  text-decoration: none;
+  padding: var(--space-sm) var(--space-lg);
+  white-space: nowrap;
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+.slab__cta:hover { background: var(--color-ink-2); }
+.slab__cta:active { transform: translateY(1px); }
+.slab__cta:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 3px; }
+
+/* ---------- shared section plumbing ---------- */
+
+section { padding-inline: var(--page-gutter); }
+
+.bleed {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-head);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-width: 22ch;
+}
+
+p { max-width: var(--measure); }
+
+a {
+  color: currentColor;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+a:hover { background: var(--color-ink); color: var(--color-paper); }
+a:active { background: var(--color-ink-2); color: var(--color-paper); }
+.bleed a:hover, .colophon a:hover { background: var(--color-paper); color: var(--color-ink); }
+.bleed a:active, .colophon a:active { background: var(--color-paper-2); color: var(--color-ink); }
+
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding-block: var(--space-3xl) var(--space-4xl);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-display);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.hero h1 .line { display: block; width: fit-content; }
+
+.invert {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding-inline: 0.14em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.bleed .invert {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.hero .lede {
+  margin-top: var(--space-xl);
+  font-size: var(--text-md);
+  font-weight: 500;
+  max-width: 48ch;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: reveal var(--dur-long) var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+@keyframes reveal { to { opacity: 1; transform: none; } }
+
+/* ---------- manifesto claims (dark bleeds) ---------- */
+
+.bleed { padding-block: var(--space-3xl); }
+
+.claims {
+  margin-top: var(--space-2xl);
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.claim {
+  font-size: var(--text-claim);
+  font-weight: 500;
+  line-height: 1.35;
+  max-width: 42ch;
+}
+
+/* alternating indent — asymmetric rhythm, not a template */
+@media (min-width: 60rem) {
+  .claims .claim:nth-child(even) { margin-left: clamp(3rem, 14vw, 13rem); }
+  .company__body, .terms__body { margin-left: clamp(3rem, 10vw, 9rem); }
+}
+
+/* ---------- the company (paper) ---------- */
+
+.company { padding-block: var(--space-3xl); }
+
+.company__body {
+  margin-top: var(--space-xl);
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.company__body .big {
+  font-size: var(--text-claim);
+  font-weight: 500;
+  line-height: 1.35;
+  max-width: 42ch;
+  margin-bottom: var(--space-md);
+}
+
+.sitelink {
+  margin-top: var(--space-md);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-md);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ---------- the terms (dark) ---------- */
+
+.terms__body {
+  margin-top: var(--space-2xl);
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.term dt {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-md);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.term dd {
+  font-size: var(--text-base);
+  max-width: 52ch;
+}
+
+.term + .term { margin-top: var(--space-xl); }
+
+.terms .close {
+  font-size: var(--text-claim);
+  font-weight: 500;
+  line-height: 1.35;
+  max-width: 40ch;
+  margin-top: var(--space-md);
+}
+
+/* ---------- CTA block ---------- */
+
+.reach { padding-block: var(--space-3xl); }
+
+.reach__lede {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-lg);
+  color: var(--color-muted);
+}
+
+.cta-block {
+  display: block;
+  width: 100%;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: left;
+  line-height: 1.1;
+  padding: var(--space-xl) var(--space-lg);
+  white-space: nowrap;
+  transition: background-color var(--dur-micro) var(--ease-out);
+}
+.cta-block:hover { background: var(--color-ink-2); color: var(--color-paper); }
+.cta-block:active { transform: translateY(2px); }
+.cta-block:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 3px; }
+
+.reach .aside {
+  margin-top: var(--space-lg);
+  color: var(--color-muted);
+}
+.reach .aside a { color: var(--color-ink); }
+
+/* ---------- the rest (quieter) ---------- */
+
+.rest {
+  padding-block: var(--space-3xl);
+  background: var(--color-paper-2);
+  border-top: var(--rule-heavy) solid var(--color-ink);
+}
+
+.rest__body {
+  margin-top: var(--space-xl);
+  display: grid;
+  gap: var(--space-lg);
+  color: var(--color-ink-2);
+}
+
+.rest__links {
+  margin-top: var(--space-md);
+  font-weight: 600;
+}
+
+/* ---------- colophon · Ft4 ---------- */
+
+.colophon {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: var(--space-2xl) var(--page-gutter);
+}
+
+.colophon p {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.8;
+  max-width: 72ch;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 40rem) {
+  .slab {
+    flex-wrap: wrap;
+    row-gap: var(--space-sm);
+  }
+  .slab__mark { flex-basis: 100%; }
+  .slab__nav { margin-left: 0; }
+  .slab__nav ul { gap: var(--space-md); }
+  .slab__nav a, .slab__cta { min-height: 44px; display: inline-flex; align-items: center; }
+
+  .hero { padding-block: var(--space-2xl) var(--space-3xl); }
+  .bleed, .company, .reach, .rest { padding-block: var(--space-2xl); }
+  .claims, .terms__body { gap: var(--space-xl); }
+  .cta-block { padding: var(--space-lg) var(--space-md); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  .reveal { animation: reveal-reduced 150ms linear forwards; }
+  @keyframes reveal-reduced { to { opacity: 1; transform: none; } }
+}

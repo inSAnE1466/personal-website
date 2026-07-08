@@ -2,61 +2,103 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frederick Casey-Housand — Founder, TinyMacro</title>
-    <meta name="description" content="Frederick Casey-Housand runs TinyMacro. One AI employee per company, reachable at its own email address. It does the outreach; you take the meetings.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Frederick Casey-Housand · Founder, TinyMacro</title>
+    <meta name="description" content="Frederick Casey-Housand runs TinyMacro: one AI employee per company, reachable at its own email address. Intelligence is becoming a utility. The proof is the moat.">
     <meta name="google-site-verification" content="TODO_GSC_VERIFICATION_CODE">
     <link rel="canonical" href="https://frederickcaseyhousand.com/">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <nav class="topbar">
-        <a href="index.html" class="active">Home</a>
-        <a href="portfolio.html">Work</a>
-    </nav>
+    <a class="skip" href="#main">Skip to content</a>
 
-    <div class="container">
-        <header>
-            <h1>Hello, I'm Frederick Casey-Housand.</h1>
-            <p class="subtitle">I'm an AI builder based in Oakland. Most of my work has been with people trying to do something useful: climate, accessibility, public research.</p>
-        </header>
+    <header class="slab">
+        <a class="slab__mark" href="index.html">Frederick Casey-Housand</a>
+        <nav class="slab__nav" aria-label="Primary">
+            <ul>
+                <li><a href="portfolio.html">Work</a></li>
+                <li><a href="https://tinymacro.app" target="_blank" rel="noopener">TinyMacro</a></li>
+            </ul>
+        </nav>
+        <a class="slab__cta" href="https://cal.com/frederick-casey-housand-vy8nkn/tinymacro-general-interest" target="_blank" rel="noopener">Book a call</a>
+    </header>
 
-        <section class="intro">
-            <p>Right now I'm running TinyMacro. We build one AI employee per company: it learns how the business works, lives at its own email address, and does the recurring work the owner never gets to. I put them together one team at a time, by hand.</p>
-
-            <p>The bet behind it, since this is where I spend my thinking: intelligence is turning into a utility. The price of a unit of machine thinking keeps falling, and right now it's subsidized well below cost. When that settles, the interesting problem won't be who has the smartest model. It will be economics: how much finished, reliable work you can get out of the cheapest intelligence that can do the job. That problem is mostly unsolved, and it isn't answered by better models. It's answered by receipts: tested setups, proven in production, that show a given configuration does a given job reliably at a known cost. The teams holding those receipts will build what everyone else has to rent. TinyMacro is my hedge on that future, and we run the whole company on it, so every week produces more proof.</p>
-
-            <p>I grew up in Oakland. In high school I ran the local <a href="https://www.tree-plenish.org/" target="_blank">Tree-Plenish</a> chapter. We planted over a hundred fruit trees with a team of six, and I figured out how to fundraise, run logistics, and talk a city into letting teenagers plant on public land. The work won the David Brower Conservation Award. It's also where I picked up the line I still work by: good systems should improve the world, not just operate within it.</p>
-
-            <p>Since then I've built AI infrastructure for <a href="https://wheeltheworld.com/" target="_blank">Wheel the World</a> (an accessible travel startup) and <a href="https://www.larta.org" target="_blank">Larta Institute</a> (a federal research accelerator running programs for NOAA and USDA). On the side right now, I'm building AI content systems for ShoplyAI. I'm finishing an Economics degree at UCLA in December 2026, with a minor in Environmental Systems and Society.</p>
+    <main id="main">
+        <section class="hero" aria-label="Introduction">
+            <h1 class="reveal" style="--i: 0"><span class="line">Intelligence</span> <span class="line">is becoming</span> <span class="line"><span class="invert">a&nbsp;utility.</span></span></h1>
+            <p class="lede reveal" style="--i: 1">I’m Frederick Casey-Housand. I build AI systems in Oakland and run TinyMacro. Most of this page is the argument for why.</p>
         </section>
 
-        <section class="roles">
-            <h2>What I'm currently working on</h2>
-            <p><strong>TinyMacro.</strong> One AI employee per company, reachable at its own email address. You tell it who you sell to. It finds the leads, researches them, writes in your voice, sends, and follows up, with guardrails you can watch: opt-outs enforced, volume paced, every send on the record. Review Mode if you'd rather approve each send. Opening to a first round of clients now.</p>
-        </section>
-
-        <section class="contact">
-            <h2>Get in touch</h2>
-            <div class="cta-row">
-                <a href="https://cal.com/frederick-casey-housand-vy8nkn/tinymacro-general-interest" target="_blank" class="button-primary">Book a call</a>
-                <p>or send me an email.</p>
+        <section class="bleed" aria-labelledby="bet-head">
+            <h2 id="bet-head">The bet.</h2>
+            <div class="claims">
+                <p class="claim">The price of a unit of machine thinking falls every quarter, and right now it’s sold below cost. Intelligence is turning into something you buy like electricity.</p>
+                <p class="claim">Once that settles, the smartest model stops being the advantage. Everyone rents the same models. There is no technology moat in this category.</p>
+                <p class="claim">The problem that stays hard is economic: how much finished, reliable work can you get out of the cheapest intelligence that can do the job?</p>
+                <p class="claim">Better models don’t answer that. Receipts do. Evals and production history proving that a specific setup does a specific job at a known cost. The abstraction is copyable. The proof is not.</p>
+                <p class="claim">The teams holding those receipts will <span class="invert">build what everyone else has to rent.</span></p>
             </div>
-            <p>
-                <a href="mailto:frederickcaseyhousand@gmail.com">frederickcaseyhousand@gmail.com</a><br>
-                415-608-5050
-            </p>
-            <p>
-                <a href="https://www.linkedin.com/in/frederick-casey-housand" target="_blank">LinkedIn</a> ·
-                <a href="https://github.com/inSAnE1466" target="_blank">GitHub</a> ·
-                <a href="PWmedia/Frederick_Casey-Housand_Contractor.docx.pdf" target="_blank">Resume</a> ·
-                <a href="portfolio.html">Past work</a>
-            </p>
         </section>
 
-        <footer>
-            <p>Company site at <a href="https://tinymacro.app" target="_blank">tinymacro.app</a>.</p>
-        </footer>
-    </div>
+        <section class="company" aria-labelledby="company-head">
+            <h2 id="company-head">The company.</h2>
+            <div class="company__body">
+                <p class="big">TinyMacro is my position on that future: one AI employee per company, reachable at its own email address.</p>
+                <p>There’s no dashboard and no login. You tell it who you sell to; it does the work and reports back in the inbox you already use. Most AI adoption dies because the tool doesn’t live where the work happens. Email already does.</p>
+                <p>The first role is a sales development rep. It finds prospects, researches them, writes at the level of a thoughtful human, sends, and follows up on schedule. It sends fewer, better emails, and it will flag a gap in its research before it writes something generic. Opt-outs enforced, volume paced, every send on the record, and Review Mode if you’d rather approve each one.</p>
+                <p>Underneath, the agent is mostly code. A model gets called only where judgment lives; everything else is deterministic and tested. That discipline is what lets a small, cheap model do work you’d otherwise buy a frontier model for, and every task it finishes feeds the eval suite. The proof compounds.</p>
+                <p>We run our own outreach on the same pipeline we sell, and we’re opening to a first round of clients now.</p>
+                <p class="sitelink">The company site: <a href="https://tinymacro.app" target="_blank" rel="noopener">tinymacro.app&nbsp;→</a></p>
+            </div>
+        </section>
+
+        <section class="bleed" aria-labelledby="terms-head">
+            <h2 id="terms-head">The terms.</h2>
+            <div class="terms__body">
+                <p class="claim">Any future with this much machine output in it needs terms. Here are mine.</p>
+                <dl>
+                    <div class="term">
+                        <dt>Ethics</dt>
+                        <dd>An agent that writes to people carries your name. That means honest sourcing, opt-outs honored with zero tolerance, and its own address: nobody should have to guess whether they’re talking to a machine.</dd>
+                    </div>
+                    <div class="term">
+                        <dt>Presented value</dt>
+                        <dd>A dashboard is homework. An employee hands you finished work. You should receive value, not operate a tool.</dd>
+                    </div>
+                    <div class="term">
+                        <dt>No slop</dt>
+                        <dd>The one that matters most. Generated text that reads generated teaches people to stop reading. Every word our agents send passes a denylist of machine tells before it goes anywhere, and the bar is simple: would a thoughtful person have written this?</dd>
+                    </div>
+                </dl>
+                <p class="close">AI should raise the standard of what gets made, <span class="invert">not lower the cost of making it worse.</span></p>
+            </div>
+        </section>
+
+        <section class="reach" aria-labelledby="reach-head">
+            <h2 id="reach-head">Talk to me.</h2>
+            <p class="reach__lede">If any of this maps to your business, or you just want to argue with the bet.</p>
+            <a class="cta-block" href="https://cal.com/frederick-casey-housand-vy8nkn/tinymacro-general-interest" target="_blank" rel="noopener">Book a call →</a>
+            <p class="aside">Or write to me directly: <a href="mailto:frederickcaseyhousand@gmail.com">frederickcaseyhousand@gmail.com</a> · <a href="tel:+14156085050">415-608-5050</a></p>
+        </section>
+
+        <section class="rest" aria-labelledby="rest-head">
+            <h2 id="rest-head">Before all this.</h2>
+            <div class="rest__body">
+                <p>I grew up in Oakland. In high school I ran the local <a href="https://www.tree-plenish.org/" target="_blank" rel="noopener">Tree-Plenish</a> chapter: six teenagers, a hundred-plus fruit trees, and a city that had to be talked into letting kids plant on public land. The work won the David Brower Conservation Award, and it left me the line I still work by: good systems should improve the world, not just operate within it.</p>
+                <p>Since then I’ve built AI infrastructure for <a href="https://wheeltheworld.com/" target="_blank" rel="noopener">Wheel the World</a>, an accessible-travel startup, and for <a href="https://www.larta.org" target="_blank" rel="noopener">Larta Institute</a>, a federal research accelerator running programs for NOAA and USDA. On the side, I build AI content systems for ShoplyAI. I finish an Economics degree at UCLA in December 2026, with a minor in Environmental Systems and Society.</p>
+                <p class="rest__links"><a href="portfolio.html">Past work →</a> · <a href="https://www.linkedin.com/in/frederick-casey-housand" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/inSAnE1466" target="_blank" rel="noopener">GitHub</a> · <a href="PWmedia/Frederick_Casey-Housand_Contractor.docx.pdf" target="_blank">Resume</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="colophon">
+        <p>Frederick Casey-Housand. Oakland, California. <a href="mailto:frederickcaseyhousand@gmail.com">frederickcaseyhousand@gmail.com</a> · 415-608-5050. Set in Bricolage Grotesque, Switzer, and Geist Mono. Two HTML files, no framework, no tracker. The company lives at <a href="https://tinymacro.app" target="_blank" rel="noopener">tinymacro.app</a>. 2026.</p>
+    </footer>
 </body>
 </html>
