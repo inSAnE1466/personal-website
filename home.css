@@ -148,7 +148,7 @@ a:active { background: var(--color-ink-2); color: var(--color-paper); }
 /* ---------- hero ---------- */
 
 .hero {
-  padding-block: var(--space-3xl) var(--space-4xl);
+  padding-block: var(--space-2xl) var(--space-3xl);
 }
 
 .hero h1 {
@@ -191,32 +191,38 @@ a:active { background: var(--color-ink-2); color: var(--color-paper); }
 }
 @keyframes reveal { to { opacity: 1; transform: none; } }
 
-/* ---------- manifesto claims (dark bleeds) ---------- */
+/* ---------- the argument — ruled one-liner claims (paper) ---------- */
 
-.bleed { padding-block: var(--space-3xl); }
+.bleed { padding-block: var(--space-2xl); }
+
+.argument { padding-block: var(--space-2xl); }
 
 .claims {
-  margin-top: var(--space-2xl);
-  display: grid;
-  gap: var(--space-2xl);
+  margin-top: var(--space-lg);
+  border-top: var(--rule-heavy) solid var(--color-ink);
+  max-width: 66ch;
 }
 
 .claim {
   font-size: var(--text-claim);
   font-weight: 500;
-  line-height: 1.35;
-  max-width: 42ch;
+  line-height: 1.4;
+  max-width: none;
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--color-rule);
 }
+.claims .claim:last-child { border-bottom: none; }
 
-/* alternating indent — asymmetric rhythm, not a template */
 @media (min-width: 60rem) {
-  .claims .claim:nth-child(even) { margin-left: clamp(3rem, 14vw, 13rem); }
   .company__body, .terms__body { margin-left: clamp(3rem, 10vw, 9rem); }
 }
 
 /* ---------- the company (paper) ---------- */
 
-.company { padding-block: var(--space-3xl); }
+.company {
+  padding-block: var(--space-2xl) var(--space-3xl);
+  border-top: var(--rule-heavy) solid var(--color-ink);
+}
 
 .company__body {
   margin-top: var(--space-xl);
@@ -244,9 +250,9 @@ a:active { background: var(--color-ink-2); color: var(--color-paper); }
 /* ---------- the terms (dark) ---------- */
 
 .terms__body {
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-xl);
   display: grid;
-  gap: var(--space-2xl);
+  gap: var(--space-lg);
 }
 
 .term dt {
@@ -268,14 +274,14 @@ a:active { background: var(--color-ink-2); color: var(--color-paper); }
 .terms .close {
   font-size: var(--text-claim);
   font-weight: 500;
-  line-height: 1.35;
-  max-width: 40ch;
+  line-height: 1.4;
+  max-width: 44ch;
   margin-top: var(--space-md);
 }
 
-/* ---------- CTA block ---------- */
+/* ---------- CTA ---------- */
 
-.reach { padding-block: var(--space-3xl); }
+.reach { padding-block: var(--space-2xl); }
 
 .reach__lede {
   margin-top: var(--space-md);
@@ -284,24 +290,22 @@ a:active { background: var(--color-ink-2); color: var(--color-paper); }
 }
 
 .cta-block {
-  display: block;
-  width: 100%;
+  display: inline-block;
   background: var(--color-ink);
   color: var(--color-paper);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.75rem, 5vw, 3.5rem);
-  letter-spacing: 0.01em;
+  font-size: var(--text-md);
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   text-decoration: none;
-  text-align: left;
-  line-height: 1.1;
-  padding: var(--space-xl) var(--space-lg);
+  line-height: 1;
+  padding: var(--space-md) var(--space-xl);
   white-space: nowrap;
   transition: background-color var(--dur-micro) var(--ease-out);
 }
 .cta-block:hover { background: var(--color-ink-2); color: var(--color-paper); }
-.cta-block:active { transform: translateY(2px); }
+.cta-block:active { transform: translateY(1px); }
 .cta-block:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 3px; }
 
 .reach .aside {
@@ -313,7 +317,7 @@ a:active { background: var(--color-ink-2); color: var(--color-paper); }
 /* ---------- the rest (quieter) ---------- */
 
 .rest {
-  padding-block: var(--space-3xl);
+  padding-block: var(--space-2xl) var(--space-3xl);
   background: var(--color-paper-2);
   border-top: var(--rule-heavy) solid var(--color-ink);
 }
@@ -357,10 +361,9 @@ a:active { background: var(--color-ink-2); color: var(--color-paper); }
   .slab__nav ul { gap: var(--space-md); }
   .slab__nav a, .slab__cta { min-height: 44px; display: inline-flex; align-items: center; }
 
-  .hero { padding-block: var(--space-2xl) var(--space-3xl); }
-  .bleed, .company, .reach, .rest { padding-block: var(--space-2xl); }
-  .claims, .terms__body { gap: var(--space-xl); }
-  .cta-block { padding: var(--space-lg) var(--space-md); }
+  .hero { padding-block: var(--space-xl) var(--space-2xl); }
+  .bleed, .company, .reach, .rest, .argument { padding-block: var(--space-xl); }
+  .terms__body { gap: var(--space-lg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
