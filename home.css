@@ -43,16 +43,16 @@ body {
 .slab {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
-  padding: var(--space-md) var(--page-gutter);
-  border-bottom: var(--rule-heavy) solid var(--color-ink);
+  gap: var(--space-md);
+  padding: var(--space-xs) var(--page-gutter);
+  border-bottom: 2px solid var(--color-ink);
   background: var(--color-paper);
 }
 
 .slab__mark {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -73,13 +73,13 @@ body {
 .slab__nav a {
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   line-height: 1;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--color-ink);
   text-decoration: none;
-  padding-block: var(--space-sm);
+  padding-block: var(--space-xs);
   white-space: nowrap;
   border-bottom: 2px solid transparent;
   transition: border-color var(--dur-micro) var(--ease-out);
@@ -90,14 +90,14 @@ body {
 .slab__cta {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   line-height: 1;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--color-paper);
   background: var(--color-ink);
   text-decoration: none;
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-xs) var(--space-md);
   white-space: nowrap;
   transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
 }
@@ -135,8 +135,9 @@ a {
   text-underline-offset: 2px;
   transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
 }
-a:hover { background: var(--color-ink); color: var(--color-paper); }
-a:active { background: var(--color-ink-2); color: var(--color-paper); }
+/* inversion-on-hover is a PROSE-link affordance — nav chrome keeps its own quieter hovers */
+main a:hover { background: var(--color-ink); color: var(--color-paper); }
+main a:active { background: var(--color-ink-2); color: var(--color-paper); }
 .bleed a:hover, .colophon a:hover { background: var(--color-paper); color: var(--color-ink); }
 .bleed a:active, .colophon a:active { background: var(--color-paper-2); color: var(--color-ink); }
 
@@ -162,7 +163,6 @@ a:active { background: var(--color-ink-2); color: var(--color-paper); }
   min-width: 0;
 }
 
-.hero h1 .line { display: block; width: fit-content; }
 
 .invert {
   background: var(--color-ink);
