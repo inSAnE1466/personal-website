@@ -22,11 +22,11 @@
 
   --text-xs:   0.8125rem;
   --text-sm:   0.875rem;
-  --text-base: 1.0625rem;
-  --text-md:   1.25rem;
-  --text-claim: clamp(1.15rem, 0.7vw + 1rem, 1.5rem);
-  --text-head:  clamp(1.5rem, 1.8vw + 0.9rem, 2.4rem);
-  --text-display: clamp(1.9rem, 4.2vw + 0.6rem, 4.5rem);
+  --text-base: 1rem;
+  --text-md:   1.125rem;
+  --text-claim: clamp(1.05rem, 0.4vw + 0.95rem, 1.2rem);
+  --text-head:  clamp(1.25rem, 1.2vw + 0.85rem, 1.75rem);
+  --text-display: clamp(1.7rem, 2.6vw + 0.7rem, 2.9rem);
 
   /* space — 4pt scale */
   --space-2xs: 0.25rem;
@@ -34,9 +34,9 @@
   --space-sm:  0.75rem;
   --space-md:  1rem;
   --space-lg:  1.5rem;
-  --space-xl:  2.5rem;
-  --space-2xl: 4rem;
-  --space-3xl: 6rem;
+  --space-xl:  2rem;
+  --space-2xl: 2.75rem;
+  --space-3xl: 4rem;
   --space-4xl: 9rem;
 
   --page-gutter: clamp(1.25rem, 5vw, 4rem);

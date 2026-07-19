@@ -135,11 +135,11 @@ a {
   text-underline-offset: 2px;
   transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
 }
-/* inversion-on-hover is a PROSE-link affordance — nav chrome keeps its own quieter hovers */
-main a:hover { background: var(--color-ink); color: var(--color-paper); }
-main a:active { background: var(--color-ink-2); color: var(--color-paper); }
-.bleed a:hover, .colophon a:hover { background: var(--color-paper); color: var(--color-ink); }
-.bleed a:active, .colophon a:active { background: var(--color-paper-2); color: var(--color-ink); }
+/* prose-link affordance — a quieter underline emphasis, no full-word block */
+main a:hover { color: var(--color-ink-2); text-decoration-thickness: 3px; }
+main a:active { color: var(--color-ink-2); }
+.bleed a:hover, .colophon a:hover { color: var(--color-paper-2); text-decoration-thickness: 3px; }
+.bleed a:active, .colophon a:active { color: var(--color-paper-2); }
 
 :focus-visible {
   outline: 3px solid currentColor;
@@ -164,16 +164,13 @@ main a:active { background: var(--color-ink-2); color: var(--color-paper); }
 }
 
 
+/* emphasis is weight, not a highlight block */
 .invert {
-  background: var(--color-ink);
-  color: var(--color-paper);
-  padding-inline: 0.14em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  font-weight: 600;
+  color: var(--color-ink);
 }
 .bleed .invert {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  color: var(--color-paper);
 }
 
 .hero .lede {
@@ -185,11 +182,10 @@ main a:active { background: var(--color-ink-2); color: var(--color-paper); }
 
 .reveal {
   opacity: 0;
-  transform: translateY(10px);
-  animation: reveal var(--dur-long) var(--ease-out) forwards;
-  animation-delay: calc(var(--i, 0) * 70ms);
+  animation: reveal var(--dur-short) var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 50ms);
 }
-@keyframes reveal { to { opacity: 1; transform: none; } }
+@keyframes reveal { to { opacity: 1; } }
 
 /* ---------- the argument — ruled one-liner claims (paper) ---------- */
 
