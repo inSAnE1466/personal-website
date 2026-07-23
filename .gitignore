@@ -1,9 +1,5 @@
 .claude/ # :))
 
-# Plaintext source for the gated portfolio. Encrypted into portfolio.html
-# by encrypt-portfolio.sh before commit. Never push this.
-portfolio.source.html
-
-# Local node_modules from running staticrypt via npx
+# Local node_modules
 node_modules/
 TINYMACRO-MAP.md

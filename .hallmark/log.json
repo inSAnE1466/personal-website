@@ -1,3 +1,4 @@
 [
+  { "date": "2026-07-22", "scope": "app", "macrostructure": "Marquee Hero + Long Document body (no rules)", "theme": "custom", "theme_axes": "light / geometric-sans / neutral", "vibe": "apple restraint, inter, black and white", "enrichment": "none", "nav": "N5", "footer": "Ft2", "brief": "Frederick Casey-Housand personal site · whole-site redesign · design.md locked" },
   { "date": "2026-07-08", "macrostructure": "Manifesto", "theme": "custom", "theme_axes": "light-with-ink-bleeds / display-heavy / neutral", "vibe": "black white brutalist founder thesis", "enrichment": "none", "nav": "N7", "footer": "Ft4", "brief": "Frederick Casey-Housand personal site · founder thesis + TinyMacro" }
 ]

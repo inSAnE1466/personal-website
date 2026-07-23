@@ -1,93 +1,39 @@
-# Frederick Casey-Housand - Personal Website
+# frederickcaseyhousand.com
 
-A simple, clean portfolio website. No frameworks, no build tools - just HTML and CSS.
+Personal site. No frameworks, no build step — HTML and CSS.
 
 ## Structure
 
 ```
-personal-website/
-├── index.html          # Main page
-├── styles.css          # Styling
-└── public/            # Your images/media (create this folder)
+index.html        # home — founder thesis + TinyMacro
+consulting.html   # consulting page
+tokens.css        # design tokens (colors, type, spacing, motion)
+home.css          # page styles (both pages)
+design.md         # the locked design system — read before changing any styling
+PWmedia/          # public resume PDF
 ```
 
-## Running Locally
+Client work and its media live in the private repo
+[`portfolio-private`](https://github.com/inSAnE1466/portfolio-private) —
+nothing on this site links to it.
 
-No build process needed. Just open `index.html` in your browser, or use a simple server:
+## Design
+
+The system is locked in `design.md`: Inter/Inter Tight, true black-and-white,
+one shared left edge, no hairline rules, two-column paragraph rows, a single
+full-bleed ink band per page. A matching Figma file mirrors both pages plus
+the token foundations. Change `design.md` first if the system needs to grow.
+
+## Running locally
+
+Open `index.html` in a browser, or:
 
 ```bash
-# Python 3
 python3 -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
-
-# Node.js (if you have it)
-npx serve
 ```
-
-Then open `http://localhost:8000`
-
-## Adding Media
-
-1. Create a `public` folder
-2. Add your images there
-3. Replace the placeholder divs in `index.html` with actual `<img>` tags
-
-Example:
-```html
-<!-- Replace this: -->
-<div class="placeholder-media">
-    [Add screenshots: Architecture diagrams]
-</div>
-
-<!-- With this: -->
-<img src="public/context-engine-diagram.png" alt="Context Engine Architecture" style="width: 100%; margin: 16px 0;">
-```
-
-## Gated portfolio
-
-`portfolio.html` is encrypted with [Staticrypt](https://github.com/robinmoisson/staticrypt) so client work isn't readable in this public repo. The plaintext source lives in `portfolio.source.html`, which is **gitignored**.
-
-Workflow:
-
-1. Edit `portfolio.source.html` locally.
-2. Run `./encrypt-portfolio.sh` (it prompts for the password, or set `PORTFOLIO_PASSWORD` in env).
-3. Commit `portfolio.html` (encrypted) and push. CI just deploys; no encryption happens server-side.
-
-The first run also writes `.staticrypt.json` (a salt). Commit it once so the salt is stable across re-encryptions.
 
 ## Deployment
 
-### GitHub Pages
-1. Push to GitHub
-2. Go to Settings → Pages
-3. Select main branch
-4. Your site will be at `https://yourusername.github.io/personal-website`
+GitHub Pages via `.github/workflows/static.yml` — push to `main` and it deploys.
 
-### Netlify
-Drag and drop the entire folder to [Netlify](https://app.netlify.com/drop)
-
-### Vercel
-```bash
-npx vercel
-```
-
-## Customization
-
-All styling is in `styles.css`. The design follows a minimal aesthetic inspired by simple, text-focused portfolios.
-
-Typography sizes:
-- h1: 30pt (name)
-- h2: 16pt (section headers)
-- h3: 11pt (role/project titles)
-- body: 11pt
-- meta: 9pt
-
-Colors:
-- Text: #282828
-- Links: #282828 with underline
-- Meta text: #666
-- Footer: #999
-
-© 2025 Frederick Casey-Housand
+© 2026 Frederick Casey-Housand
