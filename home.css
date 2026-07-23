@@ -193,6 +193,7 @@ a {
 main a:hover { text-decoration-color: currentColor; }
 
 h1, h2 { overflow-wrap: anywhere; min-width: 0; }
+h2, [id] { scroll-margin-top: 6rem; }
 
 h2 {
   font-family: var(--font-display);
@@ -258,11 +259,12 @@ strong { font-weight: 600; }
 }
 
 .section__body .big {
-  font-size: var(--text-md);
-  font-weight: 500;
+  font-size: var(--text-lg);
+  font-weight: 400;
   line-height: 1.5;
-  max-width: 48ch;
-  margin-bottom: var(--space-xs);
+  max-width: 44ch;
+  margin-bottom: var(--space-md);
+  color: var(--color-ink);
 }
 
 .section__body .quiet { color: var(--color-ink-2); }
