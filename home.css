@@ -49,8 +49,7 @@ body {
 .pill {
   position: fixed;
   top: var(--space-md);
-  left: 50%;
-  transform: translateX(-50%);
+  left: var(--page-gutter);
   z-index: var(--z-sticky);
   display: inline-flex;
   align-items: center;
@@ -208,12 +207,8 @@ h2 {
 /* ---------- marquee hero — the words fill the window ---------- */
 
 .hero {
-  min-height: 72svh;
   padding-inline: var(--page-gutter);
-  padding-block: var(--space-2xl) var(--space-3xl);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  padding-block: var(--space-2xl) var(--space-4xl);
 }
 
 .hero h1 {
@@ -381,7 +376,7 @@ strong { font-weight: 600; }
 
 @media (max-width: 40rem) {
   main { padding-top: var(--space-3xl); }
-  .hero { min-height: 64svh; }
+  .hero { padding-block: var(--space-xl) var(--space-3xl); }
   .argument, .section, .reach { padding-block: 0 var(--space-2xl); }
   .band { padding-block: var(--space-2xl); margin-block: var(--space-lg) var(--space-2xl); }
   .rest { padding-block: var(--space-xl); }
