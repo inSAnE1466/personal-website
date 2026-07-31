@@ -29,7 +29,7 @@
   --text-lg:      clamp(1.25rem, 0.6vw + 1.05rem, 1.5rem);  /* lede               */
   --text-title:   clamp(1.75rem, 1.8vw + 1rem, 2.5rem);     /* section heads      */
   --text-display: clamp(2.5rem, 5vw + 0.5rem, 4.25rem);     /* inner-page hero    */
-  --text-marquee: clamp(3.5rem, 10.5vw, 10rem);             /* opening words      */
+  --text-marquee: clamp(2.5rem, 5vw, 4rem);                /* opening words      */
 
   --track-display: -0.03em;
   --track-marquee: -0.035em;

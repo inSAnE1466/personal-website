@@ -55,10 +55,9 @@ body {
   align-items: center;
   gap: var(--space-lg);
   padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-lg);
-  background: color-mix(in oklch, var(--color-paper) 82%, transparent);
+  background: color-mix(in oklch, var(--color-paper) 10%, transparent);
   -webkit-backdrop-filter: blur(14px) saturate(120%);
   backdrop-filter: blur(14px) saturate(120%);
-  border: var(--rule-hair) solid var(--color-rule);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-pill);
   white-space: nowrap;
