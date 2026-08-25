@@ -5,11 +5,13 @@ Personal site. No frameworks, no build step — HTML and CSS.
 ## Structure
 
 ```
-index.html        # home — founder thesis + TinyMacro
+index.html        # current work, technical opinions, and contact
 consulting.html   # consulting page
 tokens.css        # design tokens (colors, type, spacing, motion)
 home.css          # page styles (both pages)
 design.md         # the locked design system — read before changing any styling
+favicon.svg       # shared TinyMacro browser-tab mark
+sitemap.xml       # indexed public pages and revision dates
 PWmedia/          # public resume PDF
 ```
 
@@ -19,10 +21,11 @@ nothing on this site links to it.
 
 ## Design
 
-The system is locked in `design.md`: Inter/Inter Tight, true black-and-white,
-one shared left edge, no hairline rules, two-column paragraph rows, a single
-full-bleed ink band per page. A matching Figma file mirrors both pages plus
-the token foundations. Change `design.md` first if the system needs to grow.
+The system is locked in `design.md`: Arial, pure white paper, near-black ink,
+compact normal-flow text navigation, one shared reading edge, and restrained
+hairline section rules. The consulting page alone may use one full-width black
+band. Both pages end with their contact section and have no footer. Change
+`design.md` first when the public direction changes.
 
 ## Running locally
 

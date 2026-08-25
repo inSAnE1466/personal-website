@@ -1,68 +1,52 @@
-/* Hallmark · genre: modern-minimal · macrostructure: Marquee Hero + Long Document body (no rules — type only) · design-system: design.md · designed-as-app
- * theme: custom · vibe: "apple restraint, inter, black and white" · paper: oklch(100% 0 0) · accent: neutral (ink)
- * display: Inter Tight 600 · body: Inter 400 · outlier: Geist Mono · axes: light / geometric-sans / neutral
- * nav: N5 floating pill · footer: Ft2 inline single line · enrichment: none · studied: no
- * Hallmark · pre-emit critique: P5 H5 E4 S4 R5 V4
- */
-
 :root {
-  /* colour — true monochrome (modern-minimal loosens gates 8 + 24) */
-  --color-paper:   oklch(100% 0 0);
-  --color-paper-2: oklch(96.7% 0 0);
-  --color-rule:    oklch(90% 0 0);
-  --color-rule-2:  oklch(94% 0 0);
-  --color-muted:   oklch(50% 0 0);
-  --color-ink-2:   oklch(37% 0 0);
-  --color-ink:     oklch(22% 0 0);
-  --color-focus:   oklch(22% 0 0);
-  --color-paper-muted: oklch(80% 0 0); /* secondary text on ink surfaces */
+  /* Pure monochrome surfaces */
+  --color-paper: #ffffff;
+  --color-paper-2: #f6f6f6;
+  --color-rule: #dedede;
+  --color-rule-2: #ededed;
+  --color-muted: #666666;
+  --color-ink-2: #3f3f3f;
+  --color-ink: #171717;
+  --color-focus: #171717;
+  --color-paper-muted: #d4d4d4;
 
-  /* type — 2+1: Inter Tight display · Inter body · Geist Mono outlier */
-  --font-display: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
-  --font-body:    "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-mono:    "Geist Mono", ui-monospace, "SF Mono", monospace;
+  /* One type family, two weights */
+  --font-display: Arial, Helvetica, system-ui, sans-serif;
+  --font-body: Arial, Helvetica, system-ui, sans-serif;
+  --font-mono: Arial, Helvetica, system-ui, sans-serif;
 
-  --text-xs:      0.8125rem;                                /* 13px — meta        */
-  --text-sm:      0.875rem;                                 /* 14px — nav, footer */
-  --text-base:    1.0625rem;                                /* 17px — body        */
-  --text-md:      1.1875rem;                                /* 19px — big body    */
-  --text-lg:      clamp(1.25rem, 0.6vw + 1.05rem, 1.5rem);  /* lede               */
-  --text-title:   clamp(1.75rem, 1.8vw + 1rem, 2.5rem);     /* section heads      */
-  --text-display: clamp(2.5rem, 5vw + 0.5rem, 4.25rem);     /* inner-page hero    */
-  --text-marquee: clamp(2.5rem, 5vw, 4rem);                /* opening words      */
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: clamp(1.125rem, 0.35vw + 1.02rem, 1.375rem);
+  --text-title: clamp(1.625rem, 1.8vw + 0.875rem, 2.375rem);
+  --text-display: clamp(2.375rem, 2.7vw + 1.2rem, 3.875rem);
+  --text-marquee: clamp(2.375rem, 2.7vw + 1.2rem, 3.875rem);
 
-  --track-display: -0.03em;
-  --track-marquee: -0.035em;
-  --track-title:   -0.02em;
+  --track-display: -0.025em;
+  --track-marquee: -0.025em;
+  --track-title: -0.015em;
 
-  /* space — 4pt scale */
+  /* Four-point spacing scale */
   --space-3xs: 0.125rem;
   --space-2xs: 0.25rem;
-  --space-xs:  0.5rem;
-  --space-sm:  0.75rem;
-  --space-md:  1rem;
-  --space-lg:  1.5rem;
-  --space-xl:  2.5rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
   --space-2xl: 4rem;
   --space-3xl: 6rem;
   --space-4xl: 9rem;
 
-  --page-gutter: clamp(1.25rem, 5vw, 3rem);
-  --measure: 62ch;
+  --page-gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --measure: 68ch;
+  --page-width: 76rem;
 
-  /* shape */
-  --radius-pill: 999px;
-  --radius-card: 1.125rem;
+  --radius-control: 10px;
   --rule-hair: 1px;
 
-  /* motion — still page; micro feedback only */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in:  cubic-bezier(0.7, 0, 0.84, 0);
-  --dur-micro: 120ms;
-  --dur-short: 200ms;
-
-  /* depth */
-  --shadow-pill: 0 8px 24px -12px oklch(0% 0 0 / 0.18);
   --z-base: 1;
   --z-raised: 10;
   --z-sticky: 200;
