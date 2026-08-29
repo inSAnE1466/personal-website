@@ -1,22 +1,33 @@
-# Personal website
+# Personal website agent map
 
-This repository owns the public personal website. It contains no private portfolio or client
-authority.
+## Brownfield bootstrap
 
-## Required context
+This is a brownfield repository. Existing site context controls every change.
 
-Before any other repository work, run:
+Until this turn contains complete loader output, do not inspect, plan, edit, review, or delegate.
 
-```sh
-node .agents/session-context/context-loader.mjs load start
-```
+- Start: `node .agents/session-context/context-loader.mjs load start`
+- Resume after compaction: `node .agents/session-context/context-loader.mjs load resume`
+- Accept output only when its final line starts with `CONTEXT_RECEIPT`.
+- Treat earlier work as unverified. Preserve existing files, load context, and review that work again.
 
-After context compaction, handoff, or an uncertain resume, run `load resume` before continuing.
-Before delegation, use the installed session-context guide. Reject a subagent result until its
-context receipt passes `verify`.
+Use TinyMacro Simplified English in every agent chat and document.
 
-The loader reads this file, `README.md`, and the locked `design.md`. Do not replace it with manual
-file pointers. Do not add private portfolio material or client facts. A push to `main` deploys the
-site, so do not push or use credentials without exact authority.
+- Target 20 words or fewer per sentence.
+- Never exceed 30 words, except for code, commands, URLs, quotations, citations, legal text, or fixed names.
+- Use four sentences or fewer per paragraph.
+- Put one action in each numbered step.
+- Define an uncommon abbreviation the first time you use it.
 
-Check both pages and their responsive layout before a commit.
+The profile uses selected ASD-STE100 principles. Do not claim formal ASD-STE100 conformance.
+
+## Repository contract
+
+This repository owns the public personal website. It does not own private or client truth.
+
+The loader provides the detailed repository rules, readme, and design system. Give each subagent a verified `load subagent` bundle.
+
+- Do not add private portfolio or client material.
+- A push to `main` deploys the site. Do not push, deploy, or use credentials without direct authority.
+
+Before closing, check both pages and responsive layouts. Account for dirt and commit the work.

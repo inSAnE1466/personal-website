@@ -18,6 +18,20 @@ and established product terms can keep their source form when changing them woul
 - Use sentence-case headings, descriptive links, and unambiguous dates.
 - Keep domain terms when they are more precise than plain-language substitutes.
 
+## Measurable form
+
+Use these limits for ordinary agent chat and agent-written prose:
+
+- Target 20 words or fewer per sentence. Do not exceed 30 words unless an exception below applies.
+- Use no more than four sentences in one paragraph.
+- Put one action in each numbered step.
+- Define an uncommon abbreviation at first use.
+- Prefer lists when three or more parallel items would make a long sentence.
+
+Exact quotations, code, commands, URLs, legal text, citations, and established technical terms are
+outside the sentence limit when changing them would alter meaning. This is TinyMacro Simplified
+English. It is informed by selected ASD-STE100 principles but does not claim formal conformance.
+
 ## Preserve the vertical voice
 
 The floor controls clarity, not personality. A product, client deliverable, research note, and incident report may use different tones above it. Do not flatten all writing into generic documentation prose.

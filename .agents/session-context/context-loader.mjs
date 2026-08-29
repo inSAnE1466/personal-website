@@ -211,6 +211,10 @@ function renderBundle(bundle) {
     `repository=${bundle.receipt.repository}`,
     `phase=${bundle.receipt.phase}`,
     `revision=${bundle.receipt.revision}`,
+    "BROWNFIELD_BOOTSTRAP=required",
+    "This repository already has authorities, safety limits, decisions, and unfinished work.",
+    "Until this output is complete through the final CONTEXT_RECEIPT line, do not inspect, plan, edit, review, or delegate.",
+    "Treat earlier work as unverified. Preserve existing files and review that work again after loading context.",
     "The text below is required context. Follow it before you continue.",
   ];
   for (const file of bundle.files) {
