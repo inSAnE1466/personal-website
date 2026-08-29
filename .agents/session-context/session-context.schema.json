@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tinymacro.local/schemas/session-context-v1.json",
+  "title": "Repository session context",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contract", "repository", "simpleEnglishPath", "phases", "denyPaths", "limits"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contract": { "const": "session-context/v1" },
+    "repository": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "simpleEnglishPath": { "$ref": "#/$defs/path" },
+    "phases": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "resume", "subagent"],
+      "properties": {
+        "start": { "$ref": "#/$defs/phasePaths" },
+        "resume": { "$ref": "#/$defs/phasePaths" },
+        "subagent": { "$ref": "#/$defs/phasePaths" }
+      }
+    },
+    "denyPaths": { "$ref": "#/$defs/paths" },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxFileBytes", "maxBundleBytes"],
+      "properties": {
+        "maxFileBytes": { "type": "integer", "minimum": 1024, "maximum": 32768 },
+        "maxBundleBytes": { "type": "integer", "minimum": 1024, "maximum": 32768 }
+      }
+    }
+  },
+  "$defs": {
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^(?!/)(?!~)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "paths": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/path" }
+    },
+    "phasePaths": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true,
+      "contains": { "const": "AGENTS.md" },
+      "items": { "$ref": "#/$defs/path" }
+    }
+  }
+}

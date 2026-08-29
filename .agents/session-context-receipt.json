@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "managedBy": "primitives-harness/session-context",
+  "contract": "session-context/v1",
+  "destination": ".agents/session-context",
+  "sourceDigest": "85e23623cbb59731732c4c300d4d58b7d1717e600fc43322142912b49465689d",
+  "files": [
+    {
+      "path": "context-loader.mjs",
+      "executable": true,
+      "sha256": "832c1576b7bd9b148c89be6e8ef7f1654597b1ef20e9c891b882720e7a5c87d1"
+    },
+    {
+      "path": "README.md",
+      "executable": false,
+      "sha256": "23aa57bca5f163f3f28a1e3f3978c704592cac2235997f8e2657c9a2040e785e"
+    },
+    {
+      "path": "session-context.schema.json",
+      "executable": false,
+      "sha256": "b6376f670381e177fcd42e7ac02b8f875419eecb21d60a68a023626babf2bd74"
+    },
+    {
+      "path": "writing-profile.md",
+      "executable": false,
+      "sha256": "ec66c034a1c692c14af16fb0679cd0243b016e7f2498f7887c3d01802efd0b53"
+    }
+  ],
+  "receiptDigest": "05e3583e3484425a46122d520286ed5643dc91a58de357b43911c5c18b1ee7aa"
+}

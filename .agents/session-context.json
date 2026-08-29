@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "contract": "session-context/v1",
+  "repository": "personal-website",
+  "simpleEnglishPath": ".agents/session-context/writing-profile.md",
+  "phases": {
+    "start": ["AGENTS.md", "README.md", "design.md"],
+    "resume": ["AGENTS.md", "README.md", "design.md"],
+    "subagent": ["AGENTS.md", "README.md", "design.md"]
+  },
+  "denyPaths": [],
+  "limits": {
+    "maxFileBytes": 32768,
+    "maxBundleBytes": 32768
+  }
+}
