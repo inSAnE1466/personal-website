@@ -2,7 +2,28 @@
 
 Fred's personal site. The existing home and consulting pages are plain HTML/CSS.
 Writing uses Markdown, converted to static HTML by a small Node script. There is
-no browser JavaScript, CMS, or account service for the blog.
+no browser JavaScript, CMS, or account service for the blog. Arial and the existing
+writing voice remain the design constraints.
+
+This is Fred’s writing and social proof. The [current workspace direction](/Users/fredcaseyhousand/Desktop/github/tinymacro-workspace/OWNER-CONTEXT.md)
+keeps it separate from the company’s case studies and any acquisition experiment.
+[TMH’s company thesis](/Users/fredcaseyhousand/Desktop/github/tm-harness/thesis/company-thesis.md)
+owns company/client claims; this site does not establish them.
+
+## Next useful slice
+
+Resume `codex/personal-markdown-blog` in this worktree. The workflow is implemented
+and locally reviewed; no real essay has been selected and this branch is not
+published. The smallest next slice is one owner-selected Markdown post, readable
+from the index and at its direct URL. Fred still needs to supply or select the
+exact text, title, date, short description, and approval to publish it. Preserve
+his original and voice; do not manufacture an essay or import an Obsidian folder.
+
+Use the steps below to prepare that one post. Judge completion by a faithful
+rendering on desktop/mobile, working links, and a normal build containing only
+approved posts. No CMS, runtime integration, or broader redesign is needed.
+Company case-study inputs and permission stay in the [company guide](/Users/fredcaseyhousand/.codex/worktrees/a087/tinymacro-site/docs/case-studies-review.md);
+private portfolio sources remain outside this work.
 
 ## Local review
 
@@ -14,9 +35,11 @@ npm test
 npm run preview
 ```
 
-Open http://127.0.0.1:8011/writing/ and the linked draft sample. The preview includes
+Open [the writing index](http://127.0.0.1:8011/writing/) and the linked draft sample. The preview includes
 drafts with a generic “Draft for review” notice and marks writing pages `noindex`.
-Stop the server with Ctrl-C. After editing a post, rerun `npm run preview` to rebuild it (there is no watch server).
+Stop the server with Ctrl-C. After editing a post, rerun `npm run preview` to
+rebuild it (there is no watch server). If port 8011 is already serving this
+worktree, stop that preview before starting another.
 
 For the public build, run `npm run build`, then serve `dist`:
 
@@ -78,7 +101,8 @@ Only published posts enter the sitemap. No existing owner writing was imported o
 ## Deployment
 
 GitHub Pages uses `.github/workflows/static.yml`. A push to `main` runs the tests
-and public build, then deploys only `dist/`. **Pushing main publishes the site.**
+and public build, then deploys only `dist/`. **Pushing main publishes the site;
+manual `workflow_dispatch` can also deploy.** Both need separate authorization.
 Review branches and local previews do not deploy. This preparation does not
 authorize a push, merge, or deployment.
 
@@ -88,7 +112,7 @@ Client work and its media remain in the private portfolio repository, unlinked.
 
 ## Review checks (2026-09-06)
 
-`npm test` uses six isolated fixture tests, including a published article, a real
+`npm test` uses six isolated fixture tests, including a synthetic published article, a synthetic
 owner draft, no posts, escaped metadata/Markdown, and a rejected media symlink.
 It does not rebuild the site's preview. `npm run build` excludes the retained
 sample and produces the empty public writing index until Fred selects a post.
