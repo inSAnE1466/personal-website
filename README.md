@@ -36,6 +36,16 @@ synthetic delivery examples do not establish these client outcomes; Fred must
 name an approved public source or authorize the exact claims. Do not reuse these statements as new case-study
 proof solely because they already appear in the personal site.
 
+A bounded public search on 2026-09-06 covered `wheeltheworld.com`, `larta.org`,
+Fred's public LinkedIn profile, and indexed `frederickcaseyhousand.com` writing
+using his name and the exact metrics/adoption terms. No exact corroboration was
+found in those results. The indexed [LinkedIn recommendations section](https://www.linkedin.com/in/frederick-casey-housand)
+contains Andres Villagran Merani's qualitative account of Fred's photo/video
+organization work at Wheel the World, without the claimed measurements. Direct
+LinkedIn retrieval failed (999); the personal consulting URL was unavailable to
+the web tool. This is a limited indexed lead, not live verification, measurement
+evidence, or permission to reuse a testimonial. The publication inputs above remain open.
+
 ## Local review
 
 Requires Node 22+ and Python 3:
