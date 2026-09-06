@@ -25,6 +25,17 @@ approved posts. No CMS, runtime integration, or broader redesign is needed.
 Company case-study inputs and permission stay in the [company guide](/Users/fredcaseyhousand/.codex/worktrees/a087/tinymacro-site/docs/case-studies-review.md);
 private portfolio sources remain outside this work.
 
+Before a future publication, Fred or the company-truth owner should confirm the
+existing claims in [consulting.html](consulting.html): Wheel the World's 100GB,
+“findable in seconds,” 100,000 first-month API uses, doubled response rates and
+two-week adoption; and Larta's adoption of the specification and cost model.
+These statements predate the blog work and remain unchanged. This review has not
+established their measurement scope, period, or attribution permission. Legal and company source-selection
+review supplied no publication clearance or approved source pointer. Their
+synthetic delivery examples do not establish these client outcomes; Fred must
+name an approved public source or authorize the exact claims. Do not reuse these statements as new case-study
+proof solely because they already appear in the personal site.
+
 ## Local review
 
 Requires Node 22+ and Python 3:
