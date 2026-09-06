@@ -88,3 +88,26 @@ test('rejects symlinks nested in public media without reading their targets', as
   await assert.rejects(build({ root: f.root }), /not symlinks/);
   await assert.rejects(f.exists('PWmedia/linked-content'));
 });
+
+test('builds an empty index when a fresh checkout has no posts directory', async (t) => {
+  const f = await fixture(t);
+  await rm(join(f.root, 'posts'), { recursive: true });
+  await build({ root: f.root });
+  assert.match(await f.read('writing/index.html'), /No posts published yet/);
+});
+
+test('rejects post source symlinks before reading targets or replacing output', async (t) => {
+  const f = await fixture(t);
+  await build({ root: f.root });
+  const original = await f.read('writing/index.html');
+  await symlink(join(f.root, 'missing-owner-original.md'), join(f.root, 'posts', 'linked-post.md'));
+  await assert.rejects(build({ root: f.root }), /Post sources must not be symlinks/);
+  assert.equal(await f.read('writing/index.html'), original);
+});
+
+test('rejects a linked posts directory instead of treating its missing target as empty', async (t) => {
+  const f = await fixture(t);
+  await rm(join(f.root, 'posts'), { recursive: true });
+  await symlink(join(f.root, 'missing-owner-directory'), join(f.root, 'posts'));
+  await assert.rejects(build({ root: f.root }), /Post sources must not be symlinks/);
+});

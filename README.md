@@ -48,12 +48,15 @@ python3 -m http.server 8011 --bind 127.0.0.1 --directory dist
 ```
 
 The normal build excludes drafts and removes any earlier preview output. With no
-published posts, the writing index says “No posts published yet.”
+published posts, the writing index says “No posts published yet.” This also works
+when `posts/` is absent after deleting the last sample from Git.
 
 ## Add a post
 
 1. Copy owner-selected writing into `posts/a-short-title.md`. Preserve the original
-   wherever Fred wrote it; this workflow does not read or sync Obsidian.
+   wherever Fred wrote it; this workflow does not read or sync Obsidian. Create
+   `posts/` if it is absent. The directory and Markdown sources must be actual
+   copies, not symlinks to originals.
 2. Add these four plain-text metadata fields. Values are single lines, without YAML
    quotes; dates use `YYYY-MM-DD`. The filename becomes the permanent URL.
 
@@ -74,7 +77,9 @@ published posts, the writing index says “No posts published yet.”
 3. Preview and review the page. The title supplies the only H1; use `##` and `###`
    within the body. Markdown supports lists, links, quotations, tables, and fenced
    code. Raw HTML is displayed as text. Local image files can go in `PWmedia/` and
-   be referenced as `![Meaningful description](/PWmedia/filename.png)`.
+   be referenced as `![Meaningful description](/PWmedia/filename.png)`. Every file
+   in `PWmedia/` is copied to the public build, even if only a draft references it.
+   Keep unapproved or private media outside that directory.
 4. When Fred approves the text for publication, change `draft: true` to `draft: false`.
    Run `npm test` and `npm run build`, then inspect the result.
 5. Review the commit before the separately authorized publishing step.
@@ -112,8 +117,8 @@ Client work and its media remain in the private portfolio repository, unlinked.
 
 ## Review checks (2026-09-06)
 
-`npm test` uses six isolated fixture tests, including a synthetic published article, a synthetic
-owner draft, no posts, escaped metadata/Markdown, and a rejected media symlink.
+`npm test` uses nine isolated fixture tests, including a synthetic published article, a synthetic
+owner draft, no posts, escaped metadata/Markdown, a missing source directory, and rejected source/media symlinks.
 It does not rebuild the site's preview. `npm run build` excludes the retained
 sample and produces the empty public writing index until Fred selects a post.
 

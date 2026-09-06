@@ -45,9 +45,19 @@ ${draft ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canon
 
 export async function build({ root = process.cwd(), drafts = false } = {}) {
   const output = resolve(root, 'dist');
-  const files = (await readdir(resolve(root, 'posts'))).filter((file) => file.endsWith('.md'));
-  // Validate all source before replacing the generated output.
-  const all = await Promise.all(files.map(async (file) => parsePost(await readFile(resolve(root, 'posts', file), 'utf8'), file)));
+  const sourceDirectory = resolve(root, 'posts');
+  const sourceStat = await lstat(sourceDirectory).catch((error) => {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  });
+  if (sourceStat?.isSymbolicLink()) throw new Error(`Post sources must not be symlinks: ${sourceDirectory}`);
+  const files = sourceStat ? (await readdir(sourceDirectory)).filter((file) => file.endsWith('.md')) : [];
+  // Validate all source before replacing the generated output; never follow links to owner originals.
+  const all = await Promise.all(files.map(async (file) => {
+    const path = resolve(sourceDirectory, file);
+    if ((await lstat(path)).isSymbolicLink()) throw new Error(`Post sources must not be symlinks: ${path}`);
+    return parsePost(await readFile(path, 'utf8'), file);
+  }));
   const posts = all.filter((post) => drafts || !post.draft).sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
   await rm(output, { recursive: true, force: true });
   await mkdir(resolve(output, 'writing'), { recursive: true });
