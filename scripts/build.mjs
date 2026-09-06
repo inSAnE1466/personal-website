@@ -1,9 +1,11 @@
-import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, lstat, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import MarkdownIt from 'markdown-it';
 
 const markdown = new MarkdownIt({ html: false, linkify: false, typographer: false });
+markdown.renderer.rules.table_open = () => '<div class="table-scroll" role="region" aria-label="Table" tabindex="0"><table>\n';
+markdown.renderer.rules.table_close = () => '</table></div>\n';
 const escape = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const origin = 'https://frederickcaseyhousand.com';
 
@@ -51,16 +53,19 @@ export async function build({ root = process.cwd(), drafts = false } = {}) {
   await mkdir(resolve(output, 'writing'), { recursive: true });
   // Explicit public allowlist: never upload sources, drafts, or workspace symlinks.
   for (const file of ['index.html', 'consulting.html', 'tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt', 'PWmedia']) {
-    await cp(resolve(root, file), resolve(output, file), { recursive: true });
+    await cp(resolve(root, file), resolve(output, file), { recursive: true, filter: async (source) => {
+      if ((await lstat(source)).isSymbolicLink()) throw new Error(`Public assets must be regular files or directories, not symlinks: ${source}`);
+      return true;
+    } });
   }
   await writeFile(resolve(output, '.nojekyll'), '');
-  const entries = posts.map((post) => `<li><article><p class="post-meta">${post.draft ? 'Draft sample · ' : ''}<time datetime="${post.date}">${dateLabel(post.date)}</time></p><h2><a href="/writing/${post.slug}/">${escape(post.title)}</a></h2><p>${escape(post.description)}</p></article></li>`).join('\n');
+  const entries = posts.map((post) => `<li><article><p class="post-meta">${post.draft ? 'Draft · ' : ''}<time datetime="${post.date}">${dateLabel(post.date)}</time></p><h2><a href="/writing/${post.slug}/">${escape(post.title)}</a></h2><p>${escape(post.description)}</p></article></li>`).join('\n');
   const previewNote = drafts ? '<p class="draft-note"><strong>Local review preview.</strong> Drafts appear here for review and are excluded from the normal build.</p>' : '';
   await writeFile(resolve(output, 'writing/index.html'), page('Writing', 'Writing by Frederick Casey-Housand.', '/writing/', `<section class="hero doc"><h1>Writing</h1><p class="lede">Notes and essays by Fred Casey-Housand.</p>${previewNote}</section><section class="doc writing-list" aria-label="Posts">${entries ? `<ul>${entries}</ul>` : '<p>No posts published yet.</p>'}</section>`, drafts));
   for (const post of posts) {
     const path = `/writing/${post.slug}/`;
     await mkdir(resolve(output, 'writing', post.slug), { recursive: true });
-    await writeFile(resolve(output, 'writing', post.slug, 'index.html'), page(post.title, post.description, path, `<article class="doc writing-article"><header><a class="back-link" href="/writing/">All writing</a><h1>${escape(post.title)}</h1><p class="post-meta"><time datetime="${post.date}">${dateLabel(post.date)}</time></p>${post.draft ? '<p class="draft-note"><strong>Draft sample for layout review.</strong> This is demonstration text, not a finished post by Fred. It is excluded from the normal build.</p>' : ''}</header><div class="prose">${post.body}</div></article>`, post.draft || drafts));
+    await writeFile(resolve(output, 'writing', post.slug, 'index.html'), page(post.title, post.description, path, `<article class="doc writing-article"><header><a class="back-link" href="/writing/">All writing</a><h1>${escape(post.title)}</h1><p class="post-meta"><time datetime="${post.date}">${dateLabel(post.date)}</time></p>${post.draft ? '<p class="draft-note"><strong>Draft for review.</strong> This post is excluded from the normal build.</p>' : ''}</header><div class="prose">${post.body}</div></article>`, post.draft || drafts));
   }
   const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8');
   const urls = ['/writing/', ...all.filter((post) => !post.draft).map((post) => `/writing/${post.slug}/`)];
