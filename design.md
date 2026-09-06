@@ -1,6 +1,6 @@
 # Design — frederickcaseyhousand.com
 
-This is the durable visual law for the homepage and consulting page. Extend it only when Fred
+This is the durable visual law for the homepage, consulting page, and writing pages. Extend it only when Fred
 changes the public site's direction.
 
 Direction (owner amendment, 2026-08-24): a compact personal document in Arial, black and white,
@@ -41,7 +41,7 @@ normal document flow.
 ## Navigation
 
 - There is no header, wordmark, or top-left “Fred Casey-Housand” label.
-- The semantic `<nav>` contains exactly four visible text links: Home, Consulting, TinyMacro, and
+- The semantic `<nav>` contains five visible text links: Home, Writing, Consulting, TinyMacro, and
   Book a call.
 - Navigation is `position: static`; it scrolls away with the document.
 - Links remain visible at every viewport and wrap when necessary. There is no hamburger, disclosure
@@ -70,3 +70,10 @@ normal document flow.
 - Both pages use the same navigation markup, type tokens, link contract, focus treatment, CTA
   treatment, and gutters.
 - Copy, URLs, and facts are content authority and are not changed by visual polish.
+
+## Writing (owner direction, 2026-09-06)
+
+- A simple Markdown blog extends the existing document layout with one reading column.
+- An index lists titles, dates and short descriptions; articles use ordinary headings and prose.
+- Draft previews are explicitly labeled and excluded from the normal static build.
+- Preserve Fred’s originals and voice; layout samples are not finished owner writing.

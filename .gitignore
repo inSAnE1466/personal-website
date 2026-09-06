@@ -5,3 +5,6 @@ node_modules/
 TINYMACRO-MAP.md
 
 .DS_Store
+
+node_modules/
+dist/

@@ -1,6 +1,4 @@
-# Deploy static content to GitHub Pages.
-# portfolio.html is encrypted locally before commit (see encrypt-portfolio.sh
-# and the README); CI does no encryption — it just deploys what's in the repo.
+# Build and deploy only the public static output. Draft sources stay out of Pages.
 name: Deploy static content to Pages
 
 on:
@@ -26,12 +24,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

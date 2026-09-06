@@ -1,0 +1,13 @@
+{
+  "name": "frederickcaseyhousand-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/build.mjs --drafts && python3 -m http.server 8011 --bind 127.0.0.1 --directory dist",
+    "test": "node --test scripts/build.test.mjs"
+  },
+  "dependencies": {
+    "markdown-it": "14.3.1"
+  }
+}
