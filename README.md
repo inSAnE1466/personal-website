@@ -22,7 +22,7 @@ his original and voice; do not manufacture an essay or import an Obsidian folder
 Use the steps below to prepare that one post. Judge completion by a faithful
 rendering on desktop/mobile, working links, and a normal build containing only
 approved posts. No CMS, runtime integration, or broader redesign is needed.
-Company case-study inputs and permission stay in the [company guide](/Users/fredcaseyhousand/.codex/worktrees/a087/tinymacro-site/docs/case-studies-review.md);
+Company case-study inputs and permission stay in the [company guide](/Users/fredcaseyhousand/Desktop/github/tinymacro-site/docs/case-studies-review.md);
 private portfolio sources remain outside this work.
 
 Before a future publication, Fred or the company-truth owner should confirm the
@@ -129,6 +129,8 @@ Only published posts enter the sitemap. No existing owner writing was imported o
 GitHub Pages uses `.github/workflows/static.yml`. A push to `main` runs the tests
 and public build, then deploys only `dist/`. **Pushing main publishes the site;
 manual `workflow_dispatch` can also deploy.** Both need separate authorization.
+Keep this work on `codex/personal-markdown-blog` until Fred explicitly authorizes site publication;
+general repository cleanup or mainline reconciliation does not grant that authority.
 Review branches and local previews do not deploy. This preparation does not
 authorize a push, merge, or deployment.
 
