@@ -57,7 +57,8 @@ alone does not prove rendered behavior.
 
 ## Cleanup
 
-The helper stops the exact Python process it starts and leaves evidence in
+The helper drives the sample writing link with headless Chromium, captures a
+screenshot, stops the exact Python process it starts, and leaves evidence in
 place. Manual drives must stop the recorded server PID. Never kill by process
 name.
 

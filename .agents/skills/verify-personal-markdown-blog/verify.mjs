@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { execFileSync, spawn } from 'node:child_process';
 import { resolve } from 'node:path';
+import { chromium } from 'playwright';
 
 const root = resolve(import.meta.dirname, '../../..');
 const artifacts = resolve(import.meta.dirname, '.artifacts');
@@ -34,6 +35,23 @@ async function check(kind) {
   console.log(JSON.stringify({ origin, kind, results, evidence: file }, null, 2));
 }
 
+async function browserDrive() {
+  const browser = await chromium.launch({ headless: true });
+  try {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    await page.goto(`${origin}/writing/`, { waitUntil: 'networkidle' });
+    await page.getByRole('link', { name: 'A sample page for writing' }).click();
+    await page.waitForURL(`${origin}/writing/sample-formatting/`);
+    await page.getByRole('heading', { name: 'A sample page for writing' }).waitFor();
+    await mkdir(artifacts, { recursive: true });
+    const screenshot = resolve(artifacts, `${new Date().toISOString().replaceAll(':', '-')}-browser.png`);
+    await page.screenshot({ path: screenshot, fullPage: false });
+    console.log(JSON.stringify({ browser: 'chromium', action: 'click sample writing link', url: page.url(), screenshot }, null, 2));
+  } finally {
+    await browser.close();
+  }
+}
+
 async function run() {
   execFileSync('node', ['scripts/build.mjs', '--drafts'], { cwd: root, stdio: 'inherit' });
   const build = spawn('python3', ['-m', 'http.server', '8011', '--bind', '127.0.0.1', '--directory', 'dist'], { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] });
@@ -49,6 +67,7 @@ async function run() {
     if (!ready || build.exitCode !== null) throw new Error(`preview did not become ready on 127.0.0.1:8011\n${output}`);
     await check('doctor');
     await check('drive');
+    await browserDrive();
   } finally {
     if (build.exitCode === null) {
       build.kill('SIGTERM');
