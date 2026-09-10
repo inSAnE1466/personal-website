@@ -8,3 +8,4 @@ TINYMACRO-MAP.md
 
 node_modules/
 dist/
+.agents/skills/verify-personal-markdown-blog/.artifacts/
