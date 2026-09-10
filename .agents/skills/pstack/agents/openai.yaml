@@ -1,0 +1,4 @@
+interface:
+  display_name: "pstack engineering workflow"
+  short_description: "Plan, verify and review work through pstack playbooks"
+  default_prompt: "Use $pstack to route this task through the matching playbook and prove the result on the real surface."
