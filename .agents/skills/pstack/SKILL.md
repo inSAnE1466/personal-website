@@ -33,6 +33,12 @@ implementation checks to `gpt-5.6-luna`. Route architecture, security, concurren
 deployment and adversarial review to `gpt-6-astra`. Never invoke Cursor, Claude, another external
 provider, or a provider fallback.
 
+Translate upstream `Task` and Cursor agent roles to native collaboration subagents. Use the
+host's question and todo tools when available; otherwise keep the checklist in local scratch notes.
+Write generated verification skills under `.agents/skills/`, replacing upstream `.cursor/skills/`
+paths. Configure model roles in this adapter or user instructions, not Cursor-specific rule files.
+Read existing verification instructions from repository `AGENTS.md` before creating another helper.
+
 Use the owning repository's declared verification skill and real execution surface. An unavailable
 repository or an undeclared gate is a failed verification outcome. A receipt does not turn either
 state into success. The workspace coordinator distributes this pinned vendor tree and adapter with

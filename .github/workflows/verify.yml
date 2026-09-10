@@ -21,4 +21,5 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - run: npx playwright install --with-deps chromium
       - run: node .agents/skills/verify-personal-markdown-blog/verify.mjs run
