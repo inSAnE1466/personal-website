@@ -41,14 +41,19 @@ async function run() {
   build.stdout.on('data', chunk => { output += chunk; });
   build.stderr.on('data', chunk => { output += chunk; });
   try {
+    let ready = false;
     for (let i = 0; i < 40; i += 1) {
-      try { await fetchRoute('/'); break; } catch { await new Promise(resolveWait => setTimeout(resolveWait, 250)); }
+      try { await fetchRoute('/'); ready = true; break; } catch { await new Promise(resolveWait => setTimeout(resolveWait, 250)); }
       if (build.exitCode !== null) throw new Error(output);
     }
+    if (!ready || build.exitCode !== null) throw new Error(`preview did not become ready on 127.0.0.1:8011\n${output}`);
     await check('doctor');
     await check('drive');
   } finally {
-    build.kill('SIGTERM');
+    if (build.exitCode === null) {
+      build.kill('SIGTERM');
+      await new Promise(resolveExit => build.once('exit', resolveExit));
+    }
   }
 }
 
