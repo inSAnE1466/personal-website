@@ -127,8 +127,9 @@ Only published posts enter the sitemap. No existing owner writing was imported o
 ## Deployment
 
 GitHub Pages uses `.github/workflows/static.yml`. A push to `main` runs the tests
-and public build, then deploys only `dist/`. **Pushing main publishes the site;
-manual `workflow_dispatch` can also deploy.** Both need separate authorization.
+and public build, then deploys only `dist/`. **Pushing `main` publishes the site;
+manual `workflow_dispatch` runs can deploy only when they target `main`.** Both
+need separate authorization.
 Keep this work on `codex/personal-markdown-blog` until Fred explicitly authorizes site publication;
 general repository cleanup or mainline reconciliation does not grant that authority.
 Review branches and local previews do not deploy. This preparation does not
