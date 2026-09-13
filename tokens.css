@@ -1,19 +1,21 @@
-:root {
-  /* Pure monochrome surfaces */
-  --color-paper: #ffffff;
-  --color-paper-2: #f6f6f6;
-  --color-rule: #dedede;
-  --color-rule-2: #ededed;
-  --color-muted: #666666;
-  --color-ink-2: #3f3f3f;
-  --color-ink: #171717;
-  --color-focus: #171717;
-  --color-paper-muted: #d4d4d4;
+@import './design-system/tokens.css';
 
-  /* One type family, two weights */
-  --font-display: Arial, Helvetica, system-ui, sans-serif;
-  --font-body: Arial, Helvetica, system-ui, sans-serif;
-  --font-mono: Arial, Helvetica, system-ui, sans-serif;
+:root {
+  /* Document aliases keep reading styles tied to the pinned TMFA roles. */
+  --color-paper: hsl(var(--background));
+  --color-paper-2: hsl(var(--muted));
+  --color-rule: hsl(var(--border));
+  --color-rule-2: hsl(var(--border));
+  --color-muted: hsl(var(--muted-foreground));
+  --color-ink-2: hsl(var(--muted-foreground));
+  --color-ink: hsl(var(--foreground));
+  --color-focus: hsl(var(--ring));
+  --color-paper-muted: hsl(var(--background) / 0.72);
+
+  /* One Inter family, two weights */
+  --font-display: 'Inter Local', Inter, Arial, Helvetica, system-ui, sans-serif;
+  --font-body: 'Inter Local', Inter, Arial, Helvetica, system-ui, sans-serif;
+  --font-mono: 'Inter Local', Inter, Arial, Helvetica, system-ui, sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -50,4 +52,12 @@
   --z-base: 1;
   --z-raised: 10;
   --z-sticky: 200;
+}
+
+@font-face {
+  font-family: 'Inter Local';
+  src: url('./design-system/fonts/inter-latin-wght-normal.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
 }

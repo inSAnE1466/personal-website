@@ -2,7 +2,7 @@
 
 Fred's personal site. The existing home and consulting pages are plain HTML/CSS.
 Writing uses Markdown, converted to static HTML by a small Node script. There is
-no browser JavaScript, CMS, or account service for the blog. Arial and the existing
+no browser JavaScript, CMS, or account service for the blog. Inter and the existing
 writing voice remain the design constraints.
 
 This is Fred’s writing and social proof. The [current workspace direction](/Users/fredcaseyhousand/Desktop/github/tinymacro-workspace/OWNER-CONTEXT.md)
@@ -116,7 +116,7 @@ temporary fixtures and do not depend on this sample. Real drafts use the same
 - `posts/*.md`: writing source; draft status is required.
 - `scripts/build.mjs`: metadata validation, Markdown rendering and page templates.
 - `scripts/build.test.mjs`: draft exclusion and content-safety checks.
-- `tokens.css`, `home.css`, `writing.css`: shared Arial styles and writing layout.
+- `tokens.css`, `home.css`, `writing.css`: shared Inter styles and writing layout.
 - `design.md`: visual direction.
 - `dist/`: generated public files; ignored by Git.
 

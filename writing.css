@@ -1,4 +1,4 @@
-/* Writing keeps the site's shared gutter and Arial document system. */
+/* Writing keeps the site's shared gutter and Inter document system. */
 .writing-list { padding-block: var(--space-md) var(--space-2xl); }
 .writing-list > ul { max-width: var(--measure); list-style: none; }
 .writing-list li { padding-block: var(--space-lg); border-top: 1px solid var(--color-rule); }

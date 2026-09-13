@@ -3,7 +3,7 @@
 This is the durable visual law for the homepage, consulting page, and writing pages. Extend it only when Fred
 changes the public site's direction.
 
-Direction (owner amendment, 2026-08-24): a compact personal document in Arial, black and white,
+Direction (owner amendment, 2026-08-24): a compact personal document in Inter, black and white,
 with no branded header or persistent page chrome. Navigation is only a small row of text links in
 normal document flow.
 
@@ -22,16 +22,19 @@ normal document flow.
 
 ## Palette
 
-- Pure white page: `#ffffff`.
-- Near-black ink: `#171717`.
-- Secondary ink: `#3f3f3f`.
-- Muted but accessible text: `#666666`.
-- Soft rules and secondary surfaces: `#dedede`, `#ededed`, and `#f6f6f6`.
+Shared semantic tokens and the licensed Inter asset are pinned in `design-system/` from TMFA commit
+`0dd20c57cf2fea0a6422abb16a55392e5727edfb`. Document aliases below consume those roles.
+
+- Near-white document field: `#fafaf9`.
+- Near-black ink: `#0f0e0d`.
+- Secondary ink: `#33312c`.
+- Muted but accessible text: `#706d66`.
+- Soft rules and secondary surfaces: `#cccac6` and `#fafaf9`.
 - No chromatic accent, gradient, shadow, glass, texture, or decorative image.
 
 ## Typography
 
-- Arial is the only intentional family. Helvetica and system sans are fallbacks.
+- Inter Variable is the only intentional family. Arial, Helvetica, and system sans are fallbacks.
 - Use only weights 400 and 600.
 - Body text is 16px with 1.625 line height.
 - Navigation uses 13px; claims use 18px; ledes range from 18–22px; section headings range
@@ -46,7 +49,7 @@ normal document flow.
 - Navigation is `position: static`; it scrolls away with the document.
 - Links remain visible at every viewport and wrap when necessary. There is no hamburger, disclosure
   menu, filled nav CTA, border, background panel, radius, blur, or shadow.
-- Visible nav text is small, Arial, and 600 weight. Its invisible vertical hit area remains at least
+- Visible nav text is small, Inter, and 600 weight. Its invisible vertical hit area remains at least
   44px.
 
 ## Links and actions

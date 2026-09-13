@@ -62,7 +62,9 @@ export async function build({ root = process.cwd(), drafts = false } = {}) {
   await rm(output, { recursive: true, force: true });
   await mkdir(resolve(output, 'writing'), { recursive: true });
   // Explicit public allowlist: never upload sources, drafts, or workspace symlinks.
-  for (const file of ['index.html', 'consulting.html', 'tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt', 'PWmedia']) {
+  const publicFiles = ['index.html', 'consulting.html', 'tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt', 'PWmedia'];
+  if (await lstat(resolve(root, 'design-system')).catch(() => null)) publicFiles.push('design-system');
+  for (const file of publicFiles) {
     await cp(resolve(root, file), resolve(output, file), { recursive: true, filter: async (source) => {
       if ((await lstat(source)).isSymbolicLink()) throw new Error(`Public assets must be regular files or directories, not symlinks: ${source}`);
       return true;

@@ -1,0 +1,36 @@
+{
+  "source": {
+    "repo": "https://github.com/inSAnE1466/tinymacro-fractional-agent",
+    "commit": "0dd20c57cf2fea0a6422abb16a55392e5727edfb",
+    "path": "src/design/tokens.css",
+    "sha256": "743d85c633803f8a6a852c3bd6aebab5abcf08b940d9406e26c106cda9f9f8af"
+  },
+  "font": {
+    "package": "@fontsource-variable/inter",
+    "version": "5.3.0",
+    "family": "Inter Variable",
+    "role": "display and working text",
+    "asset": "inter-latin-wght-normal.woff2",
+    "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+    "license": "fonts/Inter-LICENSE.txt",
+    "licenseSha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+    "metadata": "official Fontsource package metadata"
+  },
+  "fonts": [
+    {
+      "package": "@fontsource-variable/inter",
+      "version": "5.3.0",
+      "family": "Inter Variable",
+      "role": "display and working text",
+      "asset": "inter-latin-wght-normal.woff2",
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "license": "fonts/Inter-LICENSE.txt",
+      "licenseSha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+      "metadata": "official Fontsource package metadata"
+    }
+  ],
+  "ttf": {
+    "available": false,
+    "reason": "The deterministic bundle exports WOFF2 only. No remote TTF download was performed."
+  }
+}

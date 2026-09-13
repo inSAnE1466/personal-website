@@ -1,0 +1,103 @@
+@layer base {
+  :root {
+    /* Warm monochrome foundation (Fred, 2026-09-12). Hex roles:
+     * ground #FAFAF9, ink #0F0E0D, secondary #706D66, tertiary #33312C,
+     * decorative #8F8B85, separator #CCCAC6. */
+    --background: 60 9.0909% 97.8431%;
+    --foreground: 30 7.1429% 5.4902%;
+    /* Primary-CTA hover — a lightness shift on the ink, not an opacity fade.
+     * Single-theme app (:root only, no .dark). */
+    --foreground-hover: 42.8571 7.3684% 18.6275%;
+    --card: 60 9.0909% 97.8431%;
+    --card-foreground: 30 7.1429% 5.4902%;
+    --popover: 60 9.0909% 97.8431%;
+    --popover-foreground: 30 7.1429% 5.4902%;
+    /* T11 (Fred, 2026-07-26): you PRESS a control, so its fill follows the CTA
+     * rule, not the status rule — --primary/--accent/--ring are ink, not forest.
+     * Green survives only as status (--success) and as the ruled identity/brand
+     * exceptions, which hold --forest. Do not point a status use back here. */
+    --primary: 30 7.1429% 5.4902%;
+    --primary-foreground: 60 9.0909% 97.8431%;
+    --secondary: 40 10.3448% 94.3137%;
+    --secondary-foreground: 30 7.1429% 5.4902%;
+    --muted: 40 10.3448% 94.3137%;
+    --muted-foreground: 42 4.6729% 41.9608%;
+    --accent: 30 7.1429% 5.4902%;
+    --accent-foreground: 60 9.0909% 97.8431%;
+    /* The good orange — the green's complement. Attention: approvals waiting,
+     * autopilot, the icon activity dot (the ONLY color icons get). */
+    --accent-warm: 26 88% 38%;
+    --accent-warm-foreground: 0 0% 100%;
+    /* Slate — contract-generation module tint; low-chroma cool. */
+    --accent-cool: 215 28% 38%;
+    --accent-cool-foreground: 0 0% 100%;
+    /* Category colors identify context. Action and state roles remain separate. */
+    --accent-amber: 36 90% 44%;
+    --accent-sky: 205 72% 44%;
+    --accent-coral: 12 76% 52%;
+    /* Live/positive green — running chips, success states. */
+    --signal: 152 45% 24%;
+    /* Forest is the existing identity color; it is independent of ink actions. */
+    --forest: 152 45% 24%;
+    --forest-deep: 152 45% 18%;
+    --paper-2: 40 5.5556% 78.8235%;
+    --destructive: 0 68% 48%;
+    --destructive-foreground: 60 9.0909% 97.8431%;
+    --warning: 32 86% 46%;
+    --warning-foreground: 0 0% 16%;
+    --success: 152 45% 24%;
+    --success-foreground: 60 9.0909% 97.8431%;
+    --border: 40 5.5556% 78.8235%;
+    --input: 42 4.6729% 41.9608%;
+    --ring: 30 7.1429% 5.4902%;
+    /* Controls and cards use the owner's 4px corner. Pills remain explicit
+       9999px where the component semantics call for them. */
+    --radius: 4px;
+    /* Sidebar — one quiet notch off the white ground. */
+    --sidebar: 60 9.0909% 97.8431%;
+    --sidebar-foreground: 30 7.1429% 5.4902%;
+    --sidebar-primary: 30 7.1429% 5.4902%;
+    --sidebar-primary-foreground: 60 9.0909% 97.8431%;
+    --sidebar-accent: 40 5.5556% 78.8235%;
+    --sidebar-accent-foreground: 30 7.1429% 5.4902%;
+    --sidebar-border: 40 5.5556% 78.8235%;
+    /* In scope by T11's own sentence — a focus ring is a focus ring. These sit
+     * outside the ruling's NAMED token list but held the same forest literal and
+     * feed six sidebar focus rings; leaving them would ship the ruling half-applied. */
+    --sidebar-ring: 30 7.1429% 5.4902%;
+    --shadow-color: 30 7.1429% 5.4902%;
+    /* Type scale (Q15 re-tune) — the surface vocabulary (TYPE-SCALE-TOKENS). Each
+       is a distinct visual role; new components pick one rather than inventing
+       text-[Npx]. Line-heights + tracking ride each step via tailwind.config
+       fontSize tuples. Re-tuned 2026-07-02: the old 8–12px band read as terminal
+       chrome; every step gains ~1–2px and the scale gets a reading step (prose)
+       and a nameplate step (display-lg). */
+    --text-micro: 9.5px;      /* tiny uppercase tag / status pip label */
+    --text-chip: 11px;        /* chip + badge labels */
+    --text-meta: 12px;        /* meta, ids, timestamps */
+    --text-body: 13px;        /* UI copy, button + control labels */
+    --text-body-lg: 14px;     /* lead lines, subject lines, search input */
+    --text-prose: 15.5px;     /* chat + document reading */
+    --text-title: 18px;       /* sub-agent nameplate */
+    --text-display-sm: 21px;  /* empty-state lead line */
+    --text-display: 26px;     /* section masthead */
+    --text-display-lg: 34px;  /* cold-start nameplate / hero */
+    --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.04);
+    --shadow-md: 0 2px 4px hsl(var(--shadow-color) / 0.06), 0 1px 2px hsl(var(--shadow-color) / 0.04);
+    --shadow-lg: 0 4px 8px hsl(var(--shadow-color) / 0.06), 0 2px 4px hsl(var(--shadow-color) / 0.04);
+    --shadow-xl: 0 8px 24px hsl(var(--shadow-color) / 0.08), 0 2px 6px hsl(var(--shadow-color) / 0.05);
+    /* Accessible control roles are distinct from decorative separators. */
+    --control-border: 42 4.6729% 41.9608%;
+    --text-tertiary: 42.8571 7.3684% 18.6275%;
+    --decorative: 36 4.2735% 54.1176%;
+    --disabled-background: 60 9.0909% 97.8431%;
+    --disabled-foreground: 42 4.6729% 41.9608%;
+    --space-control-gap: 0.5rem;
+    --space-section: 2rem;
+    --focus-width: 2px;
+    --text-form: 16px;
+    /* Existing motion curves; consumers respect reduced-motion preferences. */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+}
