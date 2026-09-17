@@ -28,15 +28,13 @@ Use a todo list whose first entries copy the chosen playbook steps. Keep skipped
 reason. Build the smallest reusable script when a task is non-trivial. Verify the real artifact and
 the real execution surface. Receipts and old test results are historical evidence only.
 
-Use native Codex subagents only. Route bounded lookup, extraction, validation and ordinary
-implementation checks to `gpt-5.6-luna`. Route architecture, security, concurrency, migrations,
-deployment and adversarial review to `gpt-6-astra`. Never invoke Cursor, Claude, another external
-provider, or a provider fallback.
+Use native Codex subagents with the owner's selected model and effort. Owner instructions determine
+provider and billing routes; do not substitute a different route without authorization.
 
 Translate upstream `Task` and Cursor agent roles to native collaboration subagents. Use the
 host's question and todo tools when available; otherwise keep the checklist in local scratch notes.
 Write generated verification skills under `.agents/skills/`, replacing upstream `.cursor/skills/`
-paths. Configure model roles in this adapter or user instructions, not Cursor-specific rule files.
+paths. Keep model preferences in owner instructions, not duplicated in workflow adapters.
 Read existing verification instructions from repository `AGENTS.md` before creating another helper.
 
 Use the owning repository's declared verification skill and real execution surface. An unavailable
