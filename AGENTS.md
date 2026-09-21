@@ -12,6 +12,12 @@ owned document, and add or change a tracker line only when a pointer changes. If
 obsolete, remove its pointer and delete it after surviving rules move to current authority. Use
 native OMP `hub` or message tools when active agents overlap. Do not create a message board.
 
+For cross-repository, architecture, cleanup, deletion, or current-direction work, follow
+`../tinymacro-workspace/core-transition/sources/README.md#live-vault-sources`. Read
+`Tasks_Current.md`, `Bottlenecks.md`, `Buckets/README.md`, and the relevant bucket. Include both
+Reposition notes when the work changes product, runtime, research, QC, or repository organization.
+These notes supply current owner context. `README.md` retains writing and publication authority.
+
 ## pstack verification
 Route non-trivial work through the workspace pstack skill at
 /Users/fredcaseyhousand/Desktop/github/tinymacro-workspace/.agents/skills/pstack/SKILL.md.
