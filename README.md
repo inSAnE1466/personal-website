@@ -10,6 +10,9 @@ keeps it separate from the company’s case studies and any acquisition experime
 [TMH’s company thesis](/Users/fredcaseyhousand/Desktop/github/tm-harness/thesis/company-thesis.md)
 owns company/client claims; this site does not establish them.
 
+`product-tracker.md` is the pointer index for current work and durable documentation. It does not
+own writing, publication authority, or a product backlog.
+
 ## Next useful slice
 
 Resume `codex/personal-markdown-blog` in this worktree. The workflow is implemented
