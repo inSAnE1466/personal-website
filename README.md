@@ -25,7 +25,7 @@ his original and voice; do not manufacture an essay or import an Obsidian folder
 Use the steps below to prepare that one post. Judge completion by a faithful
 rendering on desktop/mobile, working links, and a normal build containing only
 approved posts. No CMS, runtime integration, or broader redesign is needed.
-Company case-study inputs and permission stay in the [company guide](/Users/fredcaseyhousand/Desktop/github/tinymacro-site/docs/case-studies-review.md);
+Company case-study inputs and permission stay with TMH, which owns company and client truth. Its claim rules live in [references/claims-spine.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/references/claims-spine.md) and its consulting method in [docs/consulting-delivery-system.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/docs/consulting-delivery-system.md);
 private portfolio sources remain outside this work.
 
 Before a future publication, Fred or the company-truth owner should confirm the
