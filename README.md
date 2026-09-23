@@ -15,9 +15,8 @@ own writing, publication authority, or a product backlog.
 
 ## Next useful slice
 
-Resume `codex/personal-markdown-blog` in this worktree. The workflow is implemented
-and locally reviewed; no real essay has been selected and this branch is not
-published. The smallest next slice is one owner-selected Markdown post, readable
+The Markdown workflow is implemented and locally reviewed on `main`; no real essay has been selected.
+The smallest next slice is one owner-selected Markdown post, readable
 from the index and at its direct URL. Fred still needs to supply or select the
 exact text, title, date, short description, and approval to publish it. Preserve
 his original and voice; do not manufacture an essay or import an Obsidian folder.
@@ -132,7 +131,7 @@ Only published posts enter the sitemap. No existing owner writing was imported o
 GitHub Pages uses `.github/workflows/static.yml`. A push to `main` runs the tests
 and public build, then deploys only `dist/`. **Pushing main publishes the site;
 manual `workflow_dispatch` can also deploy.** Both need separate authorization.
-Keep this work on `codex/personal-markdown-blog` until Fred explicitly authorizes site publication;
+Prepare future work on a review branch until Fred explicitly authorizes site publication;
 general repository cleanup or mainline reconciliation does not grant that authority.
 Review branches and local previews do not deploy. This preparation does not
 authorize a push, merge, or deployment.
