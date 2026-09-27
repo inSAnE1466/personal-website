@@ -1,6 +1,6 @@
 # frederickcaseyhousand.com
 
-Fred's personal site. The existing home and consulting pages are plain HTML/CSS.
+Fred's personal site. The home and resume pages are plain HTML/CSS.
 Writing uses Markdown, converted to static HTML by a small Node script. There is
 no browser JavaScript, CMS, or account service for the blog. Inter and the existing
 writing voice remain the design constraints.
@@ -27,26 +27,7 @@ approved posts. No CMS, runtime integration, or broader redesign is needed.
 Company case-study inputs and permission stay with TMH, which owns company and client truth. Its claim rules live in [references/claims-spine.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/references/claims-spine.md) and its consulting method in [docs/consulting-delivery-system.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/docs/consulting-delivery-system.md);
 private portfolio sources remain outside this work.
 
-Before a future publication, Fred or the company-truth owner should confirm the
-existing claims in [consulting.html](consulting.html): Wheel the World's 100GB,
-“findable in seconds,” 100,000 first-month API uses, doubled response rates and
-two-week adoption; and Larta's adoption of the specification and cost model.
-These statements predate the blog work and remain unchanged. This review has not
-established their measurement scope, period, or attribution permission. Legal and company source-selection
-review supplied no publication clearance or approved source pointer. Their
-synthetic delivery examples do not establish these client outcomes; Fred must
-name an approved public source or authorize the exact claims. Do not reuse these statements as new case-study
-proof solely because they already appear in the personal site.
-
-A bounded public search on 2026-09-06 covered `wheeltheworld.com`, `larta.org`,
-Fred's public LinkedIn profile, and indexed `frederickcaseyhousand.com` writing
-using his name and the exact metrics/adoption terms. No exact corroboration was
-found in those results. The indexed [LinkedIn recommendations section](https://www.linkedin.com/in/frederick-casey-housand)
-contains Andres Villagran Merani's qualitative account of Fred's photo/video
-organization work at Wheel the World, without the claimed measurements. Direct
-LinkedIn retrieval failed (999); the personal consulting URL was unavailable to
-the web tool. This is a limited indexed lead, not live verification, measurement
-evidence, or permission to reuse a testimonial. The publication inputs above remain open.
+Wheel the World metrics were removed from public pages pending Fred's confirmation.
 
 ## Local review
 
@@ -114,11 +95,13 @@ temporary fixtures and do not depend on this sample. Real drafts use the same
 
 ## Structure
 
-- `index.html`, `consulting.html`: existing public pages; their prose is unchanged.
+- `index.html`: home page. `resume.html`: one-page resume; browser print saves it as a PDF.
 - `posts/*.md`: writing source; draft status is required.
 - `scripts/build.mjs`: metadata validation, Markdown rendering and page templates.
 - `scripts/build.test.mjs`: draft exclusion and content-safety checks.
-- `tokens.css`, `home.css`, `writing.css`: shared Inter styles and writing layout.
+- `tokens.css`, `home.css`, `writing.css`: shared Inter styles, resume print styles and writing layout.
+- `design-system/`: tokens and Inter pinned from TMFA; see `provenance.json`.
+- `PWmedia/`: optional public media, copied to the build only when present.
 - `design.md`: visual direction.
 - `dist/`: generated public files; ignored by Git.
 
