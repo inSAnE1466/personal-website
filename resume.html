@@ -43,42 +43,42 @@
             <div class="entry">
                 <h3>TinyMacro, Founder.</h3>
                 <ul>
-                    <li>Built an agent runtime that runs each workspace's agent in a Cloudflare container on the Pi SDK, with Durable Objects for coordination and R2 for files.</li>
-                    <li>Package each vertical as a folder of skills, sources, a rubric and templates. Two run in production: Growth (market research, briefs, outreach held for approval) and Green (supplier emissions questionnaires answered from one evidence pack, with sources and gaps).</li>
-                    <li>Built the QC system: test cases as data, one runner for local, container and production, repeated runs, rubric grading by a fixed judge model, and a history of every run.</li>
-                    <li>Built the web application that calls the runtime: React, Clerk, and Postgres with row-level security.</li>
+                    <li>Wrote an agent runtime that gives each workspace its own agent in a Cloudflare container on the Pi SDK. Durable Objects coordinate it and R2 holds its files.</li>
+                    <li>Each vertical is a folder of skills, sources, a rubric and templates. Two are in production: Growth researches markets and holds outreach for approval, and Green answers supplier emissions questionnaires from one evidence pack.</li>
+                    <li>The QC system treats test cases as data. One runner covers local, container and production runs, repeats them, grades the output with a fixed judge model and keeps every result.</li>
+                    <li>The web app on top uses React, Clerk and Postgres with row-level security.</li>
                 </ul>
             </div>
             <div class="entry">
                 <h3>ShoplyAI, marketing agent harness (contract).</h3>
                 <ul>
-                    <li>Built an agent harness that runs one product's SEO and outreach: it researches, writes, verifies and publishes blog posts, assembles weekly search reports, and prepares outreach drafts that wait for review.</li>
-                    <li>Wrote its evidence rules. Every number in a report or post has to be reproduced from a command and checked against a second source before it goes out.</li>
-                    <li>Packaged it as a scheduled container with locked-down permissions and an egress proxy. Its skills and commands run under more than one agent host.</li>
-                    <li>Built a small regression eval set from the harness's own past failures.</li>
+                    <li>Designed a harness that runs one product's SEO and outreach. It researches, writes, checks and publishes blog posts, puts together a weekly search report, and drafts outreach for a person to review.</li>
+                    <li>Its evidence rule: no number goes into a report or post until it has been reproduced from a command and matched against a second source.</li>
+                    <li>It runs on a schedule in a locked-down container behind an egress proxy, and its skills work under more than one agent host.</li>
+                    <li>Its regression evals come from failures the harness actually had.</li>
                 </ul>
             </div>
             <div class="entry">
                 <h3>Larta Institute, enterprise context engine (contract).</h3>
                 <ul>
-                    <li>Built hybrid retrieval (RAG plus a knowledge graph) for an enterprise AI pilot serving NOAA and USDA research programs.</li>
-                    <li>Tuned semantic chunking for scientific and regulatory terminology.</li>
-                    <li>Wrote the product specification: competitor analysis, feasibility research and cost model.</li>
-                    <li>Co-developed U.S. government reports on NOAA and USDA incubator program data.</li>
+                    <li>Combined vector search with a knowledge graph for an AI pilot serving NOAA and USDA research programs.</li>
+                    <li>Tuned how documents were split so scientific and regulatory terms stayed intact.</li>
+                    <li>Wrote the product specification, with competitor analysis, feasibility research and a cost model.</li>
+                    <li>Helped write U.S. government reports on NOAA and USDA incubator program data.</li>
                 </ul>
             </div>
             <div class="entry">
                 <h3>Wheel the World, AI marketing infrastructure (contract).</h3>
                 <ul>
-                    <li>Built an image organization and search system for a library of about 100GB using AWS Rekognition, with a search portal for the marketing and sales teams.</li>
-                    <li>Built HubSpot automation: client segmentation and follow-up sequences triggered by discovery-call outcomes, with Facebook funnel integration.</li>
-                    <li>Built an agent that drafted personalized outreach from customer data.</li>
+                    <li>Made a 100GB image library searchable, with AWS Rekognition tagging and a portal for the marketing and sales teams.</li>
+                    <li>Set up HubSpot segmentation and follow-up sequences that start from what happened on each discovery call, connected to the Facebook funnel.</li>
+                    <li>Wrote an agent that drafted personal outreach from customer data.</li>
                 </ul>
             </div>
             <div class="entry">
                 <h3>Tree-Plenish, Oakland branch leader.</h3>
                 <ul>
-                    <li>Organized community planting of more than 100 fruit trees and led a team of six through fundraising, logistics and legal requirements. Received the David Brower Conservation Award.</li>
+                    <li>Led a team of six that planted more than 100 fruit trees in Oakland, and handled the fundraising, logistics and legal work. The project earned a David Brower Conservation Award.</li>
                 </ul>
             </div>
         </section>
@@ -88,7 +88,7 @@
             <dl class="skills">
                 <dt>Languages:</dt><dd>TypeScript, JavaScript, Python, SQL, R.</dd>
                 <dt>Systems:</dt><dd>React, Node, Cloudflare Workers, Durable Objects and Containers, Postgres, AWS.</dd>
-                <dt>Agents:</dt><dd>harness design (Pi), evals and QC, retrieval (RAG, knowledge graphs), HubSpot automation.</dd>
+                <dt>Agents:</dt><dd>Harness design on Pi, evals and QC, retrieval with vector search and knowledge graphs, HubSpot automation.</dd>
                 <dt>Spoken:</dt><dd>English (native), Spanish (conversational).</dd>
             </dl>
         </section>
