@@ -7,7 +7,7 @@
   --color-rule: hsl(var(--border));
   --color-rule-2: hsl(var(--border));
   --color-muted: hsl(var(--muted-foreground));
-  --color-ink-2: hsl(var(--muted-foreground));
+  --color-ink-2: hsl(var(--text-tertiary));
   --color-ink: hsl(var(--foreground));
   --color-focus: hsl(var(--ring));
   --color-link: hsl(var(--primary));

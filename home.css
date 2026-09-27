@@ -75,7 +75,7 @@ body {
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
-  color: var(--color-ink);
+  color: var(--color-muted);
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 600;
@@ -85,10 +85,6 @@ body {
 
 .site-nav a:hover,
 .site-nav a[aria-current="page"] {
-  color: var(--color-muted);
-}
-
-.site-nav a[aria-current="page"]:hover {
   color: var(--color-ink);
 }
 
