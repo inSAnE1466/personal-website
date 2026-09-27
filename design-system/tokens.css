@@ -12,17 +12,15 @@
     --card-foreground: 30 7.1429% 5.4902%;
     --popover: 60 9.0909% 97.8431%;
     --popover-foreground: 30 7.1429% 5.4902%;
-    /* T11 (Fred, 2026-07-26): you PRESS a control, so its fill follows the CTA
-     * rule, not the status rule — --primary/--accent/--ring are ink, not forest.
-     * Green survives only as status (--success) and as the ruled identity/brand
-     * exceptions, which hold --forest. Do not point a status use back here. */
-    --primary: 30 7.1429% 5.4902%;
+    /* Dark green is the brand action accent (Fred, 2026-09-27). */
+    --primary: 152 45% 24%;
+    --primary-hover: 152 45% 18%;
     --primary-foreground: 60 9.0909% 97.8431%;
     --secondary: 40 10.3448% 94.3137%;
     --secondary-foreground: 30 7.1429% 5.4902%;
     --muted: 40 10.3448% 94.3137%;
     --muted-foreground: 42 4.6729% 41.9608%;
-    --accent: 30 7.1429% 5.4902%;
+    --accent: 152 45% 24%;
     --accent-foreground: 60 9.0909% 97.8431%;
     /* The good orange — the green's complement. Attention: approvals waiting,
      * autopilot, the icon activity dot (the ONLY color icons get). */
@@ -37,7 +35,7 @@
     --accent-coral: 12 76% 52%;
     /* Live/positive green — running chips, success states. */
     --signal: 152 45% 24%;
-    /* Forest is the existing identity color; it is independent of ink actions. */
+    /* Brand and positive state share a hue; labels distinguish their meaning. */
     --forest: 152 45% 24%;
     --forest-deep: 152 45% 18%;
     --paper-2: 40 5.5556% 78.8235%;
@@ -47,24 +45,27 @@
     --warning-foreground: 0 0% 16%;
     --success: 152 45% 24%;
     --success-foreground: 60 9.0909% 97.8431%;
-    --border: 40 5.5556% 78.8235%;
-    --input: 42 4.6729% 41.9608%;
-    --ring: 30 7.1429% 5.4902%;
-    /* Controls and cards use the owner's 4px corner. Pills remain explicit
-       9999px where the component semantics call for them. */
-    --radius: 4px;
+    /* Card and section hairlines. 85% lightness (1.34:1) reads as a rule, not an
+     * outline; the 78.8% value drew every card as a grey box against the ground.
+     * Separators are decorative, so the 3:1 floor does not apply here. */
+    --border: 40 5.5556% 85%;
+    /* Same control boundary as --control-border: Tailwind's border-input class
+     * resolves here, so the two must agree or half the fields draw darker. */
+    --input: 42 4.6729% 55%;
+    --ring: 152 45% 24%;
+    /* Corner scale (Fred, 2026-09-15, Alpaca reference): cards, fields and
+       tiles at 10px, nested controls at 8px, chips at 6px (tailwind lg/md/sm).
+       Buttons are pills; the radius steps inward as surfaces nest. */
+    --radius: 10px;
     /* Sidebar — one quiet notch off the white ground. */
     --sidebar: 60 9.0909% 97.8431%;
     --sidebar-foreground: 30 7.1429% 5.4902%;
-    --sidebar-primary: 30 7.1429% 5.4902%;
+    --sidebar-primary: 152 45% 24%;
     --sidebar-primary-foreground: 60 9.0909% 97.8431%;
     --sidebar-accent: 40 5.5556% 78.8235%;
     --sidebar-accent-foreground: 30 7.1429% 5.4902%;
     --sidebar-border: 40 5.5556% 78.8235%;
-    /* In scope by T11's own sentence — a focus ring is a focus ring. These sit
-     * outside the ruling's NAMED token list but held the same forest literal and
-     * feed six sidebar focus rings; leaving them would ship the ruling half-applied. */
-    --sidebar-ring: 30 7.1429% 5.4902%;
+    --sidebar-ring: 152 45% 24%;
     --shadow-color: 30 7.1429% 5.4902%;
     /* Type scale (Q15 re-tune) — the surface vocabulary (TYPE-SCALE-TOKENS). Each
        is a distinct visual role; new components pick one rather than inventing
@@ -86,8 +87,11 @@
     --shadow-md: 0 2px 4px hsl(var(--shadow-color) / 0.06), 0 1px 2px hsl(var(--shadow-color) / 0.04);
     --shadow-lg: 0 4px 8px hsl(var(--shadow-color) / 0.06), 0 2px 4px hsl(var(--shadow-color) / 0.04);
     --shadow-xl: 0 8px 24px hsl(var(--shadow-color) / 0.08), 0 2px 6px hsl(var(--shadow-color) / 0.05);
-    /* Accessible control roles are distinct from decorative separators. */
-    --control-border: 42 4.6729% 41.9608%;
+    /* Accessible control roles are distinct from decorative separators. Inputs
+     * hold the 3:1 boundary floor (ux-feel-decisions.md) at 55% lightness, 3.12:1
+     * against the ground; the earlier 42% measured 4.9:1 and read as a black box.
+     * Emphasis comes from the 2px brand focus ring, not the resting border. */
+    --control-border: 42 4.6729% 55%;
     --text-tertiary: 42.8571 7.3684% 18.6275%;
     --decorative: 36 4.2735% 54.1176%;
     --disabled-background: 60 9.0909% 97.8431%;
