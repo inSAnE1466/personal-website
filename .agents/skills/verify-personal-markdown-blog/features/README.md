@@ -1,4 +1,4 @@
 # Personal site feature map
 
-- [Home and consulting](home.md)
+- [Home and resume](home.md)
 - [Markdown writing](writing.md)

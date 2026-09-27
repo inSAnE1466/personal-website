@@ -12,7 +12,7 @@ async function fixture(t, posts = {}) {
   t.after(() => rm(root, { recursive: true, force: true }));
   await mkdir(join(root, 'posts'));
   await mkdir(join(root, 'PWmedia'));
-  for (const file of ['index.html', 'consulting.html', 'tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt']) {
+  for (const file of ['index.html', 'resume.html', 'tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt']) {
     await writeFile(join(root, file), `Public fixture: ${file}`);
   }
   await writeFile(join(root, 'sitemap.xml'), '<urlset></urlset>');

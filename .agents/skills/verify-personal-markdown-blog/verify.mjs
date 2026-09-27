@@ -8,7 +8,7 @@ const artifacts = resolve(import.meta.dirname, '.artifacts');
 const origin = process.argv[3] || 'http://127.0.0.1:8011';
 const routes = [
   ['/', 'Fred'],
-  ['/consulting.html', 'Consulting'],
+  ['/resume.html', 'Resume'],
   ['/writing/', 'Writing'],
   ['/writing/sample-formatting/', 'A sample page for writing'],
 ];

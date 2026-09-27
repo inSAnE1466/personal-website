@@ -31,9 +31,9 @@ export function parsePost(source, filename) {
 
 const dateLabel = (date) => new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(date));
 const nav = `<nav class="site-nav" aria-label="Primary"><ul class="site-nav__links">
-<li><a href="/index.html">Home</a></li><li><a href="/writing/" aria-current="page">Writing</a></li><li><a href="/consulting.html">Consulting</a></li><li><a href="https://tinymacro.app" target="_blank" rel="noopener">TinyMacro</a></li><li><a href="https://cal.com/frederick-casey-housand-vy8nkn/tinymacro-general-interest" target="_blank" rel="noopener">Book a call</a></li>
+<li><a href="/index.html">Home</a></li><li><a href="/writing/" aria-current="page">Writing</a></li><li><a href="/resume.html">Resume</a></li>
 </ul></nav>`;
-const contact = `<section class="reach doc" aria-labelledby="reach-head"><h2 id="reach-head">Get in touch</h2><p class="reach__lede"><a href="mailto:frederickcaseyhousand@gmail.com">frederickcaseyhousand@gmail.com</a></p></section>`;
+const contact = `<section class="section doc" aria-labelledby="reach-head"><h2 id="reach-head">Get in touch</h2><div class="section__body"><p><a href="mailto:frederickcaseyhousand@gmail.com">frederickcaseyhousand@gmail.com</a></p></div></section>`;
 function page(title, description, path, body, draft = false) {
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,8 +62,8 @@ export async function build({ root = process.cwd(), drafts = false } = {}) {
   await rm(output, { recursive: true, force: true });
   await mkdir(resolve(output, 'writing'), { recursive: true });
   // Explicit public allowlist: never upload sources, drafts, or workspace symlinks.
-  const publicFiles = ['index.html', 'consulting.html', 'tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt', 'PWmedia'];
-  if (await lstat(resolve(root, 'design-system')).catch(() => null)) publicFiles.push('design-system');
+  const publicFiles = ['index.html', 'resume.html', 'tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt'];
+  for (const optional of ['PWmedia', 'design-system']) if (await lstat(resolve(root, optional)).catch(() => null)) publicFiles.push(optional);
   for (const file of publicFiles) {
     await cp(resolve(root, file), resolve(output, file), { recursive: true, filter: async (source) => {
       if ((await lstat(source)).isSymbolicLink()) throw new Error(`Public assets must be regular files or directories, not symlinks: ${source}`);

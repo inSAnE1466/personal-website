@@ -31,7 +31,7 @@ Run this against an existing preview before driving it:
 node .agents/skills/verify-personal-markdown-blog/verify.mjs doctor http://127.0.0.1:8011
 ```
 
-It checks the home, consulting, and writing index responses plus the published
+It checks the home, resume, and writing index responses plus the published
 post set. A failed doctor means rebuild and relaunch the preview.
 
 ## Drive
@@ -42,7 +42,7 @@ Run the route drive:
 node .agents/skills/verify-personal-markdown-blog/verify.mjs drive http://127.0.0.1:8011
 ```
 
-Then use a browser at the same origin. Inspect home, consulting, writing index,
+Then use a browser at the same origin. Inspect home, resume, writing index,
 and the sample post when present at desktop and mobile widths. Follow `Writing`
 and `All writing` links and confirm the title, date, and content. Use visible
 links and headings, not coordinates. Do not activate email, calendar, or

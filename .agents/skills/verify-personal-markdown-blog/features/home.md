@@ -1,13 +1,13 @@
-# Home and consulting
+# Home and resume
 
 ## Sub-features
 
-The static home and consulting pages present Fred's personal profile and
+The static home and resume pages present Fred's personal profile and
 contact links.
 
 ## How to get to it (user POV)
 
-Open `/` and choose `Consulting` in the primary navigation.
+Open `/` and choose `Resume` in the primary navigation.
 
 ## Driving it with the local browser
 
@@ -16,5 +16,4 @@ main heading, navigation, and visible content. Do not activate external links.
 
 ## Gotchas
 
-These pages contain existing claims whose publication evidence remains open.
-Verification does not approve or alter them.
+Verification does not approve or alter the pages' claims.

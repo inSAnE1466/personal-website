@@ -10,6 +10,8 @@
   --color-ink-2: hsl(var(--muted-foreground));
   --color-ink: hsl(var(--foreground));
   --color-focus: hsl(var(--ring));
+  --color-link: hsl(var(--primary));
+  --color-link-hover: hsl(var(--primary-hover));
   --color-paper-muted: hsl(var(--background) / 0.72);
 
   /* One Inter family, two weights */
@@ -24,10 +26,10 @@
   --text-lg: clamp(1.125rem, 0.35vw + 1.02rem, 1.375rem);
   --text-title: clamp(1.625rem, 1.8vw + 0.875rem, 2.375rem);
   --text-display: clamp(2.375rem, 2.7vw + 1.2rem, 3.875rem);
-  --text-marquee: clamp(2.375rem, 2.7vw + 1.2rem, 3.875rem);
+  --text-marquee: clamp(2.75rem, 4.5vw + 1.25rem, 5rem);
 
   --track-display: -0.025em;
-  --track-marquee: -0.025em;
+  --track-marquee: -0.04em;
   --track-title: -0.015em;
 
   /* Four-point spacing scale */
