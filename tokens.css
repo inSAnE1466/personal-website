@@ -22,6 +22,8 @@
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
   --text-base: 1rem;
+  --text-nav: 0.9375rem;
+  --text-read: 1.0625rem;
   --text-md: 1.125rem;
   --text-lg: clamp(1.125rem, 0.35vw + 1.02rem, 1.375rem);
   --text-title: clamp(1.625rem, 1.8vw + 0.875rem, 2.375rem);

@@ -1,6 +1,6 @@
 ---
 name: verify-personal-markdown-blog
-description: Drive the personal Markdown site locally and prove public and draft writing routes with CLI checks and browser evidence.
+description: Drive the personal Markdown site locally and prove the home, writing and article routes, draft exclusion, and the absent resume with CLI checks and browser evidence.
 ---
 
 # Verify personal Markdown blog
@@ -8,61 +8,41 @@ description: Drive the personal Markdown site locally and prove public and draft
 Use this skill after changes to the static personal site. It builds and serves a
 local preview. It does not publish, submit forms, or contact external services.
 
-## Launch
-
-Install the lockfile and run the helper. It builds the public site, starts an
-isolated Python server on port 8011, and owns teardown:
+## Run
 
 ```sh
 npm ci
-node .agents/skills/verify-personal-markdown-blog/verify.mjs run
+npx playwright install chromium   # once per machine
+node .agents/skills/verify-personal-markdown-blog/verify.mjs run [port]
 ```
 
-The server is ready when the helper's doctor reports HTML for `/` and
-`/writing/`. For a browser review, run `npm run build` and then
-`python3 -m http.server 8011 --bind 127.0.0.1 --directory dist`, stopping that
-exact process after the drive.
+`run` does four things in order and stops at the first failure:
 
-## Doctor
+1. Public build: runs `npm run build`, then proves every `draft: true` post is
+   absent from `dist/writing/`, from the home and writing index links and from
+   the sitemap, and that `dist/resume.html` does not exist.
+2. Preview: rebuilds with drafts and serves `dist` with Python on the given port,
+   or a free temporary port. It never reuses a port another process holds.
+3. Doctor: `/` and `/writing/` return HTML; `/resume.html` returns 404.
+4. Drive: headless Chromium at 1280x800 and 390x844. Tab from the top of home:
+   the first stop is the visible skip link, then Fred's name, then Writing. Then
+   Home → Writing (nav) → first listed post → All writing. Every page is checked
+   for horizontal overflow and captured full page.
 
-Run this against an existing preview before driving it:
+The helper stops the exact server process it started.
+
+## Against a running preview
 
 ```sh
-node .agents/skills/verify-personal-markdown-blog/verify.mjs doctor http://127.0.0.1:8011
+node .agents/skills/verify-personal-markdown-blog/verify.mjs doctor http://127.0.0.1:<port>
+node .agents/skills/verify-personal-markdown-blog/verify.mjs drive http://127.0.0.1:<port>
 ```
 
-It checks the home, resume, and writing index responses plus the published
-post set. A failed doctor means rebuild and relaunch the preview.
-
-## Drive
-
-Run the route drive:
-
-```sh
-node .agents/skills/verify-personal-markdown-blog/verify.mjs drive http://127.0.0.1:8011
-```
-
-Then use a browser at the same origin. Inspect home, resume, writing index,
-and the sample post when present at desktop and mobile widths. Follow `Writing`
-and `All writing` links and confirm the title, date, and content. Use visible
-links and headings, not coordinates. Do not activate email, calendar, or
-external TinyMacro links.
+The drive needs at least one listed post, so point it at a draft preview
+(`node scripts/build.mjs --drafts`) while no post is published.
 
 ## Evidence
 
-The helper writes timestamped JSON transcripts under
-`.agents/skills/verify-personal-markdown-blog/.artifacts/`. Browser screenshots
-belong there and must show the route and resulting state. A build and test pass
-alone does not prove rendered behavior.
-
-## Cleanup
-
-The helper drives the sample writing link with headless Chromium, captures a
-screenshot, stops the exact Python process it starts, and leaves evidence in
-place. Manual drives must stop the recorded server PID. Never kill by process
-name.
-
-## Helpers
-
-`verify.mjs` uses Node's built-in HTTP client and the existing build script. Its
-supported commands are `doctor`, `drive`, and `run`.
+JSON transcripts and screenshots go to `.artifacts/verify/` (ignored by Git).
+Read every screenshot. A passing run proves routes, overflow and focus order,
+not that the page reads well. Do not activate email, calendar or external links.

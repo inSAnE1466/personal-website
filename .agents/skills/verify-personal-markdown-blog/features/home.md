@@ -1,19 +1,20 @@
-# Home and resume
+# Home
 
 ## Sub-features
 
-The static home and resume pages present Fred's personal profile and
-contact links.
+The static home page states Fred's intentions, lists writing (drafts only in
+the preview), and ends with contact links. There is no resume; `/resume.html`
+is a 404.
 
 ## How to get to it (user POV)
 
-Open `/` and choose `Resume` in the primary navigation.
+Open `/`, or choose Fred's name in the navigation on any page.
 
 ## Driving it with the local browser
 
-Run the helper and inspect both routes at desktop and mobile widths. Confirm the
-main heading, navigation, and visible content. Do not activate external links.
+Run the helper. Confirm the heading, the writing list and the Writing link at
+both widths. Do not activate external links.
 
 ## Gotchas
 
-Verification does not approve or alter the pages' claims.
+Verification does not approve or alter the page's claims.

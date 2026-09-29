@@ -1,4 +1,4 @@
-/* Shared Inter document styles for the home, resume and writing pages. */
+/* Shared Inter document styles for the home and writing pages. */
 
 * {
   box-sizing: border-box;
@@ -52,22 +52,22 @@ body {
   outline-color: var(--color-focus);
 }
 
-/* Normal-flow navigation. The links are the interface; there is no header shell. */
+/* Normal-flow navigation: Fred's name returns home; Writing is the one destination. */
 .site-nav {
-  position: static;
+  display: flex;
   width: 100%;
   max-width: calc(var(--page-width) + (2 * var(--page-gutter)));
   margin-inline: auto;
-  padding: var(--space-sm) var(--page-gutter) 0;
+  padding: var(--space-md) var(--page-gutter) 0;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: var(--space-lg);
 }
 
 .site-nav__links {
   display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  column-gap: clamp(var(--space-sm), 2vw, var(--space-lg));
+  column-gap: var(--space-lg);
   list-style: none;
 }
 
@@ -75,17 +75,27 @@ body {
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
-  color: var(--color-muted);
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
+  color: var(--color-ink);
+  font-size: var(--text-nav);
   font-weight: 600;
   text-decoration: none;
   transition: color 140ms ease-out;
 }
 
-.site-nav a:hover,
-.site-nav a[aria-current="page"] {
-  color: var(--color-ink);
+.site-nav__links a {
+  text-decoration-color: transparent;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
+
+.site-nav a:hover {
+  color: var(--color-link);
+}
+
+/* The current destination carries the green mark; the name never does. */
+.site-nav__links a[aria-current="page"] {
+  text-decoration-color: var(--color-link);
 }
 
 main {
@@ -150,7 +160,7 @@ strong,
 }
 
 .hero {
-  padding-block: var(--space-md) var(--space-lg);
+  padding-block: var(--space-2xl) var(--space-xl);
 }
 
 .hero:not(.doc) {
@@ -161,10 +171,11 @@ strong,
 }
 
 .hero h1 {
-  max-width: 14ch;
-  font-size: var(--text-marquee);
-  letter-spacing: var(--track-marquee);
-  line-height: 0.98;
+  max-width: 20ch;
+  font-size: var(--text-display);
+  letter-spacing: var(--track-display);
+  line-height: 1.08;
+  text-wrap: balance;
 }
 
 .hero .lede {
@@ -175,7 +186,6 @@ strong,
   line-height: 1.55;
 }
 
-.argument,
 .section {
   padding-block: var(--space-xl);
   border-top: var(--rule-hair) solid var(--color-rule);
@@ -197,8 +207,13 @@ strong,
   padding-block: var(--space-md);
   border-top: var(--rule-hair) solid var(--color-rule);
   color: var(--color-ink-2);
-  font-size: var(--text-md);
-  line-height: 1.55;
+}
+
+/* Home prose and claims share the article reading size so intentions and positions weigh the same. */
+.section__body,
+.claim {
+  font-size: var(--text-read);
+  line-height: 1.7;
 }
 
 .claim:first-child {
@@ -210,76 +225,30 @@ strong,
   white-space: nowrap;
 }
 
-/* Resume: one reading column on screen, one US Letter page in print. */
-.resume {
-  max-width: calc(var(--measure) + 2 * var(--page-gutter));
-  margin-inline: 0;
-  padding-block: var(--space-md) var(--space-2xl);
-}
+/* Wide screens set section headings in a left column so the prose keeps one edge. */
+@media (min-width: 64rem) {
+  .section {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, var(--measure));
+    column-gap: var(--space-2xl);
+    align-items: start;
+  }
 
-.resume h1 {
-  font-size: var(--text-display);
-  letter-spacing: var(--track-marquee);
-  line-height: 1;
-}
+  .section > h2 {
+    font-size: var(--text-md);
+    letter-spacing: 0;
+    line-height: 1.55;
+  }
 
-.resume__contact {
-  margin-top: var(--space-sm);
-  color: var(--color-ink-2);
-  font-size: var(--text-sm);
-}
+  .section > .section__body,
+  .section > .claims {
+    margin-top: 0;
+  }
 
-.resume__headline {
-  margin-top: var(--space-sm);
-  font-size: var(--text-md);
-}
-
-.resume__note {
-  margin-top: var(--space-sm);
-  color: var(--color-muted);
-  font-size: var(--text-sm);
-}
-
-.resume section {
-  margin-top: var(--space-lg);
-  padding-top: var(--space-md);
-  border-top: var(--rule-hair) solid var(--color-rule);
-}
-
-.resume h2 {
-  font-size: var(--text-md);
-  letter-spacing: 0;
-}
-
-.resume h3 {
-  margin-top: var(--space-sm);
-  font-size: var(--text-base);
-  font-weight: 600;
-}
-
-.resume h3 span {
-  color: var(--color-muted);
-  font-weight: 400;
-}
-
-.resume ul {
-  max-width: var(--measure);
-  padding-left: var(--space-md);
-}
-
-.resume li + li {
-  margin-top: var(--space-2xs);
-}
-
-.skills {
-  display: grid;
-  margin-top: var(--space-sm);
-  grid-template-columns: max-content minmax(0, 1fr);
-  column-gap: var(--space-sm);
-}
-
-.skills dt {
-  font-weight: 600;
+  .hero--rail .lede,
+  .hero--rail h1 {
+    margin-left: calc(14rem + var(--space-2xl));
+  }
 }
 
 @media (max-width: 40rem) {
@@ -291,82 +260,8 @@ strong,
     padding-block: var(--space-sm) var(--space-lg);
   }
 
-  .argument,
   .section {
     padding-block: var(--space-lg);
-  }
-
-  .skills {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .skills dd + dt {
-    margin-top: var(--space-xs);
-  }
-}
-
-@media print {
-  @page {
-    size: letter;
-    margin: 0.45in 0.55in;
-  }
-
-  .skip,
-  .site-nav,
-  .resume__note {
-    display: none;
-  }
-
-  body {
-    background: #fff;
-    font-size: 9pt;
-    line-height: 1.38;
-  }
-
-  .resume {
-    max-width: none;
-    padding: 0;
-  }
-
-  .resume p,
-  .resume ul {
-    max-width: none;
-  }
-
-  .resume h1 {
-    font-size: 20pt;
-  }
-
-  .resume__headline,
-  .resume h2 {
-    font-size: 10.5pt;
-  }
-
-  .resume__contact {
-    font-size: 8.5pt;
-  }
-
-  .resume section {
-    margin-top: 8pt;
-    padding-top: 5pt;
-  }
-
-  .resume h3 {
-    margin-top: 5pt;
-    font-size: 9.5pt;
-  }
-
-  .resume li + li {
-    margin-top: 1pt;
-  }
-
-  .resume a {
-    color: inherit;
-    font-weight: 400;
-  }
-
-  .entry {
-    break-inside: avoid;
   }
 }
 

@@ -12,7 +12,8 @@ async function fixture(t, posts = {}) {
   t.after(() => rm(root, { recursive: true, force: true }));
   await mkdir(join(root, 'posts'));
   await mkdir(join(root, 'PWmedia'));
-  for (const file of ['index.html', 'resume.html', 'tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt']) {
+  await writeFile(join(root, 'index.html'), '<head></head><main><!-- writing --></main>');
+  for (const file of ['tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt']) {
     await writeFile(join(root, file), `Public fixture: ${file}`);
   }
   await writeFile(join(root, 'sitemap.xml'), '<urlset></urlset>');
@@ -28,6 +29,19 @@ test('requires explicit draft status, valid dates, safe slugs and a single page 
   assert.throws(() => parsePost(source().replace('title: A real draft', 'title: One\ntitle: Two'), 'post.md'), /duplicate metadata/);
   assert.throws(() => parsePost(source(), '../post.md'), /filename/);
   assert.throws(() => parsePost(source({ body: '# Extra title' }), 'post.md'), /use ##/);
+  assert.throws(() => parsePost(source().replace('draft: true', 'draft: true\nkind: memo'), 'post.md'), /kind must/);
+  const undated = parsePost(source().replace('date: 2026-09-06\n', ''), 'post.md');
+  assert.equal(undated.date, undefined);
+  assert.equal(undated.kind, 'essay');
+});
+
+test('omits dates when absent and lists anchored sections for long pieces', async (t) => {
+  const f = await fixture(t, { 'case-study': source({ draft: false, title: 'A case', body: '## Problem\n\nText.\n\n## Problem\n\nText.\n\n## What & why\n\nText.' }).replace('date: 2026-09-06\n', '').replace('draft: false', 'draft: false\nkind: case study') });
+  await build({ root: f.root });
+  const article = await f.read('writing/case-study/index.html');
+  assert.doesNotMatch(article, /<time/);
+  assert.match(article, /Case study/);
+  for (const expected of ['<h2 id="problem">', '<h2 id="problem-2">', '<h2 id="what-why">', 'href="#problem-2"', 'What &amp; why</a>']) assert.ok(article.includes(expected), expected);
 });
 
 test('treats raw HTML as text and rejects unsafe Markdown links', () => {
@@ -48,7 +62,7 @@ test('renders a complete directly addressable published article with escaped met
   assert.match(article, /<h1>Words &amp; &lt;tags&gt; &quot;quoted&quot;<\/h1>/);
   assert.match(article, /content="A &quot;quote&quot; &amp; &lt;script&gt;example&lt;\/script&gt;"/);
   assert.match(article, /rel="canonical" href="https:\/\/frederickcaseyhousand.com\/writing\/published-post\/"/);
-  for (const expected of ['<strong>strong</strong>', '<h2>A section</h2>', '<blockquote>', '<div class="table-scroll" role="region" aria-label="Table" tabindex="0"><table>', '</table></div>', '&lt;div&gt;example&lt;/div&gt;', 'href="/writing.css"', 'href="/writing/"', 'href="#main"', 'id="main"']) assert.ok(article.includes(expected), expected);
+  for (const expected of ['<strong>strong</strong>', '<h2 id="a-section">A section</h2>', '<blockquote>', '<div class="table-scroll" role="region" aria-label="Table" tabindex="0"><table>', '</table></div>', '&lt;div&gt;example&lt;/div&gt;', 'href="/writing.css"', 'href="/writing/"', 'href="#main"', 'id="main"']) assert.ok(article.includes(expected), expected);
   assert.doesNotMatch(article, /draft-note|noindex|<script>/);
   assert.match(await f.read('writing/index.html'), /href="\/writing\/published-post\/"/);
   assert.match(await f.read('sitemap.xml'), /\/writing\/published-post\//);
@@ -64,12 +78,15 @@ test('previews owner drafts without calling them samples, then removes drafts fr
   assert.match(draft, /noindex, nofollow/);
   assert.doesNotMatch(draft, /sample|demonstration|not a finished post by Fred|rel="canonical"/);
   assert.match(await f.read('writing/index.html'), /Draft · /);
+  assert.match(await f.read('index.html'), /href="\/writing\/owner-draft\/"[\s\S]*noindex|noindex[\s\S]*href="\/writing\/owner-draft\/"/);
   assert.match(await f.read('writing/published/index.html'), /noindex, nofollow/);
   assert.doesNotMatch(await f.read('sitemap.xml'), /owner-draft/);
   await build({ root: f.root });
   await assert.rejects(f.exists('writing/owner-draft/index.html'));
   for (const path of ['posts', 'thesis', 'private-notes.md']) await assert.rejects(f.exists(path));
   assert.doesNotMatch(await f.read('writing/index.html'), /owner-draft|Draft · |noindex/);
+  assert.doesNotMatch(await f.read('index.html'), /owner-draft|Draft · |noindex/);
+  assert.match(await f.read('index.html'), /href="\/writing\/published\/"/);
   assert.match(await f.read('writing/published/index.html'), /<h1>Published<\/h1>/);
   await f.exists('PWmedia/image.svg');
 });
@@ -78,6 +95,7 @@ test('builds an empty index without a retained sample or any posts', async (t) =
   const f = await fixture(t);
   await build({ root: f.root });
   assert.match(await f.read('writing/index.html'), /No posts published yet/);
+  assert.match(await f.read('index.html'), /No posts published yet/);
   assert.doesNotMatch(await f.read('writing/index.html'), /<li><article>/);
   assert.match(await f.read('sitemap.xml'), /https:\/\/frederickcaseyhousand.com\/writing\//);
 });
@@ -103,6 +121,16 @@ test('rejects post source symlinks before reading targets or replacing output', 
   await symlink(join(f.root, 'missing-owner-original.md'), join(f.root, 'posts', 'linked-post.md'));
   await assert.rejects(build({ root: f.root }), /Post sources must not be symlinks/);
   assert.equal(await f.read('writing/index.html'), original);
+});
+
+test('rejects a linked home template before replacing output', async (t) => {
+  const f = await fixture(t);
+  await build({ root: f.root });
+  const original = await f.read('index.html');
+  await rm(join(f.root, 'index.html'));
+  await symlink(join(f.root, 'missing-private-home.html'), join(f.root, 'index.html'));
+  await assert.rejects(build({ root: f.root }), /not symlinks/);
+  assert.equal(await f.read('index.html'), original);
 });
 
 test('rejects a linked posts directory instead of treating its missing target as empty', async (t) => {

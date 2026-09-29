@@ -1,82 +1,129 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { access, mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { execFileSync, spawn } from 'node:child_process';
+import { createServer } from 'node:net';
 import { resolve } from 'node:path';
 import { chromium } from 'playwright';
 
 const root = resolve(import.meta.dirname, '../../..');
-const artifacts = resolve(import.meta.dirname, '.artifacts');
-const origin = process.argv[3] || 'http://127.0.0.1:8011';
+const artifacts = resolve(root, '.artifacts', 'verify');
+const stamp = new Date().toISOString().replaceAll(':', '-');
+const viewports = [{ width: 1280, height: 800 }, { width: 390, height: 844 }];
 const routes = [
-  ['/', 'Fred'],
-  ['/resume.html', 'Resume'],
-  ['/writing/', 'Writing'],
-  ['/writing/sample-formatting/', 'A sample page for writing'],
+  ['/', 200, 'Fred Casey-Housand'],
+  ['/writing/', 200, 'Writing'],
+  ['/resume.html', 404, null],
 ];
 
-async function fetchRoute(path) {
-  const response = await fetch(`${origin}${path}`);
-  const body = await response.text();
-  return { path, status: response.status, contentType: response.headers.get('content-type'), body };
-}
-
-async function check(kind) {
-  const checked = kind === 'doctor' ? routes.slice(0, 3) : routes;
-  const results = [];
-  for (const [path, marker] of checked) {
-    const result = await fetchRoute(path);
-    if (result.status !== 200 || !result.contentType?.includes('text/html') || !result.body.toLowerCase().includes(marker.toLowerCase())) {
-      throw new Error(`${path}: expected 200 HTML containing ${marker}, got ${result.status} ${result.contentType}`);
-    }
-    results.push({ path, status: result.status, marker });
-  }
+async function evidence(name, data) {
   await mkdir(artifacts, { recursive: true });
-  const file = resolve(artifacts, `${new Date().toISOString().replaceAll(':', '-')}-${kind}.json`);
-  await writeFile(file, JSON.stringify({ origin, kind, results }, null, 2) + '\n');
-  console.log(JSON.stringify({ origin, kind, results, evidence: file }, null, 2));
+  const file = resolve(artifacts, `${stamp}-${name}.json`);
+  await writeFile(file, JSON.stringify(data, null, 2) + '\n');
+  console.log(JSON.stringify({ ...data, evidence: file }, null, 2));
 }
 
-async function browserDrive() {
+async function doctor(origin) {
+  const results = [];
+  for (const [path, status, marker] of routes) {
+    const response = await fetch(`${origin}${path}`);
+    const body = await response.text();
+    if (response.status !== status || (marker && !body.includes(marker))) throw new Error(`${path}: expected ${status}${marker ? ` containing ${marker}` : ''}, got ${response.status}`);
+    results.push({ path, status: response.status });
+  }
+  await evidence('doctor', { origin, results });
+}
+
+// The public build must contain no draft: no route, no link from home or the index, no sitemap entry.
+async function draftExclusion() {
+  const drafts = [];
+  for (const file of (await readdir(resolve(root, 'posts')).catch(() => [])).filter((f) => f.endsWith('.md'))) {
+    if (/^draft: true$/m.test(await readFile(resolve(root, 'posts', file), 'utf8'))) drafts.push(file.replace(/\.md$/, ''));
+  }
+  execFileSync('node', ['scripts/build.mjs'], { cwd: root, stdio: 'inherit' });
+  const pages = await Promise.all(['index.html', 'writing/index.html', 'sitemap.xml'].map((p) => readFile(resolve(root, 'dist', p), 'utf8')));
+  for (const slug of drafts) {
+    if (await access(resolve(root, 'dist/writing', slug)).then(() => true, () => false)) throw new Error(`public build contains draft ${slug}`);
+    if (pages.some((page) => page.includes(`/writing/${slug}/`))) throw new Error(`public build links draft ${slug}`);
+  }
+  await access(resolve(root, 'dist/resume.html')).then(() => { throw new Error('public build contains resume.html'); }, () => {});
+  await evidence('public-build', { drafts, excluded: true, resume: 'absent' });
+}
+
+async function drive(origin) {
   const browser = await chromium.launch({ headless: true });
+  const results = [];
   try {
-    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
-    await page.goto(`${origin}/writing/`, { waitUntil: 'networkidle' });
-    await page.getByRole('link', { name: 'A sample page for writing' }).click();
-    await page.waitForURL(`${origin}/writing/sample-formatting/`);
-    await page.getByRole('heading', { name: 'A sample page for writing' }).waitFor();
-    await mkdir(artifacts, { recursive: true });
-    const screenshot = resolve(artifacts, `${new Date().toISOString().replaceAll(':', '-')}-browser.png`);
-    await page.screenshot({ path: screenshot, fullPage: false });
-    console.log(JSON.stringify({ browser: 'chromium', action: 'click sample writing link', url: page.url(), screenshot }, null, 2));
+    for (const viewport of viewports) {
+      const page = await browser.newPage({ viewport });
+      const shot = async (name) => {
+        const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+        if (overflow > 0) throw new Error(`${page.url()} at ${viewport.width}px overflows by ${overflow}px`);
+        const path = resolve(artifacts, `${stamp}-${viewport.width}-${name}.png`);
+        await page.screenshot({ path, fullPage: true });
+        results.push({ viewport: viewport.width, url: page.url(), overflow, screenshot: path });
+      };
+      await page.goto(`${origin}/`, { waitUntil: 'networkidle' });
+      await page.keyboard.press('Tab');
+      const focus = await page.evaluate(() => {
+        const el = document.activeElement;
+        return { text: el.textContent.trim(), outline: getComputedStyle(el).outlineStyle, top: el.getBoundingClientRect().top };
+      });
+      if (focus.text !== 'Skip to content' || focus.outline === 'none' || focus.top < 0) throw new Error(`first Tab focus is not a visible skip link: ${JSON.stringify(focus)}`);
+      await page.keyboard.press('Tab');
+      await page.keyboard.press('Tab');
+      if (await page.evaluate(() => document.activeElement.textContent.trim()) !== 'Writing') throw new Error('Writing is not the second navigation stop');
+      results.push({ viewport: viewport.width, focus: 'skip link, name, Writing' });
+      await page.evaluate(() => document.activeElement.blur());
+      await shot('home');
+      await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Writing' }).click();
+      await page.waitForURL(`${origin}/writing/`);
+      await page.getByRole('heading', { level: 1, name: 'Writing' }).waitFor();
+      await shot('writing');
+      const first = page.locator('.entries h2 a').first();
+      const title = (await first.textContent()).trim();
+      await first.click();
+      await page.getByRole('heading', { level: 1, name: title }).waitFor();
+      await shot('article');
+      await page.getByRole('link', { name: 'All writing' }).click();
+      await page.waitForURL(`${origin}/writing/`);
+      await page.close();
+    }
   } finally {
     await browser.close();
   }
+  await evidence('drive', { origin, results });
 }
 
+const freePort = () => new Promise((done, fail) => {
+  const server = createServer().listen(0, '127.0.0.1', () => { const { port } = server.address(); server.close(() => done(port)); }).on('error', fail);
+});
+
 async function run() {
+  await draftExclusion();
   execFileSync('node', ['scripts/build.mjs', '--drafts'], { cwd: root, stdio: 'inherit' });
-  const build = spawn('python3', ['-m', 'http.server', '8011', '--bind', '127.0.0.1', '--directory', 'dist'], { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] });
+  const port = Number(process.argv[3]) || await freePort();
+  const origin = `http://127.0.0.1:${port}`;
+  const server = spawn('python3', ['-m', 'http.server', String(port), '--bind', '127.0.0.1', '--directory', 'dist'], { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] });
   let output = '';
-  build.stdout.on('data', chunk => { output += chunk; });
-  build.stderr.on('data', chunk => { output += chunk; });
+  server.stdout.on('data', (chunk) => { output += chunk; });
+  server.stderr.on('data', (chunk) => { output += chunk; });
   try {
     let ready = false;
-    for (let i = 0; i < 40; i += 1) {
-      try { await fetchRoute('/'); ready = true; break; } catch { await new Promise(resolveWait => setTimeout(resolveWait, 250)); }
-      if (build.exitCode !== null) throw new Error(output);
+    for (let i = 0; i < 40 && server.exitCode === null; i += 1) {
+      try { await fetch(`${origin}/`); ready = true; break; } catch { await new Promise((wait) => setTimeout(wait, 250)); }
     }
-    if (!ready || build.exitCode !== null) throw new Error(`preview did not become ready on 127.0.0.1:8011\n${output}`);
-    await check('doctor');
-    await check('drive');
-    await browserDrive();
+    if (!ready) throw new Error(`preview did not become ready on ${origin}\n${output}`);
+    await doctor(origin);
+    await drive(origin);
   } finally {
-    if (build.exitCode === null) {
-      build.kill('SIGTERM');
-      await new Promise(resolveExit => build.once('exit', resolveExit));
+    if (server.exitCode === null) {
+      server.kill('SIGTERM');
+      await new Promise((exit) => server.once('exit', exit));
     }
   }
 }
 
-const command = process.argv[2] || 'drive';
+const [command = 'run', origin] = process.argv.slice(2);
 if (command === 'run') await run();
-else if (command === 'doctor' || command === 'drive') await check(command);
+else if (command === 'doctor') await doctor(origin);
+else if (command === 'drive') await drive(origin);
 else throw new Error(`Unknown command ${command}`);

@@ -1,6 +1,7 @@
 # frederickcaseyhousand.com
 
-Fred's personal site. The home and resume pages are plain HTML/CSS.
+Fred's personal site: a home page with his intentions, and writing. The home page is plain HTML/CSS;
+the build inserts the writing list at its `<!-- writing -->` marker. There is no resume page.
 Writing uses Markdown, converted to static HTML by a small Node script. There is
 no browser JavaScript, CMS, or account service for the blog. Inter and the existing
 writing voice remain the design constraints.
@@ -15,19 +16,14 @@ own writing, publication authority, or a product backlog.
 
 ## Next useful slice
 
-The Markdown workflow is implemented and locally reviewed on `main`; no real essay has been selected.
-The smallest next slice is one owner-selected Markdown post, readable
-from the index and at its direct URL. Fred still needs to supply or select the
-exact text, title, date, short description, and approval to publish it. Preserve
-his original and voice; do not manufacture an essay or import an Obsidian folder.
+Two owner drafts copied from the vault note `Buckets/Writing/cta.md` (`posts/why-the-environment.md`,
+`posts/what-general-agents-cannot-do.md`) and one case study drawn from PH runtime source
+(`posts/per-vertical-agent-permissions.md`) are `draft: true`. They
+appear only in the preview. Fred approves, edits or deletes each before any becomes public. Case
+studies about client work need TMH's claim rules below and Fred's approval of every fact.
 
-Use the steps below to prepare that one post. Judge completion by a faithful
-rendering on desktop/mobile, working links, and a normal build containing only
-approved posts. No CMS, runtime integration, or broader redesign is needed.
 Company case-study inputs and permission stay with TMH, which owns company and client truth. Its claim rules live in [references/claims-spine.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/references/claims-spine.md) and its consulting method in [docs/consulting-delivery-system.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/docs/consulting-delivery-system.md);
 private portfolio sources remain outside this work.
-
-Wheel the World metrics were removed from public pages pending Fred's confirmation.
 
 ## Local review
 
@@ -39,7 +35,7 @@ npm test
 npm run preview
 ```
 
-Open [the writing index](http://127.0.0.1:8011/writing/) and the linked draft sample. The preview includes
+Open [the writing index](http://127.0.0.1:8011/writing/) and the linked drafts. The preview includes
 drafts with a generic “Draft for review” notice and marks writing pages `noindex`.
 Stop the server with Ctrl-C. After editing a post, rerun `npm run preview` to
 rebuild it (there is no watch server). If port 8011 is already serving this
@@ -53,7 +49,7 @@ python3 -m http.server 8011 --bind 127.0.0.1 --directory dist
 
 The normal build excludes drafts and removes any earlier preview output. With no
 published posts, the writing index says “No posts published yet.” This also works
-when `posts/` is absent after deleting the last sample from Git.
+when `posts/` is absent.
 
 ## Add a post
 
@@ -61,14 +57,15 @@ when `posts/` is absent after deleting the last sample from Git.
    wherever Fred wrote it; this workflow does not read or sync Obsidian. Create
    `posts/` if it is absent. The directory and Markdown sources must be actual
    copies, not symlinks to originals.
-2. Add these four plain-text metadata fields. Values are single lines, without YAML
-   quotes; dates use `YYYY-MM-DD`. The filename becomes the permanent URL.
+2. Add these plain-text metadata fields. Values are single lines, without YAML
+   quotes. `kind` is `essay` (the default) or `case study`. `date` is optional (`YYYY-MM-DD`);
+   leave it out for past work, which carries no dates. The filename becomes the permanent URL.
 
    ```markdown
    ---
    title: The title of the post
-   date: 2026-09-06
-   description: A short description for the index.
+   description: A short description for the index and the article's opening line.
+   kind: essay
    draft: true
    ---
    The first paragraph goes here.
@@ -79,7 +76,8 @@ when `posts/` is absent after deleting the last sample from Git.
    ```
 
 3. Preview and review the page. The title supplies the only H1; use `##` and `###`
-   within the body. Markdown supports lists, links, quotations, tables, and fenced
+   within the body. A piece with three or more `##` sections lists them as contents. A case
+   study can open with a two-column summary table. Markdown supports lists, links, quotations, tables, and fenced
    code. Raw HTML is displayed as text. Local image files can go in `PWmedia/` and
    be referenced as `![Meaningful description](/PWmedia/filename.png)`. Every file
    in `PWmedia/` is copied to the public build, even if only a draft references it.
@@ -88,18 +86,15 @@ when `posts/` is absent after deleting the last sample from Git.
    Run `npm test` and `npm run build`, then inspect the result.
 5. Review the commit before the separately authorized publishing step.
 
-`posts/sample-formatting.md` is demonstration text, not Fred's finished writing.
-Delete it when it is no longer useful; keep it a draft while retained. Tests use
-temporary fixtures and do not depend on this sample. Real drafts use the same
-`draft: true` field; only the sample’s own text describes it as illustrative.
+Tests use temporary fixtures and do not depend on any post in `posts/`.
 
 ## Structure
 
-- `index.html`: home page. `resume.html`: one-page resume; browser print saves it as a PDF.
+- `index.html`: home page template; the build adds the writing list.
 - `posts/*.md`: writing source; draft status is required.
 - `scripts/build.mjs`: metadata validation, Markdown rendering and page templates.
 - `scripts/build.test.mjs`: draft exclusion and content-safety checks.
-- `tokens.css`, `home.css`, `writing.css`: shared Inter styles, resume print styles and writing layout.
+- `tokens.css`, `home.css`, `writing.css`: shared Inter styles and the writing layout.
 - `design-system/`: tokens and Inter pinned from TMFA; see `provenance.json`.
 - `PWmedia/`: optional public media, copied to the build only when present.
 - `design.md`: visual direction.
@@ -123,15 +118,10 @@ Client work and its media remain in the private portfolio repository, unlinked.
 
 © 2026 Frederick Casey-Housand
 
-## Review checks (2026-09-06)
+## Checks
 
-`npm test` uses nine isolated fixture tests, including a synthetic published article, a synthetic
-owner draft, no posts, escaped metadata/Markdown, a missing source directory, and rejected source/media symlinks.
-It does not rebuild the site's preview. `npm run build` excludes the retained
-sample and produces the empty public writing index until Fred selects a post.
-
-Fresh Chrome review at 1440, 390, and 320 px covered direct article loading,
-index/back navigation, keyboard focus, and synthetic long prose/code/table
-content. Wide tables scroll inside a named, keyboard-focusable region; prose
-links are underlined. External requests and form submissions were not exercised.
-The sample and synthetic fixtures are not owner writing or publication inputs.
+`npm test` runs isolated fixture builds: draft exclusion from home, index, routes and sitemap;
+escaped metadata and Markdown; optional dates and kinds; heading anchors; and rejected source,
+home-template and media symlinks. `node .agents/skills/verify-personal-markdown-blog/verify.mjs run`
+proves draft exclusion on the public build, then drives the draft preview at 1280 and 390 px.
+There is no lint script.
