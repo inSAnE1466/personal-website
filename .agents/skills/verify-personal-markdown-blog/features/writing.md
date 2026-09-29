@@ -2,9 +2,8 @@
 
 ## Sub-features
 
-The writing index lists published essays and case studies. Drafts appear only
-in the local preview. Articles with three or more sections list them as
-contents; case studies open with a summary table.
+The writing index is a plain list of titles. Drafts appear only in the local
+preview. Each post is its title and its text, with nothing else on the page.
 
 ## How to get to it (user POV)
 
@@ -12,9 +11,8 @@ Choose `Writing` in the navigation, then a listed post.
 
 ## Driving it with the local browser
 
-Run the helper. It follows Writing, opens the first listed post, and returns
-with `All writing`. Check the kind label, title, dek, contents links, tables and
-draft notice in the screenshots.
+Run the helper. It follows Writing, opens every listed post, and returns through
+the nav. Check the title, prose and draft notice in the screenshots.
 
 ## Gotchas
 

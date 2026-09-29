@@ -1,9 +1,9 @@
 {
   "source": {
     "repo": "https://github.com/inSAnE1466/tinymacro-fractional-agent",
-    "commit": "36b88eee7d16108caebe652428591b05d58a37ba",
+    "commit": "0dd20c57cf2fea0a6422abb16a55392e5727edfb",
     "path": "src/design/tokens.css",
-    "sha256": "8dacd341c97bbef97e690c0bc5571b6e6e128a7bf9df1f0a63d0806afd002b2f"
+    "sha256": "743d85c633803f8a6a852c3bd6aebab5abcf08b940d9406e26c106cda9f9f8af"
   },
   "font": {
     "package": "@fontsource-variable/inter",

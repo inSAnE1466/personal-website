@@ -16,11 +16,12 @@ own writing, publication authority, or a product backlog.
 
 ## Next useful slice
 
-Two owner drafts copied from the vault note `Buckets/Writing/cta.md` (`posts/why-the-environment.md`,
-`posts/what-general-agents-cannot-do.md`) and one case study drawn from PH runtime source
-(`posts/per-vertical-agent-permissions.md`) are `draft: true`. They
-appear only in the preview. Fred approves, edits or deletes each before any becomes public. Case
-studies about client work need TMH's claim rules below and Fred's approval of every fact.
+Six drafts in `posts/` are `draft: true` and appear only in the preview. Two are owner excerpts from
+the vault note `Buckets/Writing/cta.md`; the others draw on Fred's Green and ethos notes, PH source,
+and a read-only look at the Shoply harness. [docs/writing-candidates.md](docs/writing-candidates.md)
+lists each one with its exact sources and what Fred should flesh out or approve. That list is not
+part of the build. Source approval is not publication approval: Fred approves, edits or deletes each
+post before any becomes public.
 
 Company case-study inputs and permission stay with TMH, which owns company and client truth. Its claim rules live in [references/claims-spine.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/references/claims-spine.md) and its consulting method in [docs/consulting-delivery-system.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/docs/consulting-delivery-system.md);
 private portfolio sources remain outside this work.
@@ -58,14 +59,13 @@ when `posts/` is absent.
    `posts/` if it is absent. The directory and Markdown sources must be actual
    copies, not symlinks to originals.
 2. Add these plain-text metadata fields. Values are single lines, without YAML
-   quotes. `kind` is `essay` (the default) or `case study`. `date` is optional (`YYYY-MM-DD`);
-   leave it out for past work, which carries no dates. The filename becomes the permanent URL.
+   quotes. There are no dates or labels. The description is used only for the page's meta
+   description. The filename becomes the permanent URL, and the index lists titles by filename.
 
    ```markdown
    ---
    title: The title of the post
-   description: A short description for the index and the article's opening line.
-   kind: essay
+   description: One sentence for search metadata only; it is not shown on the page.
    draft: true
    ---
    The first paragraph goes here.
@@ -76,8 +76,9 @@ when `posts/` is absent.
    ```
 
 3. Preview and review the page. The title supplies the only H1; use `##` and `###`
-   within the body. A piece with three or more `##` sections lists them as contents. A case
-   study can open with a two-column summary table. Markdown supports lists, links, quotations, tables, and fenced
+   within the body. The index shows only titles, and a post page shows only its title and text.
+   Fred's v1 posts are text only: paragraphs and a few `##` headings, with no images or
+   tables. The renderer itself supports lists, links, quotations, tables, and fenced
    code. Raw HTML is displayed as text. Local image files can go in `PWmedia/` and
    be referenced as `![Meaningful description](/PWmedia/filename.png)`. Every file
    in `PWmedia/` is copied to the public build, even if only a draft references it.
@@ -121,7 +122,8 @@ Client work and its media remain in the private portfolio repository, unlinked.
 ## Checks
 
 `npm test` runs isolated fixture builds: draft exclusion from home, index, routes and sitemap;
-escaped metadata and Markdown; optional dates and kinds; heading anchors; and rejected source,
+escaped metadata and Markdown; titles-only index and plain post pages, with dates and labels
+rejected; and rejected source,
 home-template and media symlinks. `node .agents/skills/verify-personal-markdown-blog/verify.mjs run`
 proves draft exclusion on the public build, then drives the draft preview at 1280 and 390 px.
 There is no lint script.

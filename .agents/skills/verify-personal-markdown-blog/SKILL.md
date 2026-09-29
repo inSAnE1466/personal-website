@@ -1,6 +1,6 @@
 ---
 name: verify-personal-markdown-blog
-description: Drive the personal Markdown site locally and prove the home, writing and article routes, draft exclusion, and the absent resume with CLI checks and browser evidence.
+description: Drive the personal Markdown site locally and prove the home, writing and article routes, draft exclusion, and the absent resume and consulting pages with CLI checks and browser evidence.
 ---
 
 # Verify personal Markdown blog
@@ -20,14 +20,17 @@ node .agents/skills/verify-personal-markdown-blog/verify.mjs run [port]
 
 1. Public build: runs `npm run build`, then proves every `draft: true` post is
    absent from `dist/writing/`, from the home and writing index links and from
-   the sitemap, and that `dist/resume.html` does not exist.
+   the sitemap, and that `resume.html`, `consulting.html` and the old resume PDF
+   are absent from `dist/`.
 2. Preview: rebuilds with drafts and serves `dist` with Python on the given port,
    or a free temporary port. It never reuses a port another process holds.
-3. Doctor: `/` and `/writing/` return HTML; `/resume.html` returns 404.
+3. Doctor: `/` and `/writing/` return HTML; `/resume.html` and `/consulting.html`
+   return 404.
 4. Drive: headless Chromium at 1280x800 and 390x844. Tab from the top of home:
-   the first stop is the visible skip link, then Fred's name, then Writing. Then
-   Home → Writing (nav) → first listed post → All writing. Every page is checked
-   for horizontal overflow and captured full page.
+   the first stop is the visible skip link, then Home, then Writing. Then it opens
+   Writing from the nav and every listed post in turn, returning through the nav.
+   Each post must be a plain page with no date, dek, contents, label, back link or
+   table. Every page is checked for horizontal overflow and captured full page.
 
 The helper stops the exact server process it started.
 

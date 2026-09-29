@@ -1,4 +1,4 @@
-/* Shared Inter document styles for the home and writing pages. */
+/* Shared Inter document styles for the home and consulting pages. */
 
 * {
   box-sizing: border-box;
@@ -27,9 +27,14 @@ body {
   color: var(--color-paper);
 }
 
+.band ::selection {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
 :focus-visible {
   border-radius: 2px;
-  outline: 2px solid var(--color-focus);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 
@@ -52,22 +57,22 @@ body {
   outline-color: var(--color-focus);
 }
 
-/* Normal-flow navigation: Fred's name returns home; Writing is the one destination. */
+/* Normal-flow navigation. The links are the interface; there is no header shell. */
 .site-nav {
-  display: flex;
+  position: static;
   width: 100%;
   max-width: calc(var(--page-width) + (2 * var(--page-gutter)));
   margin-inline: auto;
-  padding: var(--space-md) var(--page-gutter) 0;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  column-gap: var(--space-lg);
+  padding: var(--space-sm) var(--page-gutter) 0;
 }
 
 .site-nav__links {
   display: flex;
-  column-gap: var(--space-lg);
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  column-gap: clamp(var(--space-sm), 2vw, var(--space-lg));
   list-style: none;
 }
 
@@ -76,26 +81,20 @@ body {
   min-height: 2.75rem;
   align-items: center;
   color: var(--color-ink);
-  font-size: var(--text-nav);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
   font-weight: 600;
   text-decoration: none;
   transition: color 140ms ease-out;
 }
 
-.site-nav__links a {
-  text-decoration-color: transparent;
-  text-decoration-line: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.4em;
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--color-muted);
 }
 
-.site-nav a:hover {
-  color: var(--color-link);
-}
-
-/* The current destination carries the green mark; the name never does. */
-.site-nav__links a[aria-current="page"] {
-  text-decoration-color: var(--color-link);
+.site-nav a[aria-current="page"]:hover {
+  color: var(--color-ink);
 }
 
 main {
@@ -121,13 +120,8 @@ a {
   transition: color 140ms ease-out;
 }
 
-/* Dark green is reserved for in-document links and focus. */
-main a {
-  color: var(--color-link);
-}
-
-main a:hover {
-  color: var(--color-link-hover);
+main a:not(.cta):hover {
+  color: var(--color-muted);
 }
 
 h1,
@@ -148,7 +142,7 @@ h2 {
 }
 
 h2 {
-  max-width: var(--measure);
+  max-width: 30ch;
   font-size: var(--text-title);
   letter-spacing: var(--track-title);
   line-height: 1.2;
@@ -160,7 +154,7 @@ strong,
 }
 
 .hero {
-  padding-block: var(--space-2xl) var(--space-xl);
+  padding-block: var(--space-md) var(--space-lg);
 }
 
 .hero:not(.doc) {
@@ -171,83 +165,212 @@ strong,
 }
 
 .hero h1 {
-  max-width: 20ch;
-  font-size: var(--text-display);
-  letter-spacing: var(--track-display);
-  line-height: 1.08;
-  text-wrap: balance;
+  max-width: 14ch;
+  font-size: var(--text-marquee);
+  letter-spacing: var(--track-marquee);
+  line-height: 1.05;
 }
 
 .hero .lede {
   max-width: var(--measure);
-  margin-top: var(--space-lg);
+  margin-top: var(--space-md);
   color: var(--color-ink-2);
   font-size: var(--text-lg);
   line-height: 1.55;
 }
 
-.section {
-  padding-block: var(--space-xl);
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28em;
+  overflow-wrap: normal;
+  vertical-align: -0.08em;
+  white-space: nowrap;
+}
+
+.brand-link__mark {
+  width: 1.32em;
+  height: 0.82em;
+  flex: 0 0 auto;
+  display: block;
+  fill: currentColor;
+}
+
+.argument,
+.section,
+.reach {
+  padding-block: var(--space-lg);
   border-top: var(--rule-hair) solid var(--color-rule);
 }
 
 .section__body {
   display: grid;
   margin-top: var(--space-md);
-  gap: var(--space-md);
+  gap: var(--space-sm);
+}
+
+.section__body > p {
+  max-width: var(--measure);
+}
+
+.section__body .big {
+  margin-bottom: var(--space-xs);
+  color: var(--color-ink);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.section__body .quiet {
+  color: var(--color-ink-2);
+}
+
+.sitelink {
+  margin-top: var(--space-xs);
+}
+
+/* Consulting page layouts retained within the quieter document system. */
+.cols,
+.claims,
+.band dl {
+  display: grid;
+  max-width: var(--page-width);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-xl);
+  row-gap: var(--space-md);
+}
+
+.cols p,
+.claim,
+.band dd {
+  max-width: 60ch;
 }
 
 .claims {
-  display: grid;
-  max-width: var(--measure);
   margin-top: var(--space-md);
 }
 
 .claim {
-  padding-block: var(--space-md);
+  color: var(--color-ink-2);
+  font-size: var(--text-md);
+  line-height: 1.55;
+}
+
+.band {
+  margin-block: var(--space-lg);
+  padding-block: var(--space-2xl);
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.band a:hover {
+  color: var(--color-paper-muted);
+}
+
+.band__intro {
+  max-width: 48ch;
+  margin-top: var(--space-lg);
+}
+
+.band dl {
+  margin-top: var(--space-xl);
+}
+
+.band dt {
+  margin-bottom: var(--space-xs);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.band dd {
+  color: var(--color-paper-muted);
+}
+
+.band .close {
+  max-width: 26ch;
+  margin-top: var(--space-2xl);
+  font-size: var(--text-title);
+  font-weight: 600;
+  letter-spacing: var(--track-title);
+  line-height: 1.2;
+}
+
+.reach__lede {
+  margin-top: var(--space-md);
+  color: var(--color-muted);
+}
+
+.reach__actions {
+  display: flex;
+  margin-top: var(--space-md);
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.cta {
+  display: inline-flex;
+  min-height: 3rem;
+  padding-inline: var(--space-lg);
+  align-items: center;
+  border-radius: var(--radius-control);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: var(--text-base);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 140ms ease-out, color 140ms ease-out;
+  white-space: nowrap;
+}
+
+.cta:hover {
+  background: var(--color-ink-2);
+}
+
+.cta:focus-visible {
+  outline-color: var(--color-focus);
+}
+
+.reach > .cta {
+  margin-top: var(--space-md);
+}
+
+.reach .aside {
+  margin-top: var(--space-md);
+  color: var(--color-muted);
+}
+
+.reach .aside a {
+  color: var(--color-ink);
+}
+
+.rest {
+  padding-block: var(--space-2xl);
   border-top: var(--rule-hair) solid var(--color-rule);
+  background: var(--color-paper-2);
+}
+
+.rest__body {
+  display: grid;
+  margin-top: var(--space-lg);
+  gap: var(--space-md);
   color: var(--color-ink-2);
 }
 
-/* Home prose and claims share the article reading size so intentions and positions weigh the same. */
-.section__body,
-.claim {
-  font-size: var(--text-read);
-  line-height: 1.7;
-}
-
-.claim:first-child {
-  border-top: 0;
-  padding-top: 0;
+.rest__links {
+  margin-top: var(--space-xs);
+  color: var(--color-ink);
 }
 
 .rest__links a {
   white-space: nowrap;
 }
 
-/* Wide screens set section headings in a left column so the prose keeps one edge. */
-@media (min-width: 64rem) {
-  .section {
-    display: grid;
-    grid-template-columns: 14rem minmax(0, var(--measure));
-    column-gap: var(--space-2xl);
-    align-items: start;
-  }
-
-  .section > h2 {
-    font-size: var(--text-md);
-    letter-spacing: 0;
-    line-height: 1.55;
-  }
-
-  .section > .section__body,
-  .section > .claims {
-    margin-top: 0;
-  }
-
-  .hero--rail .lede,
-  .hero--rail h1 {
-    margin-left: calc(14rem + var(--space-2xl));
+@media (max-width: 60rem) {
+  .cols,
+  .claims,
+  .band dl {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -260,14 +383,36 @@ strong,
     padding-block: var(--space-sm) var(--space-lg);
   }
 
-  .section {
+  .argument,
+  .section,
+  .reach {
     padding-block: var(--space-lg);
+  }
+
+  .band {
+    margin-block: var(--space-sm);
+    padding-block: var(--space-xl);
+  }
+
+  .rest {
+    padding-block: var(--space-xl);
+  }
+
+  .reach__actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-md);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   a,
-  .site-nav a {
+  .site-nav a,
+  .cta {
     transition: none;
   }
 }
+
+/* Plain list of writing titles, shared by the home page and the writing index. */
+.titles { max-width: var(--measure); list-style: none; padding: 0; }
+.titles li + li { margin-top: var(--space-sm); }

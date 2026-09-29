@@ -9,9 +9,10 @@ const artifacts = resolve(root, '.artifacts', 'verify');
 const stamp = new Date().toISOString().replaceAll(':', '-');
 const viewports = [{ width: 1280, height: 800 }, { width: 390, height: 844 }];
 const routes = [
-  ['/', 200, 'Fred Casey-Housand'],
+  ['/', 200, "Hi, I'm Fred."],
   ['/writing/', 200, 'Writing'],
   ['/resume.html', 404, null],
+  ['/consulting.html', 404, null],
 ];
 
 async function evidence(name, data) {
@@ -44,8 +45,10 @@ async function draftExclusion() {
     if (await access(resolve(root, 'dist/writing', slug)).then(() => true, () => false)) throw new Error(`public build contains draft ${slug}`);
     if (pages.some((page) => page.includes(`/writing/${slug}/`))) throw new Error(`public build links draft ${slug}`);
   }
-  await access(resolve(root, 'dist/resume.html')).then(() => { throw new Error('public build contains resume.html'); }, () => {});
-  await evidence('public-build', { drafts, excluded: true, resume: 'absent' });
+  for (const retired of ['resume.html', 'consulting.html', 'PWmedia/Frederick_Casey-Housand_Contractor.docx.pdf']) {
+    await access(resolve(root, 'dist', retired)).then(() => { throw new Error(`public build contains ${retired}`); }, () => {});
+  }
+  await evidence('public-build', { drafts, excluded: true, retired: 'absent' });
 }
 
 async function drive(origin) {
@@ -71,20 +74,25 @@ async function drive(origin) {
       await page.keyboard.press('Tab');
       await page.keyboard.press('Tab');
       if (await page.evaluate(() => document.activeElement.textContent.trim()) !== 'Writing') throw new Error('Writing is not the second navigation stop');
-      results.push({ viewport: viewport.width, focus: 'skip link, name, Writing' });
+      results.push({ viewport: viewport.width, focus: 'skip link, Home, Writing' });
       await page.evaluate(() => document.activeElement.blur());
       await shot('home');
       await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Writing' }).click();
       await page.waitForURL(`${origin}/writing/`);
       await page.getByRole('heading', { level: 1, name: 'Writing' }).waitFor();
       await shot('writing');
-      const first = page.locator('.entries h2 a').first();
-      const title = (await first.textContent()).trim();
-      await first.click();
-      await page.getByRole('heading', { level: 1, name: title }).waitFor();
-      await shot('article');
-      await page.getByRole('link', { name: 'All writing' }).click();
-      await page.waitForURL(`${origin}/writing/`);
+      // Every post is a plain page: a title and text, with no labels, dates, deks or contents.
+      const titles = (await page.locator('.writing-list .titles a').allTextContents()).map((t) => t.trim());
+      if (!titles.length) throw new Error('writing index lists no titles');
+      for (const title of titles) {
+        await page.locator('.writing-list .titles a', { hasText: title }).click();
+        await page.getByRole('heading', { level: 1, name: title }).waitFor();
+        const packaging = await page.locator('time, .dek, .contents, .post-meta, .back-link, table').count();
+        if (packaging) throw new Error(`${page.url()} has ${packaging} packaging element(s)`);
+        await shot(`article-${page.url().split('/').at(-2)}`);
+        await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Writing' }).click();
+        await page.waitForURL(`${origin}/writing/`);
+      }
       await page.close();
     }
   } finally {
