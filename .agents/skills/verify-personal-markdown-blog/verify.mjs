@@ -72,9 +72,10 @@ async function drive(origin) {
       });
       if (focus.text !== 'Skip to content' || focus.outline === 'none' || focus.top < 0) throw new Error(`first Tab focus is not a visible skip link: ${JSON.stringify(focus)}`);
       await page.keyboard.press('Tab');
+      if (await page.evaluate(() => document.activeElement.textContent.trim()) !== 'Fred Casey-Housand') throw new Error('Name must return home');
       await page.keyboard.press('Tab');
       if (await page.evaluate(() => document.activeElement.textContent.trim()) !== 'Writing') throw new Error('Writing is not the second navigation stop');
-      results.push({ viewport: viewport.width, focus: 'skip link, Home, Writing' });
+      results.push({ viewport: viewport.width, focus: 'skip link, Fred Casey-Housand, Writing' });
       await page.evaluate(() => document.activeElement.blur());
       await shot('home');
       await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Writing' }).click();
@@ -83,12 +84,15 @@ async function drive(origin) {
       await shot('writing');
       // Every post is a plain page: a title and text, with no labels, dates, deks or contents.
       const titles = (await page.locator('.writing-list .titles a').allTextContents()).map((t) => t.trim());
-      if (!titles.length) throw new Error('writing index lists no titles');
+      if (titles.length !== 3) throw new Error(`expected exactly three owner drafts, found ${titles.length}`);
+      if (await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: /TinyMacro/ }).getAttribute('href') !== (process.env.PERSONAL_TINYMACRO_ORIGIN ? new URL(process.env.PERSONAL_TINYMACRO_ORIGIN).origin + '/' : 'https://tinymacro.app/')) throw new Error('Missing reciprocal TinyMacro link');
       for (const title of titles) {
         await page.locator('.writing-list .titles a', { hasText: title }).click();
         await page.getByRole('heading', { level: 1, name: title }).waitFor();
         const packaging = await page.locator('time, .dek, .contents, .post-meta, .back-link, table').count();
         if (packaging) throw new Error(`${page.url()} has ${packaging} packaging element(s)`);
+        if (!(await page.locator('.prose').textContent()).trim()) throw new Error('Empty draft body');
+        await page.locator('.draft-note').waitFor();
         await shot(`article-${page.url().split('/').at(-2)}`);
         await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Writing' }).click();
         await page.waitForURL(`${origin}/writing/`);

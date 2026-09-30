@@ -412,7 +412,3 @@ strong,
     transition: none;
   }
 }
-
-/* Plain list of writing titles, shared by the home page and the writing index. */
-.titles { max-width: var(--measure); list-style: none; padding: 0; }
-.titles li + li { margin-top: var(--space-sm); }

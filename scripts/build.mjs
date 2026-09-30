@@ -28,9 +28,13 @@ export function parsePost(source, filename) {
   return { ...metadata, slug, draft: metadata.draft === 'true', body: markdown.render(match[2]) };
 }
 
-const nav = `<nav class="site-nav" aria-label="Primary"><ul class="site-nav__links">
-<li><a href="/">Home</a></li><li><a href="/writing/" aria-current="page">Writing</a></li><li><a href="https://tinymacro.app" target="_blank" rel="noopener">TinyMacro</a></li><li><a href="https://cal.com/frederick-casey-housand-vy8nkn/tinymacro-general-interest" target="_blank" rel="noopener">Book a call</a></li>
-</ul></nav>`;
+const nav = `<nav class="site-nav" aria-label="Primary">
+        <a class="site-nav__name" href="/">Fred Casey-Housand</a>
+        <ul class="site-nav__links">
+            <li><a href="/writing/" aria-current="page">Writing</a></li>
+            <li><a class="site-nav__tm" href="https://tinymacro.app/"><svg viewBox="1 4 13 8" aria-hidden="true" focusable="false"><rect x="1.3" y="4.3" width="7.4" height="7.4"/><rect x="9.3" y="4.3" width="4.4" height="4.4"/><rect x="11.3" y="9.3" width="2.4" height="2.4"/><rect x="9.3" y="10.3" width="1.4" height="1.4"/></svg>TinyMacro <span aria-hidden="true">↗</span></a></li>
+        </ul>
+    </nav>`;
 // Titles only, like a plain essay index: no dates, labels or descriptions.
 const titleList = (posts) => posts.length ? `<ul class="titles">${posts.map((post) => `<li><a href="/writing/${post.slug}/">${escape(post.title)}</a></li>`).join('\n')}</ul>` : '<p>No posts published yet.</p>';
 function page(title, description, path, body, draft = false) {
@@ -38,11 +42,18 @@ function page(title, description, path, body, draft = false) {
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(title)} | Frederick Casey-Housand</title><meta name="description" content="${escape(description)}">
 ${draft ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="${origin}${path}">`}
-<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/tokens.css"><link rel="stylesheet" href="/home.css"><link rel="stylesheet" href="/writing.css"></head>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/tokens.css"><link rel="stylesheet" href="/home.css"><link rel="stylesheet" href="/writing.css"><link rel="stylesheet" href="/nav.css"></head>
 <body><a class="skip" href="#main">Skip to content</a>${nav}<main id="main">${body}</main></body></html>\n`;
 }
 
-export async function build({ root = process.cwd(), drafts = false } = {}) {
+export async function build({ root = process.cwd(), drafts = false, tinyMacroOrigin = process.env.PERSONAL_TINYMACRO_ORIGIN } = {}) {
+  let previewOrigin;
+  if (drafts && tinyMacroOrigin) {
+    const url = new URL(tinyMacroOrigin);
+    if (url.protocol !== 'http:' || !['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname) || url.pathname !== '/' || url.search || url.hash || url.username || url.password) throw new Error('Preview TinyMacro origin must be a loopback HTTP origin');
+    previewOrigin = url.origin;
+  }
+  const previewLinks = html => previewOrigin ? html.replace(/href="https:\/\/tinymacro\.app(\/[^" ]*)?"/g, (_, suffix) => `href="${previewOrigin}${suffix || '/'}"`) : html;
   const output = resolve(root, 'dist');
   const sourceDirectory = resolve(root, 'posts');
   const sourceStat = await lstat(sourceDirectory).catch((error) => {
@@ -61,11 +72,10 @@ export async function build({ root = process.cwd(), drafts = false } = {}) {
   const homePath = resolve(root, 'index.html');
   if ((await lstat(homePath)).isSymbolicLink()) throw new Error(`Public assets must be regular files or directories, not symlinks: ${homePath}`);
   const home = await readFile(homePath, 'utf8');
-  if (!home.includes('<!-- writing -->')) throw new Error('index.html: missing <!-- writing --> marker for the writing list');
   await rm(output, { recursive: true, force: true });
   await mkdir(resolve(output, 'writing'), { recursive: true });
   // Explicit public allowlist: never upload sources, drafts, or workspace symlinks.
-  const publicFiles = ['tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt'];
+  const publicFiles = ['tokens.css', 'home.css', 'nav.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt'];
   for (const optional of ['PWmedia', 'design-system']) if (await lstat(resolve(root, optional)).catch(() => null)) publicFiles.push(optional);
   for (const file of publicFiles) {
     await cp(resolve(root, file), resolve(output, file), { recursive: true, filter: async (source) => {
@@ -74,13 +84,13 @@ export async function build({ root = process.cwd(), drafts = false } = {}) {
     } });
   }
   await writeFile(resolve(output, '.nojekyll'), '');
-  await writeFile(resolve(output, 'index.html'), home.replace('<!-- writing -->', titleList(posts)).replace('<head>', drafts ? '<head>\n    <meta name="robots" content="noindex, nofollow">' : '<head>'));
+  await writeFile(resolve(output, 'index.html'), previewLinks(home.replace('<!-- writing -->', titleList(posts)).replace('<head>', drafts ? '<head>\n    <meta name="robots" content="noindex, nofollow">' : '<head>')));
   const previewNote = drafts ? '<p class="draft-note">Local preview. Drafts are listed here and excluded from the public build.</p>' : '';
-  await writeFile(resolve(output, 'writing/index.html'), page('Writing', 'Writing by Frederick Casey-Housand.', '/writing/', `<section class="doc writing-list"><h1>Writing</h1>${previewNote}${titleList(posts)}</section>`, drafts));
+  await writeFile(resolve(output, 'writing/index.html'), previewLinks(page('Writing', 'Writing by Frederick Casey-Housand.', '/writing/', `<section class="doc writing-list"><h1>Writing</h1>${previewNote}${titleList(posts)}</section>`, drafts)));
   for (const post of posts) {
     const path = `/writing/${post.slug}/`;
     await mkdir(resolve(output, 'writing', post.slug), { recursive: true });
-    await writeFile(resolve(output, 'writing', post.slug, 'index.html'), page(post.title, post.description, path, `<article class="doc writing-article"><h1>${escape(post.title)}</h1>${post.draft ? '<p class="draft-note">Draft for review. Excluded from the public build.</p>' : ''}<div class="prose">${post.body}</div></article>`, post.draft || drafts));
+    await writeFile(resolve(output, 'writing', post.slug, 'index.html'), previewLinks(page(post.title, post.description, path, `<article class="doc writing-article"><h1>${escape(post.title)}</h1>${post.draft ? '<p class="draft-note">Draft for review. Excluded from the public build.</p>' : ''}<div class="prose">${post.body}</div></article>`, post.draft || drafts)));
   }
   const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8');
   const urls = ['/writing/', ...all.filter((post) => !post.draft).map((post) => `/writing/${post.slug}/`)];

@@ -13,7 +13,7 @@ async function fixture(t, posts = {}) {
   await mkdir(join(root, 'posts'));
   await mkdir(join(root, 'PWmedia'));
   await writeFile(join(root, 'index.html'), '<head></head><main><!-- writing --></main>');
-  for (const file of ['tokens.css', 'home.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt']) {
+  for (const file of ['tokens.css', 'home.css', 'nav.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt']) {
     await writeFile(join(root, file), `Public fixture: ${file}`);
   }
   await writeFile(join(root, 'sitemap.xml'), '<urlset></urlset>');
@@ -137,4 +137,16 @@ test('rejects a linked posts directory instead of treating its missing target as
   await rm(join(f.root, 'posts'), { recursive: true });
   await symlink(join(f.root, 'missing-owner-directory'), join(f.root, 'posts'));
   await assert.rejects(build({ root: f.root }), /Post sources must not be symlinks/);
+});
+
+
+test('preview origins affect draft previews only', async (t) => {
+  const f = await fixture(t, { draft: source() });
+  await build({ root: f.root, drafts: true, tinyMacroOrigin: 'http://127.0.0.1:5191' });
+  assert.match(await f.read('writing/index.html'), /href="http:\/\/127\.0\.0\.1:5191\/"/);
+  assert.match(await f.read('writing/draft/index.html'), /href="http:\/\/127\.0\.0\.1:5191\/"/);
+  await build({ root: f.root, tinyMacroOrigin: 'http://127.0.0.1:5191' });
+  assert.match(await f.read('writing/index.html'), /href="https:\/\/tinymacro\.app\/"/);
+  assert.doesNotMatch(await f.read('writing/index.html'), /127\.0\.0\.1/);
+  await assert.rejects(build({ root: f.root, drafts: true, tinyMacroOrigin: 'https://example.com' }), /loopback/);
 });

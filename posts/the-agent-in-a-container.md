@@ -1,24 +1,26 @@
 ---
 title: Why I put the agent in a container
-description: A containerized harness, and a kind of work as a folder the same container can load.
+description: A place to run useful work, and the limits of what a general agent can supply.
 draft: true
 ---
-I am not trying to assemble a collection of AI features, wrap each one in a website, and call the result a company. Competing feature by feature against businesses with more staff, capital and data is not the advantage I want.
+I want a small set of capabilities I can combine around a real problem: research, analysis, evidence gathering, document production. The interface should fit the situation. Sometimes that is a conversation, sometimes an API or an email address.
 
-What I want is a small set of capabilities that can be combined for a real problem: research, organization, analysis, evidence gathering, document production, scopes of work. They should be reachable through whatever interface fits the situation, whether that is a conversation, a CLI, an API, an email address or a narrow website, rather than another dashboard.
+A container gives an agent a place to run ordinary tools against real files. It gives me a configured environment I can inspect and reproduce. That is why I put the agent there.
 
-The agent runtime is one layer of that. I want to be able to run Pi today, something else tomorrow, or a better agent when one appears. Models and harnesses will change. The value that lasts should live in the tested components, the operating knowledge, the research, and the evidence that a particular setup solved a particular problem.
+## Keep the work separable
 
-That is why the containerized harness matters, and also why it is not the whole company. A container gives the agent a dependable place to run. It makes a configured agent reproducible, and lets it use real files, tools, processes and workspaces. A stable service can call the harness, keep its state, and replace the runtime underneath.
+Models and runtimes will change. I want the useful parts of a setup to survive that change: the operating knowledge, tested components and evidence behind a decision. A web app can be one way into the system without owning all of its behavior.
 
-It also means the web app is only one way in. Building an agent into a container lets us pick a runtime and connect it to things like an email address. For the Green demo, I pictured the main entry point as a container with an endpoint for inbound email, where clients send messages and attachments and the work continues from there. The dashboard is where you audit what the agent did, not the only place it lives.
+I want a kind of work to be understandable as a folder of instructions, tools and templates. Someone should be able to open it and see what it is for. Permissions and external actions need explicit boundaries around that work. A container alone does not decide which actions are appropriate or make an agent's answer correct.
 
-I want a kind of work to be a folder. In the runtime I build, each vertical is a folder of skills and templates plus one small file that lists the capabilities it may use. Research needs web search. Work that must answer only from the evidence it was given should not have it. When a run starts, it gets only the capabilities that are in both the vertical's list and the caller's own allowance, and a request for anything outside either is refused rather than quietly trimmed. The admitted list is stored with the run, and anything the run starts gets tools only from that list.
+These are design priorities, not a description of every guarantee in the current runtime. The implementation has changed as I have tested it. A claim about recovery, permissions or a deployed run needs evidence from that particular implementation.
 
-Opening the folder tells you what that vertical can do, and changing it is a one-line change someone can review. Adding a vertical means adding a folder.
+## What a general agent cannot supply
 
-All of that is in the runtime source, with local tests that run every shipped vertical file through the real admission function, including unknown names and requests outside either list. I make no claim here about how deployed runs behave. "Add a folder and nothing else" is tested on three verticals so far. Whether it holds for the next one is a hypothesis until the next one exists.
+The environment is only part of the problem. A capable general agent does not arrive with the relationships, accreditation or local knowledge needed to do every job.
 
-There are open questions I have not answered. Shell access is one broad capability: the list decides whether a vertical gets a shell, not what the shell does inside the container. And what skills, instructions and context should a container carry so that verticals plug in without stepping on each other? That is a research question, and I want to answer it from what actually runs.
+Consider research about an environmental technology. An agent might find papers and compare claims. Deciding whether the technology belongs at a particular site can require measurements, engineering judgment, a supplier and someone accountable for the work. Preparing a document does not supply those things.
 
-I want to be able to open the code, understand what is left, run one piece, watch what it does, and decide what happens next. A container with a folder of work in it is the simplest version of that I have found.
+That is where I want to look for lasting value: learning the work well enough to know which parts can be delegated, which need specialist judgment and which depend on access we do not yet have.
+
+I want to open the code, run one piece, watch what it does and decide what happens next. The container helps make that possible. The reason to build the system still comes from the work outside it.

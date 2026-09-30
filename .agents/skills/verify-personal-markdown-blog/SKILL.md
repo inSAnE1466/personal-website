@@ -27,8 +27,8 @@ node .agents/skills/verify-personal-markdown-blog/verify.mjs run [port]
 3. Doctor: `/` and `/writing/` return HTML; `/resume.html` and `/consulting.html`
    return 404.
 4. Drive: headless Chromium at 1280x800 and 390x844. Tab from the top of home:
-   the first stop is the visible skip link, then Home, then Writing. Then it opens
-   Writing from the nav and every listed post in turn, returning through the nav.
+   the first stop is the visible skip link, then Fred Casey-Housand, then Writing. Then it opens
+   Writing from the nav and all three listed owner drafts in turn, returning through the nav.
    Each post must be a plain page with no date, dek, contents, label, back link or
    table. Every page is checked for horizontal overflow and captured full page.
 

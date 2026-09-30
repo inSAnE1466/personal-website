@@ -1,7 +1,7 @@
 # frederickcaseyhousand.com
 
 Fred's personal site: a home page with his intentions, and writing. The home page is plain HTML/CSS;
-the build inserts the writing list at its `<!-- writing -->` marker. There is no resume page.
+the approved live home body stays intact; Writing has its own index. There is no resume page.
 Writing uses Markdown, converted to static HTML by a small Node script. There is
 no browser JavaScript, CMS, or account service for the blog. Inter and the existing
 writing voice remain the design constraints.
@@ -16,12 +16,10 @@ own writing, publication authority, or a product backlog.
 
 ## Next useful slice
 
-Six drafts in `posts/` are `draft: true` and appear only in the preview. Two are owner excerpts from
-the vault note `Buckets/Writing/cta.md`; the others draw on Fred's Green and ethos notes, PH source,
-and a read-only look at the Shoply harness. [docs/writing-candidates.md](docs/writing-candidates.md)
-lists each one with its exact sources and what Fred should flesh out or approve. That list is not
-part of the build. Source approval is not publication approval: Fred approves, edits or deletes each
-post before any becomes public.
+Three drafts in `posts/` are `draft: true` and appear only in the preview. The
+[writing candidates](docs/writing-candidates.md) document owns their exact paths and source limits.
+Fred can edit those files directly. Source approval is not publication approval.
+The company case draft now belongs to TinyMacro's Initiatives section.
 
 Company case-study inputs and permission stay with TMH, which owns company and client truth. Its claim rules live in [references/claims-spine.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/references/claims-spine.md) and its consulting method in [docs/consulting-delivery-system.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/docs/consulting-delivery-system.md);
 private portfolio sources remain outside this work.
@@ -38,6 +36,7 @@ npm run preview
 
 Open [the writing index](http://127.0.0.1:8011/writing/) and the linked drafts. The preview includes
 drafts with a generic “Draft for review” notice and marks writing pages `noindex`.
+For a paired local preview, set `PERSONAL_TINYMACRO_ORIGIN=http://127.0.0.1:5181` when building drafts. Public builds always keep production links.
 Stop the server with Ctrl-C. After editing a post, rerun `npm run preview` to
 rebuild it (there is no watch server). If port 8011 is already serving this
 worktree, stop that preview before starting another.
@@ -91,11 +90,11 @@ Tests use temporary fixtures and do not depend on any post in `posts/`.
 
 ## Structure
 
-- `index.html`: home page template; the build adds the writing list.
+- `index.html`: the approved live home body and proposed navigation.
 - `posts/*.md`: writing source; draft status is required.
 - `scripts/build.mjs`: metadata validation, Markdown rendering and page templates.
 - `scripts/build.test.mjs`: draft exclusion and content-safety checks.
-- `tokens.css`, `home.css`, `writing.css`: shared Inter styles and the writing layout.
+- `tokens.css`, `home.css`, `nav.css`, `writing.css`: shared Inter styles and the writing layout.
 - `design-system/`: tokens and Inter pinned from TMFA; see `provenance.json`.
 - `PWmedia/`: optional public media, copied to the build only when present.
 - `design.md`: visual direction.
