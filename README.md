@@ -48,8 +48,8 @@ python3 -m http.server 8011 --bind 127.0.0.1 --directory dist
 ```
 
 The normal build excludes drafts and removes any earlier preview output. With no
-published posts, the writing index says “No posts published yet.” This also works
-when `posts/` is absent.
+published posts, the home nav drops its Writing link, the sitemap omits `/writing/`, and the
+writing index says “No posts published yet.” This also works when `posts/` is absent.
 
 ## Add a post
 

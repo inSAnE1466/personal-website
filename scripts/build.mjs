@@ -84,7 +84,9 @@ export async function build({ root = process.cwd(), drafts = false, tinyMacroOri
     } });
   }
   await writeFile(resolve(output, '.nojekyll'), '');
-  await writeFile(resolve(output, 'index.html'), previewLinks(home.replace('<!-- writing -->', titleList(posts)).replace('<head>', drafts ? '<head>\n    <meta name="robots" content="noindex, nofollow">' : '<head>')));
+  // Writing stays out of the nav until a post is published (draft: false).
+  const writingNav = (html) => posts.length ? html : html.replace(/\s*<li><a href="\/writing\/"[^>]*>Writing<\/a><\/li>/, '');
+  await writeFile(resolve(output, 'index.html'), writingNav(previewLinks(home.replace('<!-- writing -->', titleList(posts)).replace('<head>', drafts ? '<head>\n    <meta name="robots" content="noindex, nofollow">' : '<head>'))));
   const previewNote = drafts ? '<p class="draft-note">Local preview. Drafts are listed here and excluded from the public build.</p>' : '';
   await writeFile(resolve(output, 'writing/index.html'), previewLinks(page('Writing', 'Writing by Frederick Casey-Housand.', '/writing/', `<section class="doc writing-list"><h1>Writing</h1>${previewNote}${titleList(posts)}</section>`, drafts)));
   for (const post of posts) {
@@ -93,7 +95,7 @@ export async function build({ root = process.cwd(), drafts = false, tinyMacroOri
     await writeFile(resolve(output, 'writing', post.slug, 'index.html'), previewLinks(page(post.title, post.description, path, `<article class="doc writing-article"><h1>${escape(post.title)}</h1>${post.draft ? '<p class="draft-note">Draft for review. Excluded from the public build.</p>' : ''}<div class="prose">${post.body}</div></article>`, post.draft || drafts)));
   }
   const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8');
-  const urls = ['/writing/', ...all.filter((post) => !post.draft).map((post) => `/writing/${post.slug}/`)];
+  const urls = [...(posts.length ? ['/writing/'] : []), ...all.filter((post) => !post.draft).map((post) => `/writing/${post.slug}/`)];
   await writeFile(resolve(output, 'sitemap.xml'), sitemap.replace('</urlset>', `${urls.map((path) => `  <url><loc>${origin}${path}</loc></url>`).join('\n')}\n</urlset>`));
   console.log(`Built ${posts.length} post(s) in dist/${drafts ? ' (local draft preview)' : ''}`);
 }

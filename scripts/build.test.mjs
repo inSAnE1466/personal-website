@@ -96,7 +96,7 @@ test('builds an empty index without a retained sample or any posts', async (t) =
   assert.match(await f.read('writing/index.html'), /No posts published yet/);
   assert.match(await f.read('index.html'), /No posts published yet/);
   assert.doesNotMatch(await f.read('writing/index.html'), /class="titles"/);
-  assert.match(await f.read('sitemap.xml'), /https:\/\/frederickcaseyhousand.com\/writing\//);
+  assert.doesNotMatch(await f.read('sitemap.xml'), /\/writing\//);
 });
 
 test('rejects symlinks nested in public media without reading their targets', async (t) => {
