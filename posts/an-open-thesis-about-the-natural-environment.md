@@ -1,7 +1,7 @@
 ---
 title: An open thesis about the natural environment
 description: Where I want to put AI to work, and how evidence could connect useful technology to the places that need it.
-draft: true
+draft: false
 ---
 Building a business is a fascinating strategy game to me. There are so many things to tend to, competing arguments, and limits on time, money and attention. I enjoy learning how to make it work. But that does not answer what I want the work to be for.
 
