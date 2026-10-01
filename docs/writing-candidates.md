@@ -22,7 +22,7 @@ paper's global nature model. Product, first customer and offer remain open.
 
 ## 2. Why I put the agent in a container
 
-`posts/the-agent-in-a-container.md`
+`drafts/the-agent-in-a-container.md` (held back from Writing, Fred 2026-10-01)
 
 Merges the existing container draft with the relevant general-agent argument from
 `what-general-agents-cannot-do.md`. Previously authorized sources are `Buckets/Writing/cta.md`
@@ -38,7 +38,7 @@ is inferred from the container design.
 
 ## 3. Patterns I want to keep in agent work
 
-`posts/patterns-for-agent-work.md`
+`drafts/patterns-for-agent-work.md` (held back from Writing, Fred 2026-10-01)
 
 Drawn from the existing container and content-workflow drafts: inspectable outputs, reproducible
 numbers, explicit review, and checks that catch the original failure. The title avoids implying

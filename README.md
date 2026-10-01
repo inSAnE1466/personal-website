@@ -16,7 +16,8 @@ own writing, publication authority, or a product backlog.
 
 ## Next useful slice
 
-Three drafts in `posts/` are `draft: true` and appear only in the preview. The
+One draft in `posts/` is `draft: true` and appears only in the preview; two more wait in `drafts/`,
+which the build never reads. The
 [writing candidates](docs/writing-candidates.md) document owns their exact paths and source limits.
 Fred can edit those files directly. Source approval is not publication approval.
 The company case draft now belongs to TinyMacro's Initiatives section.
@@ -58,8 +59,8 @@ writing index says “No posts published yet.” This also works when `posts/` i
    `posts/` if it is absent. The directory and Markdown sources must be actual
    copies, not symlinks to originals.
 2. Add these plain-text metadata fields. Values are single lines, without YAML
-   quotes. There are no dates or labels. The description is used only for the page's meta
-   description. The filename becomes the permanent URL, and the index lists titles by filename.
+   quotes. There are no dates or labels. The description is the page's meta description and
+   its line on the Writing index. The filename becomes the permanent URL, and the index lists titles by filename.
 
    ```markdown
    ---
@@ -75,7 +76,7 @@ writing index says “No posts published yet.” This also works when `posts/` i
    ```
 
 3. Preview and review the page. The title supplies the only H1; use `##` and `###`
-   within the body. The index shows only titles, and a post page shows only its title and text.
+   within the body. The index shows each title with its description, and a post page shows only its title and text.
    Fred's v1 posts are text only: paragraphs and a few `##` headings, with no images or
    tables. The renderer itself supports lists, links, quotations, tables, and fenced
    code. Raw HTML is displayed as text. Local image files can go in `PWmedia/` and
@@ -121,7 +122,7 @@ Client work and its media remain in the private portfolio repository, unlinked.
 ## Checks
 
 `npm test` runs isolated fixture builds: draft exclusion from home, index, routes and sitemap;
-escaped metadata and Markdown; titles-only index and plain post pages, with dates and labels
+escaped metadata and Markdown; title-and-description index and plain post pages, with dates and labels
 rejected; and rejected source,
 home-template and media symlinks. `node .agents/skills/verify-personal-markdown-blog/verify.mjs run`
 proves draft exclusion on the public build, then drives the draft preview at 1280 and 390 px.
