@@ -120,7 +120,7 @@ a {
   transition: color 140ms ease-out;
 }
 
-main a:not(.cta):hover {
+main a:hover {
   color: var(--color-muted);
 }
 
@@ -197,8 +197,7 @@ strong,
 }
 
 .argument,
-.section,
-.reach {
+.section {
   padding-block: var(--space-lg);
   border-top: var(--rule-hair) solid var(--color-rule);
 }
@@ -295,54 +294,13 @@ strong,
   line-height: 1.2;
 }
 
-.reach__lede {
-  margin-top: var(--space-md);
-  color: var(--color-muted);
-}
 
-.reach__actions {
-  display: flex;
-  margin-top: var(--space-md);
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-}
 
-.cta {
-  display: inline-flex;
-  min-height: 3rem;
-  padding-inline: var(--space-lg);
-  align-items: center;
-  border-radius: var(--radius-control);
-  background: var(--color-ink);
-  color: var(--color-paper);
-  font-size: var(--text-base);
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 140ms ease-out, color 140ms ease-out;
-  white-space: nowrap;
-}
 
-.cta:hover {
-  background: var(--color-ink-2);
-}
 
-.cta:focus-visible {
-  outline-color: var(--color-focus);
-}
 
-.reach > .cta {
-  margin-top: var(--space-md);
-}
 
-.reach .aside {
-  margin-top: var(--space-md);
-  color: var(--color-muted);
-}
 
-.reach .aside a {
-  color: var(--color-ink);
-}
 
 .rest {
   padding-block: var(--space-2xl);
@@ -384,8 +342,7 @@ strong,
   }
 
   .argument,
-  .section,
-  .reach {
+  .section {
     padding-block: var(--space-lg);
   }
 
@@ -398,17 +355,11 @@ strong,
     padding-block: var(--space-xl);
   }
 
-  .reach__actions {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   a,
-  .site-nav a,
-  .cta {
+  .site-nav a {
     transition: none;
   }
 }

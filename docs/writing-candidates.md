@@ -52,12 +52,9 @@ practice, not enforcement or outcomes.
 
 ## Case study and home
 
-The case draft moved to TinyMacro at `content/cases/a-content-harness-for-shoply.md`, displayed as
-“A content workflow with human review” under `/initiatives/case-studies/` in the local draft preview.
-It is excluded from TinyMacro's public build. Company and person names are removed from its displayed
-copy. It describes prescribed workflow and review limits, with no result claims. Other cases remain
-unpublished. Git retains the six superseded personal post files.
+Case studies are deferred (Fred, 2026-10-01). The anonymized content-workflow draft is removed from
+TinyMacro; Git holds it at tinymacro-site `3d8ac93`. Git retains the six superseded personal post files.
 
-`index.html` and `home.css` preserve the approved ui4 prototype's live `59520ff` home body and look.
-The name returns home; navigation links to Writing and TinyMacro. Resume files remain absent.
-The earlier proposed rewrite of the home body is superseded by Fred's September 30 decision.
+`index.html` and `home.css` keep the approved live `59520ff` home look. On 2026-10-01 Fred removed
+"What I am trying to fix" and had "What I think matters" rewritten around finite resources and
+conservation. The name returns home; navigation links to Writing and TinyMacro. Resume files remain absent.

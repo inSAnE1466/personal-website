@@ -1,8 +1,8 @@
 # frederickcaseyhousand.com
 
 Fred's personal site: a home page with his intentions, and writing. The home page is plain HTML/CSS;
-the approved live home body stays intact except "What I think matters", which Fred had rewritten
-around finite resources and conservation on 2026-10-01; Writing has its own index. There is no resume page.
+the approved live home look stays; on 2026-10-01 Fred removed "What I am trying to fix" and had
+"What I think matters" rewritten around finite resources and conservation; Writing has its own index. There is no resume page.
 Writing uses Markdown, converted to static HTML by a small Node script. There is
 no browser JavaScript, CMS, or account service for the blog. Inter and the existing
 writing voice remain the design constraints.
@@ -21,7 +21,6 @@ One draft in `posts/` is `draft: true` and appears only in the preview; two more
 which the build never reads. The
 [writing candidates](docs/writing-candidates.md) document owns their exact paths and source limits.
 Fred can edit those files directly. Source approval is not publication approval.
-The company case draft now belongs to TinyMacro's Initiatives section.
 
 Company case-study inputs and permission stay with TMH, which owns company and client truth. Its claim rules live in [references/claims-spine.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/references/claims-spine.md) and its consulting method in [docs/consulting-delivery-system.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/docs/consulting-delivery-system.md);
 private portfolio sources remain outside this work.
