@@ -83,16 +83,16 @@ async function drive(origin) {
       await page.getByRole('heading', { level: 1, name: 'Writing' }).waitFor();
       await shot('writing');
       // Every post is a plain page: a title and text, with no labels, dates, deks or contents.
-      const titles = (await page.locator('.writing-list .titles a').allTextContents()).map((t) => t.trim());
-      if (titles.length !== 3) throw new Error(`expected exactly three owner drafts, found ${titles.length}`);
+      const titles = (await page.locator('.writing-list .titles a').allTextContents()).map((t) => t.replace(/\s*→$/, '').trim());
+      const sources = (await readdir(resolve(root, 'posts'))).filter((file) => file.endsWith('.md'));
+      if (titles.length !== sources.length) throw new Error(`expected ${sources.length} posts in the preview, found ${titles.length}`);
       if (await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: /TinyMacro/ }).getAttribute('href') !== (process.env.PERSONAL_TINYMACRO_ORIGIN ? new URL(process.env.PERSONAL_TINYMACRO_ORIGIN).origin + '/' : 'https://tinymacro.app/')) throw new Error('Missing reciprocal TinyMacro link');
       for (const title of titles) {
         await page.locator('.writing-list .titles a', { hasText: title }).click();
         await page.getByRole('heading', { level: 1, name: title }).waitFor();
         const packaging = await page.locator('time, .dek, .contents, .post-meta, .back-link, table').count();
         if (packaging) throw new Error(`${page.url()} has ${packaging} packaging element(s)`);
-        if (!(await page.locator('.prose').textContent()).trim()) throw new Error('Empty draft body');
-        await page.locator('.draft-note').waitFor();
+        if (!(await page.locator('.prose').textContent()).trim()) throw new Error('Empty post body');
         await shot(`article-${page.url().split('/').at(-2)}`);
         await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Writing' }).click();
         await page.waitForURL(`${origin}/writing/`);
