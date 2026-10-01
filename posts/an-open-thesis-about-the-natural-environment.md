@@ -13,7 +13,7 @@ Ryan Orbuch's [Natural General Intelligence](https://naturalgeneralintelligence.
 
 My question is narrower. How do we find where a useful technology belongs, learn enough about the site to judge whether it fits, and help the people involved decide what to do?
 
-That is the direction I mean by Green. I want to connect applied research to actual opportunities to conserve resources. The benefit has to be something someone can check. A company looking more environmentally responsible is not enough.
+This is the work I want TinyMacro to do. I want to connect applied research to actual opportunities to conserve resources. The benefit has to be something someone can check. A company looking more environmentally responsible is not enough.
 
 I think agents could make deeper exploratory research practical before anyone commits to a project. That is a hypothesis to test. Research still has to account for local conditions, engineering constraints and the people responsible for the decision.
 
@@ -21,12 +21,10 @@ I think agents could make deeper exploratory research practical before anyone co
 
 A pile of documents does not tell someone whether a technology belongs in their building. I want the information organized around real things: technologies, sites, resources, suppliers and the relationships between them. That is what I mean by an ontology.
 
+Palantir explains the value of this well in its [AIP architecture overview](https://www.palantir.com/docs/foundry/architecture-center/aip-architecture). Its ontology models the nouns and verbs of a company's operations, the objects it works with and the actions people take on them, in a form both people and agents can read. Data, logic and actions live in one place, so an agent works from the same picture a person does, and every action can be traced back to the data behind it.
+
+I want that for the natural environment. The nouns are buildings, sites, technologies and resources. The verbs are the decisions people make about them.
+
 A proposed decision would connect a technology to a site and retain its sources, assumptions and unanswered questions. Someone reviewing a calculated number should be able to see its inputs and method. Conflicting evidence should remain visible.
 
 The ontology could also be the index. Finding a technology would lead to where it has been used, what those applications required and what evidence supports the comparison. Useful research would have somewhere to accumulate beyond a conversation history.
-
-## What remains open
-
-The product, first customer and offer are still open questions. I need to understand the work inside these firms, the expertise it requires and the problems that remain poorly served. General agent capabilities will keep changing. Industry knowledge, relationships and evidence of what works deserve more attention than a feature list.
-
-Treating enthusiasm as validation would be a mistake. I can build the capacity to learn this properly and let the evidence decide what it becomes.
