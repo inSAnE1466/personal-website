@@ -1,11 +1,8 @@
 /* Writing keeps the site's shared gutter and Inter document system: plain titles, plain pages. */
 .writing-list { padding-block: var(--space-lg) var(--space-2xl); }
 .writing-list .titles { margin-top: var(--space-lg); list-style: none; padding: 0; max-width: var(--measure); border-top: 1px solid var(--color-rule); }
-.writing-list .titles a { display: grid; gap: var(--space-xs); padding-block: var(--space-lg); border-bottom: 1px solid var(--color-rule); text-decoration: none; color: var(--color-ink); }
-.writing-list .titles .title { font-size: 1.625rem; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
-.writing-list .titles .dek { color: var(--color-ink-2); }
-.writing-list .titles .read { margin-top: var(--space-xs); font-weight: 600; color: var(--color-ink); }
-.writing-list .titles a:hover .title { text-decoration: underline; text-underline-offset: .18em; }
+.writing-list .titles a { display: block; padding-block: var(--space-lg); border-bottom: 1px solid var(--color-rule); text-decoration: none; color: var(--color-ink); font-size: 1.625rem; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+.writing-list .titles a:hover { text-decoration: underline; text-underline-offset: .18em; }
 .writing-list h1, .writing-article h1 { margin-block: var(--space-md); font-size: var(--text-display); line-height: 1.08; letter-spacing: var(--track-display); }
 .draft-note { margin-top: var(--space-md); padding-left: var(--space-md); border-left: 2px solid var(--color-rule); color: var(--color-ink-2); font-size: var(--text-sm); }
 .writing-article { padding-block: var(--space-lg) var(--space-2xl); }

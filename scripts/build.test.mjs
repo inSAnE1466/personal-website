@@ -31,12 +31,12 @@ test('requires explicit draft status, safe slugs and a single page heading, and 
   for (const extra of ['date: 2026-09-06', 'kind: case study']) assert.throws(() => parsePost(source().replace('draft: true', `draft: true\n${extra}`), 'post.md'), /invalid or duplicate metadata/);
 });
 
-test('lists titles with descriptions and renders each post as a plain page', async (t) => {
+test('lists titles only and renders each post as a plain page', async (t) => {
   const f = await fixture(t, { 'b-post': source({ draft: false, title: 'Second', body: '## One\n\nText.\n\n## Two\n\nText.\n\n## Three\n\nText.' }), 'a-post': source({ draft: false, title: 'First' }) });
   await build({ root: f.root });
   const index = await f.read('writing/index.html');
-  assert.match(index, /<ul class="titles"><li><a href="\/writing\/a-post\/"><span class="title">First<\/span><span class="dek">A description\.<\/span><span class="read">Read →<\/span><\/a><\/li>\n<li><a href="\/writing\/b-post\/"><span class="title">Second<\/span>/);
-  assert.doesNotMatch(index, /<time|<article/);
+  assert.match(index, /<ul class="titles"><li><a href="\/writing\/a-post\/">First →<\/a><\/li>\n<li><a href="\/writing\/b-post\/">Second →<\/a><\/li><\/ul>/);
+  assert.doesNotMatch(index, /A description|<time|<article/);
   const article = await f.read('writing/b-post/index.html');
   assert.doesNotMatch(article, /<time|class="dek"|class="contents"|A description\.<\/p>|back-link|reach-head/);
   assert.doesNotMatch(index, /reach-head/);

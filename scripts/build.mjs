@@ -35,8 +35,8 @@ const nav = `<nav class="site-nav" aria-label="Primary">
             <li><a class="site-nav__tm" href="https://tinymacro.app/"><svg viewBox="1 4 13 8" aria-hidden="true" focusable="false"><rect x="1.3" y="4.3" width="7.4" height="7.4"/><rect x="9.3" y="4.3" width="4.4" height="4.4"/><rect x="11.3" y="9.3" width="2.4" height="2.4"/><rect x="9.3" y="10.3" width="1.4" height="1.4"/></svg>TinyMacro <span aria-hidden="true">↗</span></a></li>
         </ul>
     </nav>`;
-// Each entry: title, its one-line description and a read link. No dates or labels.
-const titleList = (posts) => posts.length ? `<ul class="titles">${posts.map((post) => `<li><a href="/writing/${post.slug}/"><span class="title">${escape(post.title)}</span><span class="dek">${escape(post.description)}</span><span class="read">Read →</span></a></li>`).join('\n')}</ul>` : '<p>No posts published yet.</p>';
+// Titles only, set large: no dates, labels or descriptions.
+const titleList = (posts) => posts.length ? `<ul class="titles">${posts.map((post) => `<li><a href="/writing/${post.slug}/">${escape(post.title)} →</a></li>`).join('\n')}</ul>` : '<p>No posts published yet.</p>';
 function page(title, description, path, body, draft = false) {
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">

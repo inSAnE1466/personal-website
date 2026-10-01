@@ -1,7 +1,8 @@
 # frederickcaseyhousand.com
 
 Fred's personal site: a home page with his intentions, and writing. The home page is plain HTML/CSS;
-the approved live home body stays intact; Writing has its own index. There is no resume page.
+the approved live home body stays intact except "What I think matters", which Fred had rewritten
+around finite resources and conservation on 2026-10-01; Writing has its own index. There is no resume page.
 Writing uses Markdown, converted to static HTML by a small Node script. There is
 no browser JavaScript, CMS, or account service for the blog. Inter and the existing
 writing voice remain the design constraints.
@@ -59,8 +60,8 @@ writing index says “No posts published yet.” This also works when `posts/` i
    `posts/` if it is absent. The directory and Markdown sources must be actual
    copies, not symlinks to originals.
 2. Add these plain-text metadata fields. Values are single lines, without YAML
-   quotes. There are no dates or labels. The description is the page's meta description and
-   its line on the Writing index. The filename becomes the permanent URL, and the index lists titles by filename.
+   quotes. There are no dates or labels. The description is used only for the page's meta
+   description. The filename becomes the permanent URL, and the index lists titles by filename.
 
    ```markdown
    ---
@@ -76,7 +77,7 @@ writing index says “No posts published yet.” This also works when `posts/` i
    ```
 
 3. Preview and review the page. The title supplies the only H1; use `##` and `###`
-   within the body. The index shows each title with its description, and a post page shows only its title and text.
+   within the body. The index shows only titles, and a post page shows only its title and text.
    Fred's v1 posts are text only: paragraphs and a few `##` headings, with no images or
    tables. The renderer itself supports lists, links, quotations, tables, and fenced
    code. Raw HTML is displayed as text. Local image files can go in `PWmedia/` and
@@ -122,7 +123,7 @@ Client work and its media remain in the private portfolio repository, unlinked.
 ## Checks
 
 `npm test` runs isolated fixture builds: draft exclusion from home, index, routes and sitemap;
-escaped metadata and Markdown; title-and-description index and plain post pages, with dates and labels
+escaped metadata and Markdown; titles-only index and plain post pages, with dates and labels
 rejected; and rejected source,
 home-template and media symlinks. `node .agents/skills/verify-personal-markdown-blog/verify.mjs run`
 proves draft exclusion on the public build, then drives the draft preview at 1280 and 390 px.
