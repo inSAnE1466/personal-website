@@ -13,11 +13,11 @@ Protected paths, symlinks, generated/vendor/build files and lockfiles are omitte
 | [.gitignore](../.gitignore) | Local node_modules |
 | [AGENTS.md](../AGENTS.md) | Personal website |
 | [CNAME](../CNAME) | No opening comment or heading. |
-| [consulting.html](../consulting.html) | No opening comment or heading. |
 | [design.md](../design.md) | Design — frederickcaseyhousand.com |
 | [favicon.svg](../favicon.svg) | No opening comment or heading. |
 | [home.css](../home.css) | Shared Inter document styles for the home and consulting pages. |
-| [index.html](../index.html) | Google tag (gtag.js) |
+| [index.html](../index.html) | No opening comment or heading. |
+| [nav.css](../nav.css) | S12.8 proposal: the only change from the live home. The name returns home; Writing and TinyMacro sit right. |
 | [next-env.d.ts](../next-env.d.ts) | / &lt;reference types="next" /&gt; |
 | [package.json](../package.json) | No opening comment or heading. |
 | [product-tracker.md](../product-tracker.md) | Product tracker |
@@ -25,7 +25,7 @@ Protected paths, symlinks, generated/vendor/build files and lockfiles are omitte
 | [robots.txt](../robots.txt) | No opening comment or heading. |
 | [sitemap.xml](../sitemap.xml) | No opening comment or heading. |
 | [tokens.css](../tokens.css) | Document aliases keep reading styles tied to the pinned TMFA roles. |
-| [writing.css](../writing.css) | Writing keeps the site's shared gutter and Inter document system. |
+| [writing.css](../writing.css) | Writing keeps the site's shared gutter and Inter document system: plain titles, plain pages. |
 
 ## .agents/skills/pstack
 
@@ -44,13 +44,13 @@ Protected paths, symlinks, generated/vendor/build files and lockfiles are omitte
 | Path | Purpose |
 | --- | --- |
 | [.agents/skills/verify-personal-markdown-blog/SKILL.md](../.agents/skills/verify-personal-markdown-blog/SKILL.md) | Verify personal Markdown blog |
-| [.agents/skills/verify-personal-markdown-blog/verify.mjs](../.agents/skills/verify-personal-markdown-blog/verify.mjs) | No opening comment or heading. |
+| [.agents/skills/verify-personal-markdown-blog/verify.mjs](../.agents/skills/verify-personal-markdown-blog/verify.mjs) | The public build must contain no draft: no route, no link from home or the index, no sitemap entry. |
 
 ## .agents/skills/verify-personal-markdown-blog/features
 
 | Path | Purpose |
 | --- | --- |
-| [.agents/skills/verify-personal-markdown-blog/features/home.md](../.agents/skills/verify-personal-markdown-blog/features/home.md) | Home and consulting |
+| [.agents/skills/verify-personal-markdown-blog/features/home.md](../.agents/skills/verify-personal-markdown-blog/features/home.md) | Home |
 | [.agents/skills/verify-personal-markdown-blog/features/README.md](../.agents/skills/verify-personal-markdown-blog/features/README.md) | Personal site feature map |
 | [.agents/skills/verify-personal-markdown-blog/features/writing.md](../.agents/skills/verify-personal-markdown-blog/features/writing.md) | Markdown writing |
 
@@ -73,7 +73,6 @@ Protected paths, symlinks, generated/vendor/build files and lockfiles are omitte
 | --- | --- |
 | [design-system/provenance.json](../design-system/provenance.json) | No opening comment or heading. |
 | [design-system/tokens.css](../design-system/tokens.css) | Warm monochrome foundation (Fred, 2026-09-12). Hex roles: |
-| [design-system/tokens.json](../design-system/tokens.json) | No opening comment or heading. |
 
 ## design-system/fonts
 
@@ -82,21 +81,28 @@ Protected paths, symlinks, generated/vendor/build files and lockfiles are omitte
 | [design-system/fonts/inter-latin-wght-normal.woff2](../design-system/fonts/inter-latin-wght-normal.woff2) | Binary asset. |
 | [design-system/fonts/Inter-LICENSE.txt](../design-system/fonts/Inter-LICENSE.txt) | No opening comment or heading. |
 
+## docs
+
+| Path | Purpose |
+| --- | --- |
+| [docs/writing-candidates.md](writing-candidates.md) | Writing candidates |
+
+## drafts
+
+| Path | Purpose |
+| --- | --- |
+| [drafts/patterns-for-agent-work.md](../drafts/patterns-for-agent-work.md) | Make a result inspectable |
+| [drafts/the-agent-in-a-container.md](../drafts/the-agent-in-a-container.md) | Keep the work separable |
+
 ## posts
 
 | Path | Purpose |
 | --- | --- |
-| [posts/sample-formatting.md](../posts/sample-formatting.md) | Start with the text |
-
-## PWmedia
-
-| Path | Purpose |
-| --- | --- |
-| [PWmedia/Frederick_Casey-Housand_Contractor.docx.pdf](../PWmedia/Frederick_Casey-Housand_Contractor.docx.pdf) | Binary asset. |
+| [posts/an-open-thesis-about-the-natural-environment.md](../posts/an-open-thesis-about-the-natural-environment.md) | Connecting research to a place |
 
 ## scripts
 
 | Path | Purpose |
 | --- | --- |
-| [scripts/build.mjs](../scripts/build.mjs) | No opening comment or heading. |
+| [scripts/build.mjs](../scripts/build.mjs) | Titles only, set large: no dates, labels or descriptions. |
 | [scripts/build.test.mjs](../scripts/build.test.mjs) | No opening comment or heading. |
