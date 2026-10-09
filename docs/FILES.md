@@ -24,18 +24,6 @@ Protected paths, symlinks, generated/vendor/build files and lockfiles are omitte
 | [tokens.css](../tokens.css) | Document aliases keep reading styles tied to the pinned TMFA roles. |
 | [writing.css](../writing.css) | Writing keeps the site's shared gutter and Inter document system: plain titles, plain pages. |
 
-## .agents/skills/pstack
-
-| Path | Purpose |
-| --- | --- |
-| [.agents/skills/pstack/SKILL.md](../.agents/skills/pstack/SKILL.md) | pstack |
-
-## .agents/skills/pstack/agents
-
-| Path | Purpose |
-| --- | --- |
-| [.agents/skills/pstack/agents/openai.yaml](../.agents/skills/pstack/agents/openai.yaml) | No opening comment or heading. |
-
 ## .agents/skills/verify-personal-markdown-blog
 
 | Path | Purpose |

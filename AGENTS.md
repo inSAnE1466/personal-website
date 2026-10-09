@@ -24,7 +24,7 @@ and vault route. For unfamiliar claims use workspace [find-context](../tinymacro
 
 `npm run preview` includes drafts with a notice and marks writing pages `noindex`. The public build
 excludes drafts. Rerun after editing a post; there is no watch server. For non-trivial work, use
-local `.agents/skills/pstack/SKILL.md` and its matching playbook, not copied steps or model choices.
+the workspace [pstack adapter](../tinymacro-workspace/.agents/skills/pstack/SKILL.md) and its matching playbook, not copied toolkits or model choices.
 
 ## Effect ceiling
 A push to `main` publishes the site, and manual `workflow_dispatch` also deploys. Both need separate
