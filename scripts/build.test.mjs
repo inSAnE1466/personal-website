@@ -12,7 +12,7 @@ async function fixture(t, posts = {}) {
   t.after(() => rm(root, { recursive: true, force: true }));
   await mkdir(join(root, 'posts'));
   await mkdir(join(root, 'PWmedia'));
-  await writeFile(join(root, 'index.html'), '<head></head><main><!-- writing --></main>');
+  await writeFile(join(root, 'index.html'), '<head></head><nav><ul><li><a href="/writing/">Writing</a></li><li><a href="https://tinymacro.app/">TinyMacro</a></li></ul></nav><main>Home</main>');
   for (const file of ['tokens.css', 'home.css', 'nav.css', 'writing.css', 'favicon.svg', 'CNAME', 'robots.txt']) {
     await writeFile(join(root, file), `Public fixture: ${file}`);
   }
@@ -77,7 +77,9 @@ test('previews owner drafts without calling them samples, then removes drafts fr
   assert.match(draft, /noindex, nofollow/);
   assert.doesNotMatch(draft, /sample|demonstration|not a finished post by Fred|rel="canonical"/);
   assert.match(await f.read('writing/index.html'), /Local preview/);
-  assert.match(await f.read('index.html'), /href="\/writing\/owner-draft\/"[\s\S]*noindex|noindex[\s\S]*href="\/writing\/owner-draft\/"/);
+  assert.match(await f.read('index.html'), /noindex, nofollow/);
+  assert.match(await f.read('index.html'), /href="\/writing\/"/);
+  assert.match(await f.read('writing/index.html'), /href="\/writing\/owner-draft\/"/);
   assert.match(await f.read('writing/published/index.html'), /noindex, nofollow/);
   assert.doesNotMatch(await f.read('sitemap.xml'), /owner-draft/);
   await build({ root: f.root });
@@ -85,7 +87,7 @@ test('previews owner drafts without calling them samples, then removes drafts fr
   for (const path of ['posts', 'thesis', 'private-notes.md']) await assert.rejects(f.exists(path));
   assert.doesNotMatch(await f.read('writing/index.html'), /owner-draft|Local preview|noindex/);
   assert.doesNotMatch(await f.read('index.html'), /owner-draft|Local preview|noindex/);
-  assert.match(await f.read('index.html'), /href="\/writing\/published\/"/);
+  assert.match(await f.read('index.html'), /href="\/writing\/"/);
   assert.match(await f.read('writing/published/index.html'), /<h1>Published<\/h1>/);
   await f.exists('PWmedia/image.svg');
 });
@@ -94,9 +96,23 @@ test('builds an empty index without a retained sample or any posts', async (t) =
   const f = await fixture(t);
   await build({ root: f.root });
   assert.match(await f.read('writing/index.html'), /No posts published yet/);
-  assert.match(await f.read('index.html'), /No posts published yet/);
+  assert.doesNotMatch(await f.read('index.html'), /href="\/writing\/"/);
+  assert.match(await f.read('index.html'), /href="https:\/\/tinymacro.app\/"/);
   assert.doesNotMatch(await f.read('writing/index.html'), /class="titles"/);
   assert.doesNotMatch(await f.read('sitemap.xml'), /\/writing\//);
+});
+
+test('normalizes draft metadata and hides Writing when only drafts exist', async (t) => {
+  const content = source().replace('draft: true', 'draft: true  ').replaceAll('\n', '\r\n');
+  assert.equal(parsePost(content, 'owner-draft.md').draft, true);
+  const f = await fixture(t, { 'owner-draft': content });
+  await build({ root: f.root, drafts: true });
+  assert.match(await f.read('index.html'), /href="\/writing\/"/);
+  await f.exists('writing/owner-draft/index.html');
+  await build({ root: f.root });
+  await assert.rejects(f.exists('writing/owner-draft/index.html'));
+  for (const path of ['index.html', 'writing/index.html', 'sitemap.xml']) assert.doesNotMatch(await f.read(path), /owner-draft/);
+  assert.doesNotMatch(await f.read('index.html'), /href="\/writing\/"/);
 });
 
 test('rejects symlinks nested in public media without reading their targets', async (t) => {

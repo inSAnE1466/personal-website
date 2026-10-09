@@ -86,7 +86,7 @@ export async function build({ root = process.cwd(), drafts = false, tinyMacroOri
   await writeFile(resolve(output, '.nojekyll'), '');
   // Writing stays out of the nav until a post is published (draft: false).
   const writingNav = (html) => posts.length ? html : html.replace(/\s*<li><a href="\/writing\/"[^>]*>Writing<\/a><\/li>/, '');
-  await writeFile(resolve(output, 'index.html'), writingNav(previewLinks(home.replace('<!-- writing -->', titleList(posts)).replace('<head>', drafts ? '<head>\n    <meta name="robots" content="noindex, nofollow">' : '<head>'))));
+  await writeFile(resolve(output, 'index.html'), writingNav(previewLinks(home.replace('<head>', drafts ? '<head>\n    <meta name="robots" content="noindex, nofollow">' : '<head>'))));
   const previewNote = drafts ? '<p class="draft-note">Local preview. Drafts are listed here and excluded from the public build.</p>' : '';
   await writeFile(resolve(output, 'writing/index.html'), previewLinks(page('Writing', 'Writing by Frederick Casey-Housand.', '/writing/', `<section class="doc writing-list"><h1>Writing</h1>${previewNote}${titleList(posts)}</section>`, drafts)));
   for (const post of posts) {

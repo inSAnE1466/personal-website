@@ -18,7 +18,6 @@ Protected paths, symlinks, generated/vendor/build files and lockfiles are omitte
 | [home.css](../home.css) | Shared Inter document styles for the home and consulting pages. |
 | [index.html](../index.html) | No opening comment or heading. |
 | [nav.css](../nav.css) | S12.8 proposal: the only change from the live home. The name returns home; Writing and TinyMacro sit right. |
-| [next-env.d.ts](../next-env.d.ts) | / &lt;reference types="next" /&gt; |
 | [package.json](../package.json) | No opening comment or heading. |
 | [product-tracker.md](../product-tracker.md) | Product tracker |
 | [README.md](../README.md) | frederickcaseyhousand.com |

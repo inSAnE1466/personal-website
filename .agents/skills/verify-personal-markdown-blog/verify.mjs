@@ -3,6 +3,7 @@ import { execFileSync, spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { resolve } from 'node:path';
 import { chromium } from 'playwright';
+import { parsePost } from '../../../scripts/build.mjs';
 
 const root = resolve(import.meta.dirname, '../../..');
 const artifacts = resolve(root, '.artifacts', 'verify');
@@ -37,7 +38,8 @@ async function doctor(origin) {
 async function draftExclusion() {
   const drafts = [];
   for (const file of (await readdir(resolve(root, 'posts')).catch(() => [])).filter((f) => f.endsWith('.md'))) {
-    if (/^draft: true$/m.test(await readFile(resolve(root, 'posts', file), 'utf8'))) drafts.push(file.replace(/\.md$/, ''));
+    const post = parsePost(await readFile(resolve(root, 'posts', file), 'utf8'), file);
+    if (post.draft) drafts.push(post.slug);
   }
   execFileSync('node', ['scripts/build.mjs'], { cwd: root, stdio: 'inherit' });
   const pages = await Promise.all(['index.html', 'writing/index.html', 'sitemap.xml'].map((p) => readFile(resolve(root, 'dist', p), 'utf8')));
