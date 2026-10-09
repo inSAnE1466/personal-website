@@ -1,4 +1,4 @@
-/* S12.8 proposal: the only change from the live home. The name returns home; Writing and TinyMacro sit right. */
+/* The name returns home; Writing and TinyMacro sit opposite it. */
 .site-nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); }
 .site-nav__links { width: auto; }
 .site-nav a.site-nav__name, .site-nav a.site-nav__name[aria-current="page"] { color: var(--color-ink); font-size: var(--text-base); }

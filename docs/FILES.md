@@ -13,13 +13,11 @@ Protected paths, symlinks, generated/vendor/build files and lockfiles are omitte
 | [.gitignore](../.gitignore) | Local node_modules |
 | [AGENTS.md](../AGENTS.md) | Personal website |
 | [CNAME](../CNAME) | No opening comment or heading. |
-| [design.md](../design.md) | Design — frederickcaseyhousand.com |
 | [favicon.svg](../favicon.svg) | No opening comment or heading. |
-| [home.css](../home.css) | Shared Inter document styles for the home and consulting pages. |
+| [home.css](../home.css) | Shared Inter document styles for home and writing pages. |
 | [index.html](../index.html) | No opening comment or heading. |
-| [nav.css](../nav.css) | S12.8 proposal: the only change from the live home. The name returns home; Writing and TinyMacro sit right. |
+| [nav.css](../nav.css) | The name returns home; Writing and TinyMacro sit opposite it. |
 | [package.json](../package.json) | No opening comment or heading. |
-| [product-tracker.md](../product-tracker.md) | Product tracker |
 | [README.md](../README.md) | frederickcaseyhousand.com |
 | [robots.txt](../robots.txt) | No opening comment or heading. |
 | [sitemap.xml](../sitemap.xml) | No opening comment or heading. |
@@ -84,6 +82,7 @@ Protected paths, symlinks, generated/vendor/build files and lockfiles are omitte
 
 | Path | Purpose |
 | --- | --- |
+| [docs/design.md](design.md) | Design — frederickcaseyhousand.com |
 | [docs/writing-candidates.md](writing-candidates.md) | Writing candidates |
 
 ## drafts

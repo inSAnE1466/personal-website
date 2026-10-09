@@ -12,9 +12,6 @@ keeps it separate from the company’s case studies and any acquisition experime
 [TMH’s company thesis](/Users/fredcaseyhousand/Desktop/github/tm-harness/thesis/company-thesis.md)
 owns company/client claims; this site does not establish them.
 
-`product-tracker.md` is the pointer index for current work and durable documentation. It does not
-own writing, publication authority, or a product backlog.
-
 ## Next useful slice
 
 One draft in `posts/` is `draft: true` and appears only in the preview; two more wait in `drafts/`,
@@ -91,14 +88,14 @@ Tests use temporary fixtures and do not depend on any post in `posts/`.
 
 ## Structure
 
-- `index.html`: the approved live home body and proposed navigation.
+- `index.html`: the approved home page and navigation.
 - `posts/*.md`: writing source; draft status is required.
 - `scripts/build.mjs`: metadata validation, Markdown rendering and page templates.
 - `scripts/build.test.mjs`: draft exclusion and content-safety checks.
 - `tokens.css`, `home.css`, `nav.css`, `writing.css`: shared Inter styles and the writing layout.
 - `design-system/`: tokens and Inter pinned from TMFA; see `provenance.json`.
 - `PWmedia/`: optional public media, copied to the build only when present.
-- `design.md`: visual direction.
+- [docs/design.md](docs/design.md): visual direction.
 - `dist/`: generated public files; ignored by Git.
 
 The build copies an explicit list of public files. It does not copy Markdown

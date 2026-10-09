@@ -43,8 +43,8 @@ Shared semantic tokens and the licensed Inter asset are pinned in `design-system
 
 ## Navigation
 
-- There is no header, wordmark, or top-left “Fred Casey-Housand” label.
-- The semantic `<nav>` contains four visible text links: Home, Writing, TinyMacro, and Book a call.
+- The name “Fred Casey-Housand” links home. Writing and TinyMacro sit opposite it; there is no separate Home link.
+- Writing appears when the build includes a post: published posts in public builds, or drafts in local previews.
 - Navigation is `position: static`; it scrolls away with the document.
 - Links remain visible at every viewport and wrap when necessary. There is no hamburger, disclosure
   menu, filled nav CTA, border, background panel, radius, blur, or shadow.
