@@ -72,6 +72,9 @@ Shared semantic tokens and the licensed Inter asset are pinned in `design-system
 - Home and writing pages use the same navigation markup, type tokens, link contract, focus treatment, CTA
   treatment, and gutters.
 - Copy, URLs, and facts are content authority and are not changed by visual polish.
+- When choosing a CSS technique for layout, spacing, motion or show and hide, check
+  [good-css](../../tinymacro-research/guides/interface-design-evidence.md#good-css) first. It is technique
+  guidance, not visual direction, and never overrides this file.
 
 ## Writing (owner direction, S12.2)
 
