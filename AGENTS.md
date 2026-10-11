@@ -9,7 +9,7 @@ It does not establish company or client claims.
 and preview commands, the deployment gate, and the claims that still need review.
 
 Workspace policy in `../tinymacro-workspace/AGENTS.md` owns the map, commit rule, verification duty,
-and vault route. For unfamiliar claims use workspace [find-context](../tinymacro-workspace/.agents/skills/find-context/SKILL.md); for legacy judgments use [do-we-need-this](../tinymacro-workspace/.agents/skills/do-we-need-this/SKILL.md).
+and vault route. For unfamiliar claims use workspace [find-context](../tinymacro-workspace/.agents/skills/find-context/SKILL.md); for legacy judgments use [do-we-need-this](../tinymacro-workspace/.agents/skills/do-we-need-this/SKILL.md). Docs are current-state snapshots updated in place; an append-only or historical log needs Fred's permission ([workspace rule](../tinymacro-workspace/AGENTS.md#rules)).
 
 ## Checks by change type
 
