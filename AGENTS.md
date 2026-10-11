@@ -6,7 +6,7 @@ This repository owns Fred's personal writing and social proof surface at `freder
 It does not establish company or client claims.
 
 `README.md` is this repository's codebase context. It owns the structure, the post format, the build
-and preview commands, the deployment gate, and the claims that still need review. [Generated file index](docs/FILES.md). Rebuild from tinymacro-workspace with `npm run file-index`.
+and preview commands, the deployment gate, and the claims that still need review.
 
 Workspace policy in `../tinymacro-workspace/AGENTS.md` owns the map, commit rule, verification duty,
 and vault route. For unfamiliar claims use workspace [find-context](../tinymacro-workspace/.agents/skills/find-context/SKILL.md); for legacy judgments use [do-we-need-this](../tinymacro-workspace/.agents/skills/do-we-need-this/SKILL.md).
