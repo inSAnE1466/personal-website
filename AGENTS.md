@@ -1,7 +1,5 @@
 # Personal website
 
-<!-- budget: 32 -->
-
 This repository owns Fred's personal writing and social proof surface at `frederickcaseyhousand.com`.
 It does not establish company or client claims.
 
