@@ -18,6 +18,7 @@ One draft in `posts/` is `draft: true` and appears only in the preview; two more
 which the build never reads. The
 [writing candidates](docs/writing-candidates.md) document owns their exact paths and source limits.
 Fred can edit those files directly. Source approval is not publication approval.
+[References](docs/references/README.md) holds the vault links whose application names this site.
 
 Company case-study inputs and permission stay with TMH, which owns company and client truth. Its claim rules live in [references/claims-spine.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/references/claims-spine.md) and its consulting method in [docs/consulting-delivery-system.md](/Users/fredcaseyhousand/Desktop/github/tm-harness/docs/consulting-delivery-system.md);
 private portfolio sources remain outside this work.

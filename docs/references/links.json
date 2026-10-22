@@ -1,0 +1,74 @@
+{
+  "about": "Links that apply to this repository: each entry from Fred's vault (Buckets/*/links.json, whose source names the vault file and line at tag pre-reorg-20261022) or ranked in docs/references/README.md. The vault stays Fred's live source; this is the refactoring corpus, so superseded entries say so. fred is Fred's comment verbatim; a personal comment stays in the vault.",
+  "links": [
+    {
+      "url": "https://x.com/talhadesignn/status/2081270445605888490",
+      "title": "Ameer Talha: new backgrounds in Super Visuals",
+      "fred": "- [ ] https://x.com/talhadesignn/status/2081270445605888490 — \"this is it\" + figma file in reply",
+      "description": "Post announcing 100+ 4K backgrounds for landing pages and hero sections, with a Figma file in the reply.",
+      "ideals": "Premium visual polish.",
+      "application": "Site and personal site: background assets for landing and hero sections.",
+      "repos": [
+        "site",
+        "personal-site"
+      ],
+      "source": "vault Buckets/Architecture/Links_Ingest_Todo.md:45",
+      "status": "current"
+    },
+    {
+      "url": "https://canvasui.dev/",
+      "title": "Canvas UI: Creative Canvas, WebGL and WebGPU Component Library",
+      "fred": "- [ ] https://canvasui.dev/ — investigate",
+      "description": "Open-source library of html-in-canvas effects for React and other frameworks, shipped as WebGL and WebGPU builds.",
+      "ideals": "Expressive visuals over live HTML.",
+      "application": "Site and personal site: investigate for hero effects, as Fred marked it.",
+      "repos": [
+        "site",
+        "personal-site"
+      ],
+      "source": "vault Buckets/Architecture/Links_Ingest_Todo.md:49",
+      "status": "current"
+    },
+    {
+      "url": "https://x.com/leouiux/status/2081375181956690322",
+      "title": "Léo: send your portfolios pls, I need inspo",
+      "fred": "- [ ] https://x.com/leouiux/status/2081375181956690322 — design portfolio",
+      "description": "Post asking designers for portfolios; the replies form a collection of design portfolios.",
+      "ideals": "Design inspiration.",
+      "application": "Personal site: portfolio examples for Fred's website.",
+      "repos": [
+        "personal-site"
+      ],
+      "source": "vault Buckets/Architecture/Links_Ingest_Todo.md:54",
+      "status": "current"
+    },
+    {
+      "url": "https://ascii.rest/",
+      "title": "ascii.rest: animated ascii art for web pages",
+      "fred": "https://ascii.rest/",
+      "description": "240 MIT-licensed animated ASCII art pieces for web pages in dependency-free TypeScript.",
+      "ideals": "Distinctive, lightweight visuals.",
+      "application": "Personal site and TMFA: possible ASCII art for Fred's site or the ASCII robot agent icons; Fred left no comment.",
+      "repos": [
+        "personal-site",
+        "tmfa"
+      ],
+      "source": "vault Buckets/Career-Harness/Career_Harness.md:55",
+      "status": "current"
+    },
+    {
+      "url": "https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/",
+      "title": "How to be more ambitious: A tutorial for humans with models",
+      "fred": "https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/ This could be a general conversation guide and also goes in asthetics ",
+      "description": "Essay by Felix Rieseberg, who works on Claude, on asking models for more ambitious work.",
+      "ideals": "Ask models for deeper, more ambitious work.",
+      "application": "PH and Fred's writing: a guide for how the harnesses converse with Fred, and a reference for the Misc/Asthetics notes.",
+      "repos": [
+        "ph",
+        "personal-site"
+      ],
+      "source": "vault Tasks_Current.md:96",
+      "status": "current"
+    }
+  ]
+}
