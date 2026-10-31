@@ -15,8 +15,8 @@ owns company/client claims; this site does not establish them.
 ## Next useful slice
 
 One draft in `posts/` is `draft: true` and appears only in the preview; two more wait in `drafts/`,
-which the build never reads. The
-[writing candidates](docs/writing-candidates.md) document owns their exact paths and source limits.
+which the build never reads. Every draft carries `draft: true` until Fred approves it for
+publication. Candidate ideas live in the vault (`Buckets/Writing/Future_Writing_Ideas.md`).
 Fred can edit those files directly. Source approval is not publication approval.
 [References](docs/references/README.md) holds the vault links whose application names this site.
 
