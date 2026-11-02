@@ -80,6 +80,8 @@ async function drive(origin) {
       results.push({ viewport: viewport.width, focus: 'skip link, Fred Casey-Housand, Writing' });
       await page.evaluate(() => document.activeElement.blur());
       await shot('home');
+      if (await page.locator('a[href*="tinymacro.app/initiatives"]').count()) throw new Error('Home links to the removed tinymacro.app/initiatives/ pages');
+      if (!(await page.locator('a[href="https://tinymacro.app/macrolayer/"]').count())) throw new Error('Home does not link MacroLayer to tinymacro.app/macrolayer/');
       await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Writing' }).click();
       await page.waitForURL(`${origin}/writing/`);
       await page.getByRole('heading', { level: 1, name: 'Writing' }).waitFor();
